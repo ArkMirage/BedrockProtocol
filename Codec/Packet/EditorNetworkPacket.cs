@@ -18,20 +18,20 @@ namespace Protocol.Packets
 
 		public bool RouteToManager { get; set; }
 		public string RawVariantName { get; set; }
-		public string RawVariantData { get; set; }
+		public byte[] RawVariantData { get; set; }
 
 		public void Read(MemoryStreamReader reader)
 		{
 			RouteToManager = reader.ReadByte() != 0;
 			RawVariantName = reader.ReadLengthPrefixedString();
-			RawVariantData = reader.ReadLengthPrefixedString();
+			RawVariantData = reader.ReadLengthPrefixedBytes().ToArray();
 		}
 
 		public void Write(MemoryStreamWriter writer)
 		{
 			writer.WriteByte(RouteToManager ? (byte)1 : (byte)0);
 			writer.WriteLengthPrefixedString(RawVariantName);
-			writer.WriteLengthPrefixedString(RawVariantData);
+			writer.WriteLengthPrefixedBytes(RawVariantData);
 		}
 	}
 }

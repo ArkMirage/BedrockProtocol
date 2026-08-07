@@ -15,18 +15,18 @@ namespace Protocol.Types.FeatureRegistry
 	public class FeatureBinaryJsonFormat
 	{
 		public string FeatureName { get; set; }
-		public string BinaryJsonOutput { get; set; }
+		public byte[] BinaryJsonOutput { get; set; }
 
 		public void Read(MemoryStreamReader reader)
 		{
 			FeatureName = reader.ReadLengthPrefixedString();
-			BinaryJsonOutput = reader.ReadLengthPrefixedString();
+			BinaryJsonOutput = reader.ReadLengthPrefixedBytes().ToArray();
 		}
 
 		public void Write(MemoryStreamWriter writer)
 		{
 			writer.WriteLengthPrefixedString(FeatureName);
-			writer.WriteLengthPrefixedString(BinaryJsonOutput);
+			writer.WriteLengthPrefixedBytes(BinaryJsonOutput);
 		}
 	}
 }

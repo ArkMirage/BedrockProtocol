@@ -18,12 +18,12 @@ namespace Protocol.Types
 
 		public void Read(MemoryStreamReader reader)
 		{
-			Value = VarInt.ReadInt64(reader); 
+			Value = VarInt.ReadSInt64(reader); 
 		}
 
 		public void Write(MemoryStreamWriter writer)
 		{
-			writer.WriteVarInt64(Value); 
+			writer.WriteSInt64(Value); 
 		}
 	}
 }

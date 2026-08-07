@@ -38,18 +38,18 @@ namespace Protocol.Types
 	public class MissingBlobData
 	{
 		public ulong BlobId { get; set; }
-		public string BlobData { get; set; }
+		public byte[] BlobData { get; set; }
 
 		public void Read(MemoryStreamReader reader)
 		{
 			BlobId = reader.ReadUInt64();
-			BlobData = reader.ReadLengthPrefixedString();
+			BlobData = reader.ReadLengthPrefixedBytes().ToArray();
 		}
 
 		public void Write(MemoryStreamWriter writer)
 		{
 			writer.WriteUInt64(BlobId);
-			writer.WriteLengthPrefixedString(BlobData);
+			writer.WriteLengthPrefixedBytes(BlobData);
 		}
 	}
 }

@@ -23,13 +23,13 @@ namespace Protocol.Packets
 		{
 			EventId = VarInt.ReadInt32(reader); 
 			CTD = new Protocol.Types.CompoundTag();
-			CTD.Read(reader);
+			CTD.Deserialize(reader);
 		}
 
 		public void Write(MemoryStreamWriter writer)
 		{
 			writer.WriteVarInt32(EventId); 
-			CTD.Write(writer);
+			CTD.Serialize(writer);
 		}
 	}
 }

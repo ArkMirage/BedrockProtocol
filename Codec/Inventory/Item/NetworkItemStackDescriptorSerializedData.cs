@@ -19,7 +19,7 @@ namespace Protocol.Types.NetworkItemStackDescriptor
 		public uint AuxValue { get; set; } 
 		public Optional<int> NetIdVariant { get; set; } = new Optional<int>(); 
 		public uint BlockRuntimeId { get; set; } 
-		public string UserDataBuffer { get; set; }
+		public byte[] UserDataBuffer { get; set; }
 
 		public void Read(MemoryStreamReader reader)
 		{
@@ -31,7 +31,7 @@ namespace Protocol.Types.NetworkItemStackDescriptor
 				NetIdVariant = new Optional<int>(VarInt.ReadInt32(reader)); 
 			}
 			BlockRuntimeId = VarInt.ReadUInt32(reader); 
-			UserDataBuffer = reader.ReadLengthPrefixedString();
+			UserDataBuffer = reader.ReadLengthPrefixedBytes().ToArray();
 		}
 
 		public void Write(MemoryStreamWriter writer)
@@ -49,7 +49,7 @@ namespace Protocol.Types.NetworkItemStackDescriptor
 				writer.WriteByte(0);
 			}
 			writer.WriteVarUInt32(BlockRuntimeId); 
-			writer.WriteLengthPrefixedString(UserDataBuffer);
+			writer.WriteLengthPrefixedBytes(UserDataBuffer);
 		}
 	}
 }

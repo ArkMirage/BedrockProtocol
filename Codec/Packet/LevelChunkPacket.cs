@@ -25,7 +25,7 @@ namespace Protocol.Packets
 		public Optional<int> ClientRequestSubChunkLimit { get; set; } = new Optional<int>(); 
 		public bool CacheEnabled { get; set; }
 		public List<Protocol.Types.LevelChunkPacketPayload.SubChunkMetadata> CacheMetadata { get; set; } = new List<Protocol.Types.LevelChunkPacketPayload.SubChunkMetadata>();
-		public string SerializedChunkData { get; set; }
+		public byte[] SerializedChunkData { get; set; }
 
 		public void Read(MemoryStreamReader reader)
 		{
@@ -40,7 +40,7 @@ namespace Protocol.Packets
 			}
 			CacheEnabled = reader.ReadByte() != 0;
 			CacheMetadata = reader.ReadSlice(() => { var _Item = new Protocol.Types.LevelChunkPacketPayload.SubChunkMetadata(); _Item.Read(reader); return _Item; });
-			SerializedChunkData = reader.ReadLengthPrefixedString();
+			SerializedChunkData = reader.ReadLengthPrefixedBytes().ToArray();
 		}
 
 		public void Write(MemoryStreamWriter writer)
@@ -59,7 +59,7 @@ namespace Protocol.Packets
 			}
 			writer.WriteByte(CacheEnabled ? (byte)1 : (byte)0);
 			writer.WriteSlice(CacheMetadata, v => v.Write(writer));
-			writer.WriteLengthPrefixedString(SerializedChunkData);
+			writer.WriteLengthPrefixedBytes(SerializedChunkData);
 		}
 	}
 }

@@ -35,7 +35,7 @@ namespace Protocol.Types
 		public bool IsPrimaryUser { get; set; }
 		public bool OverridesPlayerAppearance { get; set; }
 		public Protocol.TrustedSkinFlag TrustedSkinFlag { get; set; }
-		public string ProfileHash { get; set; }
+		public byte[] ProfileHash { get; set; }
 
 		public void Read(MemoryStreamReader reader)
 		{
@@ -71,7 +71,7 @@ namespace Protocol.Types
 			IsPrimaryUser = reader.ReadByte() != 0;
 			OverridesPlayerAppearance = reader.ReadByte() != 0;
 			TrustedSkinFlag = EnumCodec.FromString<Protocol.TrustedSkinFlag>(reader.ReadLengthPrefixedString());
-			ProfileHash = reader.ReadLengthPrefixedString();
+			ProfileHash = reader.ReadLengthPrefixedBytes().ToArray();
 		}
 
 		public void Write(MemoryStreamWriter writer)
@@ -102,7 +102,7 @@ namespace Protocol.Types
 			writer.WriteByte(IsPrimaryUser ? (byte)1 : (byte)0);
 			writer.WriteByte(OverridesPlayerAppearance ? (byte)1 : (byte)0);
 			writer.WriteLengthPrefixedString(EnumCodec.ToString(TrustedSkinFlag));
-			writer.WriteLengthPrefixedString(ProfileHash);
+			writer.WriteLengthPrefixedBytes(ProfileHash);
 		}
 	}
 }

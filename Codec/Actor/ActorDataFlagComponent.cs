@@ -18,12 +18,68 @@ namespace Protocol.Types
 
 		public void Read(MemoryStreamReader reader)
 		{
-			ActorFlagBitsetData = new Bitset(131, (System.Numerics.BigInteger)VarInt.ReadUInt64(reader) | ((System.Numerics.BigInteger)VarInt.ReadUInt64(reader) << 64)); 
+			var _Bitset = new Bitset(130);
+			int _BitIndex = 0;
+			while (true)
+			{
+				byte _Value = (byte)reader.ReadByte();
+				for (int i = 0; i < 7; i++)
+				{
+					int _Bit = _BitIndex + i;
+					if (_Bit < _Bitset.Size && (_Value & (1 << i)) != 0)
+					{
+						_Bitset.Set(_Bit);
+					}
+				}
+				if ((_Value & 0x80) == 0)
+				{
+					break;
+				}
+				_BitIndex += 7;
+			}
+			ActorFlagBitsetData = _Bitset;
 		}
 
 		public void Write(MemoryStreamWriter writer)
 		{
-			writer.WriteVarUInt64((ulong)ActorFlagBitsetData.Low); writer.WriteVarUInt64((ulong)ActorFlagBitsetData.High); 
+			if (ActorFlagBitsetData.IntValue.IsZero)
+			{
+				writer.WriteByte(0);
+				return;
+			}
+
+			int _BitIndex = 0;
+			while (true)
+			{
+				byte _Value = 0;
+				bool _HasHigherBits = false;
+				for (int i = 0; i < 7; i++)
+				{
+					int _Bit = _BitIndex + i;
+					if (_Bit < ActorFlagBitsetData.Size && ActorFlagBitsetData.Load(_Bit))
+					{
+						_Value |= (byte)(1 << i);
+					}
+				}
+				for (int i = _BitIndex + 7; i < ActorFlagBitsetData.Size; i++)
+				{
+					if (ActorFlagBitsetData.Load(i))
+					{
+						_HasHigherBits = true;
+						break;
+					}
+				}
+				if (_HasHigherBits)
+				{
+					_Value |= 0x80;
+				}
+				writer.WriteByte(_Value);
+				if (!_HasHigherBits)
+				{
+					break;
+				}
+				_BitIndex += 7;
+			}
 		}
 	}
 }

@@ -16,7 +16,7 @@ namespace Protocol.Types.SubChunkPacketPayload
 	{
 		public SubChunkPosOffset SubChunkPosOffset { get; set; }
 		public Protocol.SubChunkPacketPayload.SubChunkRequestResult SubChunkRequestResult { get; set; }
-		public Optional<string> SerializedSubChunk { get; set; } = new Optional<string>();
+		public Optional<byte[]> SerializedSubChunk { get; set; } = new Optional<byte[]>();
 		public HeightmapData HeightMapData { get; set; }
 		public Optional<ulong> BlobId { get; set; } = new Optional<ulong>();
 
@@ -27,7 +27,7 @@ namespace Protocol.Types.SubChunkPacketPayload
 			SubChunkRequestResult = (Protocol.SubChunkPacketPayload.SubChunkRequestResult)reader.ReadByte();
 			if (reader.ReadByte() != 0)
 			{
-				SerializedSubChunk = new Optional<string>(reader.ReadLengthPrefixedString());
+				SerializedSubChunk = new Optional<byte[]>(reader.ReadLengthPrefixedBytes().ToArray());
 			}
 			HeightMapData = new HeightmapData();
 			HeightMapData.Read(reader);
@@ -44,7 +44,7 @@ namespace Protocol.Types.SubChunkPacketPayload
 			if (SerializedSubChunk != null && SerializedSubChunk.HasValue)
 			{
 				writer.WriteByte(1);
-				writer.WriteLengthPrefixedString(SerializedSubChunk.Value);
+				writer.WriteLengthPrefixedBytes(SerializedSubChunk.Value);
 			}
 			else
 			{

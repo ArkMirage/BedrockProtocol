@@ -23,7 +23,7 @@ namespace Protocol.Packets
 		public int PacketId => 99;
 
 		public string PhotoName { get; set; }
-		public string PhotoData { get; set; }
+		public byte[] PhotoData { get; set; }
 		public string BookID { get; set; }
 		public Protocol.PhotoType Type_ { get; set; }
 		public Protocol.PhotoType SourceType { get; set; }
@@ -33,7 +33,7 @@ namespace Protocol.Packets
 		public void Read(MemoryStreamReader reader)
 		{
 			PhotoName = reader.ReadLengthPrefixedString();
-			PhotoData = reader.ReadLengthPrefixedString();
+			PhotoData = reader.ReadLengthPrefixedBytes().ToArray();
 			BookID = reader.ReadLengthPrefixedString();
 			Type_ = (Protocol.PhotoType)reader.ReadByte();
 			SourceType = (Protocol.PhotoType)reader.ReadByte();
@@ -44,7 +44,7 @@ namespace Protocol.Packets
 		public void Write(MemoryStreamWriter writer)
 		{
 			writer.WriteLengthPrefixedString(PhotoName);
-			writer.WriteLengthPrefixedString(PhotoData);
+			writer.WriteLengthPrefixedBytes(PhotoData);
 			writer.WriteLengthPrefixedString(BookID);
 			writer.WriteByte((byte)Type_);
 			writer.WriteByte((byte)SourceType);

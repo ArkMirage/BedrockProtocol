@@ -23,7 +23,7 @@ namespace Protocol.Packets
 		public uint ChunkSize { get; set; }
 		public uint NumberOfChunks { get; set; }
 		public ulong FileSize { get; set; }
-		public string FileHash { get; set; }
+		public byte[] FileHash { get; set; }
 		public bool IsPremiumPack { get; set; }
 		public byte PackType { get; set; }
 
@@ -33,7 +33,7 @@ namespace Protocol.Packets
 			ChunkSize = reader.ReadUInt32();
 			NumberOfChunks = reader.ReadUInt32();
 			FileSize = reader.ReadUInt64();
-			FileHash = reader.ReadLengthPrefixedString();
+			FileHash = reader.ReadLengthPrefixedBytes().ToArray();
 			IsPremiumPack = reader.ReadByte() != 0;
 			PackType = (byte)reader.ReadByte();
 		}
@@ -44,7 +44,7 @@ namespace Protocol.Packets
 			writer.WriteUInt32(ChunkSize);
 			writer.WriteUInt32(NumberOfChunks);
 			writer.WriteUInt64(FileSize);
-			writer.WriteLengthPrefixedString(FileHash);
+			writer.WriteLengthPrefixedBytes(FileHash);
 			writer.WriteByte(IsPremiumPack ? (byte)1 : (byte)0);
 			writer.WriteByte(PackType);
 		}

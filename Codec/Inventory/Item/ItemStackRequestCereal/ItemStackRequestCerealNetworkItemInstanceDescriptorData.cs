@@ -17,7 +17,7 @@ namespace Protocol.Types.ItemStackRequestCereal
 		public OneOf<EmptyItemDescriptorData, ItemNameDescriptorData, MolangItemDescriptorData, ItemTagDescriptorData> ItemDescriptor { get; set; }
 		public ushort StackSize { get; set; }
 		public uint BlockRuntimeId { get; set; } 
-		public string UserDataBuffer { get; set; }
+		public byte[] UserDataBuffer { get; set; }
 
 		public void Read(MemoryStreamReader reader)
 		{
@@ -57,7 +57,7 @@ namespace Protocol.Types.ItemStackRequestCereal
 			}
 			StackSize = reader.ReadUInt16();
 			BlockRuntimeId = VarInt.ReadUInt32(reader); 
-			UserDataBuffer = reader.ReadLengthPrefixedString();
+			UserDataBuffer = reader.ReadLengthPrefixedBytes().ToArray();
 		}
 
 		public void Write(MemoryStreamWriter writer)
@@ -93,7 +93,7 @@ namespace Protocol.Types.ItemStackRequestCereal
 			}
 			writer.WriteUInt16(StackSize);
 			writer.WriteVarUInt32(BlockRuntimeId); 
-			writer.WriteLengthPrefixedString(UserDataBuffer);
+			writer.WriteLengthPrefixedBytes(UserDataBuffer);
 		}
 	}
 }

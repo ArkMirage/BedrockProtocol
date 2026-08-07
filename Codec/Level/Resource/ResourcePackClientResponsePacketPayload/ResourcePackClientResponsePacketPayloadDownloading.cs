@@ -14,18 +14,18 @@ namespace Protocol.Types.ResourcePackClientResponsePacketPayload
 {
 	public class Downloading
 	{
-		public Protocol.ResourcePackResponse ResponseType { get; set; }
+		public string ResponseType { get; set; }
 		public List<string> DownloadingPacks { get; set; } = new List<string>();
 
 		public void Read(MemoryStreamReader reader)
 		{
-			ResponseType = EnumCodec.FromString<Protocol.ResourcePackResponse>(reader.ReadLengthPrefixedString());
+			ResponseType = reader.ReadLengthPrefixedString();
 			DownloadingPacks = reader.ReadSlice(() => reader.ReadLengthPrefixedString());
 		}
 
 		public void Write(MemoryStreamWriter writer)
 		{
-			writer.WriteLengthPrefixedString(EnumCodec.ToString(ResponseType));
+			writer.WriteLengthPrefixedString(ResponseType);
 			writer.WriteSlice(DownloadingPacks, v => writer.WriteLengthPrefixedString(v));
 		}
 	}

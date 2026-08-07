@@ -340,8 +340,8 @@ namespace Protocol
 		public static string ToString<T>(T value) where T : struct, Enum
 		{
 			if (IntToString.TryGetValue(typeof(T), out var map) && map.TryGetValue((int)(object)value, out string name))
-				return name;
-			return value.ToString();
+				return name.ToLowerInvariant();
+			return value.ToString().ToLowerInvariant();
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace Protocol.Types.NetworkItemInstanceDescriptor
 		public ushort StackSize { get; set; }
 		public uint AuxValue { get; set; } 
 		public int BlockRuntimeId { get; set; } 
-		public string UserDataBuffer { get; set; }
+		public byte[] UserDataBuffer { get; set; }
 
 		public void Read(MemoryStreamReader reader)
 		{
@@ -26,7 +26,7 @@ namespace Protocol.Types.NetworkItemInstanceDescriptor
 			StackSize = reader.ReadUInt16();
 			AuxValue = VarInt.ReadUInt32(reader); 
 			BlockRuntimeId = VarInt.ReadInt32(reader); 
-			UserDataBuffer = reader.ReadLengthPrefixedString();
+			UserDataBuffer = reader.ReadLengthPrefixedBytes().ToArray();
 		}
 
 		public void Write(MemoryStreamWriter writer)
@@ -35,7 +35,7 @@ namespace Protocol.Types.NetworkItemInstanceDescriptor
 			writer.WriteUInt16(StackSize);
 			writer.WriteVarUInt32(AuxValue); 
 			writer.WriteVarInt32(BlockRuntimeId); 
-			writer.WriteLengthPrefixedString(UserDataBuffer);
+			writer.WriteLengthPrefixedBytes(UserDataBuffer);
 		}
 	}
 }
