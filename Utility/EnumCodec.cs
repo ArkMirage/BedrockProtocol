@@ -334,7 +334,7 @@ namespace Protocol
 		{
 			if (StringToInt.TryGetValue(typeof(T), out var map) && map.TryGetValue(value, out int intValue))
 				return (T)(object)intValue;
-			return (T)Enum.Parse(typeof(T), value, true);
+			return Enum.Parse<T>(value, true);
 		}
 
 		public static string ToString<T>(T value) where T : struct, Enum
