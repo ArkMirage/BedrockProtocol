@@ -52,7 +52,7 @@ public static class VarInt
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static ulong ReadRawVarInt64(Stream buf, int maxSize, bool printBytes = false)
+	private static ulong ReadRawVarInt64(Stream buf, int maxSize)
 	{
 		var bytes = new List<byte>();
 
@@ -147,9 +147,9 @@ public static class VarInt
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static long ReadInt64(Stream stream, bool printBytes = false)
+	public static long ReadInt64(Stream stream)
 	{
-		return (long)ReadRawVarInt64(stream, 10, printBytes);
+		return (long)ReadRawVarInt64(stream, 10);
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
