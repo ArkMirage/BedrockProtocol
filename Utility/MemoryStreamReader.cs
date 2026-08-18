@@ -57,7 +57,10 @@ public class MemoryStreamReader : Stream
 	{
 		return _buffer.Span[(int)Position++];
 	}
-
+	public bool ReadBool()
+	{
+		return ReadByte() != 0;
+	}
 	public override void SetLength(long value)
 	{
 		if (value > _buffer.Length) throw new IOException("Can't set length beyond size of buffer");

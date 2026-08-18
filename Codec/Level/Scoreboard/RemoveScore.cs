@@ -17,7 +17,7 @@ namespace Protocol.Types
 		public Protocol.ScorePacketEntryAction Action { get; set; }
 		public ScoreboardId ScoreboardId { get; set; }
 		public bool unknown = true;
-		public Optional<string> ObjectiveName { get; set; } = new Optional<string>();
+		public DoubleOptional<string> ObjectiveName { get; set; } = new DoubleOptional<string>();
 
 		public void Read(MemoryStreamReader reader)
 		{
@@ -27,25 +27,21 @@ namespace Protocol.Types
 
 			unknown = reader.ReadByte() != 0;
 
-			if (reader.ReadByte() != 0)
+		
+			ObjectiveName.Read(reader, () =>
 			{
-				ObjectiveName = new Optional<string>(reader.ReadLengthPrefixedString());
-			}
+				return reader.ReadLengthPrefixedString();
+			});
 		}
 
 		public void Write(MemoryStreamWriter writer)
 		{
 			writer.WriteLengthPrefixedString(EnumCodec.ToString(Action));
 			ScoreboardId.Write(writer);
-			if (ObjectiveName != null && ObjectiveName.HasValue)
+			ObjectiveName.Write(writer, (a) =>
 			{
-				writer.WriteByte(1);
-				writer.WriteLengthPrefixedString(ObjectiveName.Value);
-			}
-			else
-			{
-				writer.WriteByte(0);
-			}
+				writer.WriteLengthPrefixedString(a);
+			});
 		}
 	}
 }
