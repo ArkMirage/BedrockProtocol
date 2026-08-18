@@ -1,6 +1,7 @@
 using System;
 using System.Buffers.Binary;
 using System.IO;
+using System.Reflection.PortableExecutable;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -52,7 +53,12 @@ public class MemoryStreamReader : Stream
 		return Position;
 	}
 
+	public bool ReadBool()
+	{
+		return ReadByte() != 0;
+	}
 
+	
 	public override int ReadByte()
 	{
 		return _buffer.Span[(int)Position++];

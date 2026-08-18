@@ -21,7 +21,17 @@ public class MemoryStreamWriter
 	{
 		_stream.WriteByte(value);
 	}
-
+	public void WriteBool(bool value)
+	{
+		if (value)
+		{
+			WriteByte(1);
+		}
+		else
+		{
+			WriteByte(0);
+		}
+	}
 	public void Write(byte[] buffer)
 	{
 		_stream.Write(buffer, 0, buffer.Length);
