@@ -34,5 +34,6 @@ namespace Protocol.SharedTypes.persona
 		Capes = 25,
 		ClassicSkin = 26,
 		Emote = 27,
+		Unsupported = 28,
 	}
 }
