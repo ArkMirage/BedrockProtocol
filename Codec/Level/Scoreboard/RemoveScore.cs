@@ -16,7 +16,6 @@ namespace Protocol.Types
 	{
 		public Protocol.ScorePacketEntryAction Action { get; set; }
 		public ScoreboardId ScoreboardId { get; set; }
-		public bool unknown = true;
 		public DoubleOptional<string> ObjectiveName { get; set; } = new DoubleOptional<string>();
 
 		public void Read(MemoryStreamReader reader)
@@ -25,9 +24,6 @@ namespace Protocol.Types
 			ScoreboardId = new ScoreboardId();
 			ScoreboardId.Read(reader);
 
-			unknown = reader.ReadByte() != 0;
-
-		
 			ObjectiveName.Read(reader, () =>
 			{
 				return reader.ReadLengthPrefixedString();
