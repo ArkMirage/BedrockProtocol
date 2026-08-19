@@ -23,8 +23,9 @@ namespace Protocol.Packets
 		public int IntComponentValue { get; set; } 
 		public float FloatComponentValue { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ActorId = new Protocol.Types.ActorUniqueID();
 			ActorId.Read(reader);
 			PropertyName = reader.ReadLengthPrefixedString();
@@ -34,8 +35,9 @@ namespace Protocol.Packets
 			FloatComponentValue = reader.ReadSingle();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			ActorId.Write(writer);
 			writer.WriteLengthPrefixedString(PropertyName);
 			writer.WriteByte(BoolComponentValue ? (byte)1 : (byte)0);

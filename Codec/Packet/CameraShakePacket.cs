@@ -24,16 +24,18 @@ namespace Protocol.Packets
 		public Protocol.CameraShakeType ShakeType { get; set; }
 		public Protocol.CameraShakeAction ShakeAction { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Intensity = reader.ReadSingle();
 			Seconds = reader.ReadSingle();
 			ShakeType = (Protocol.CameraShakeType)reader.ReadByte();
 			ShakeAction = (Protocol.CameraShakeAction)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSingle(Intensity);
 			writer.WriteSingle(Seconds);
 			writer.WriteByte((byte)ShakeType);

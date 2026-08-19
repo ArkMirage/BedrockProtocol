@@ -23,15 +23,17 @@ namespace Protocol.Packets
 		public int PlayerPermissionLevel { get; set; } 
 		public ushort CustomPermissionFlags { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			TargetPlayerIdSRawID = reader.ReadInt64();
 			PlayerPermissionLevel = VarInt.ReadInt32(reader); 
 			CustomPermissionFlags = reader.ReadUInt16();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteInt64(TargetPlayerIdSRawID);
 			writer.WriteVarInt32(PlayerPermissionLevel); 
 			writer.WriteUInt16(CustomPermissionFlags);

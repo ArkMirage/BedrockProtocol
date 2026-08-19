@@ -23,8 +23,9 @@ namespace Protocol.Packets
 		public string NpcName { get; set; }
 		public string ActionJSON { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			NpcIdRawId = reader.ReadUInt64();
 			NpcDialogueActionType = (Protocol.NpcDialoguePacketPayload.NpcDialogueActionType)VarInt.ReadInt32(reader); 
 			Dialogue = reader.ReadLengthPrefixedString();
@@ -33,8 +34,9 @@ namespace Protocol.Packets
 			ActionJSON = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteUInt64(NpcIdRawId);
 			writer.WriteVarInt32((int)NpcDialogueActionType); 
 			writer.WriteLengthPrefixedString(Dialogue);

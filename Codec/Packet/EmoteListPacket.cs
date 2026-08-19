@@ -19,15 +19,17 @@ namespace Protocol.Packets
 		public Protocol.Types.ActorRuntimeID RuntimeId { get; set; }
 		public List<Protocol.Types.mce.UUID> EmotePieceIds { get; set; } = new List<Protocol.Types.mce.UUID>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			RuntimeId = new Protocol.Types.ActorRuntimeID();
 			RuntimeId.Read(reader);
 			EmotePieceIds = reader.ReadSlice(() => { var _Item = new Protocol.Types.mce.UUID(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			RuntimeId.Write(writer);
 			writer.WriteSlice(EmotePieceIds, v => v.Write(writer));
 		}

@@ -21,13 +21,15 @@ namespace Protocol.Packets
 
 		public uint EffectId { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			EffectId = reader.ReadUInt32();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteUInt32(EffectId);
 		}
 	}

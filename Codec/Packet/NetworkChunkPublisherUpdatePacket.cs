@@ -23,16 +23,18 @@ namespace Protocol.Packets
 		public uint NewRadiusForView { get; set; } 
 		public List<Protocol.Types.ChunkPos> ServerBuiltChunksList { get; set; } = new List<Protocol.Types.ChunkPos>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			NewPositionForView = new Protocol.Types.BlockPos();
 			NewPositionForView.Read(reader);
 			NewRadiusForView = VarInt.ReadUInt32(reader); 
 			ServerBuiltChunksList = reader.ReadSliceUint32Length(() => { var _Item = new Protocol.Types.ChunkPos(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			NewPositionForView.Write(writer);
 			writer.WriteVarUInt32(NewRadiusForView); 
 			writer.WriteSliceUint32Length(ServerBuiltChunksList, v => v.Write(writer));

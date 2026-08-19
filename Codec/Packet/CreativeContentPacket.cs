@@ -22,14 +22,16 @@ namespace Protocol.Packets
 		public List<Protocol.Types.CreativeGroupInfoPayload> Groups { get; set; } = new List<Protocol.Types.CreativeGroupInfoPayload>();
 		public List<Protocol.Types.CreativeItemEntryPayload> Entries { get; set; } = new List<Protocol.Types.CreativeItemEntryPayload>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Groups = reader.ReadSlice(() => { var _Item = new Protocol.Types.CreativeGroupInfoPayload(); _Item.Read(reader); return _Item; });
 			Entries = reader.ReadSlice(() => { var _Item = new Protocol.Types.CreativeItemEntryPayload(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(Groups, v => v.Write(writer));
 			writer.WriteSlice(Entries, v => v.Write(writer));
 		}

@@ -18,16 +18,18 @@ namespace Protocol.Packets
 
 		public Optional<uint> FormId { get; set; } = new Optional<uint>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			if (reader.ReadByte() != 0)
 			{
 				FormId = new Optional<uint>(reader.ReadUInt32());
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			if (FormId != null && FormId.HasValue)
 			{
 				writer.WriteByte(1);

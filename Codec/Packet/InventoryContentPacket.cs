@@ -21,8 +21,9 @@ namespace Protocol.Packets
 		public Protocol.Types.FullContainerName FullContainerName { get; set; }
 		public Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor StorageItem { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ContainerId = VarInt.ReadUInt32(reader); 
 			Slots = reader.ReadSlice(() => { var _Item = new Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor(); _Item.Read(reader); return _Item; });
 			FullContainerName = new Protocol.Types.FullContainerName();
@@ -31,8 +32,9 @@ namespace Protocol.Packets
 			StorageItem.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarUInt32(ContainerId); 
 			writer.WriteSlice(Slots, v => v.Write(writer));
 			FullContainerName.Write(writer);

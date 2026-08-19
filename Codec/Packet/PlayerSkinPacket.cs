@@ -24,8 +24,9 @@ namespace Protocol.Packets
 		public string LocalizedNewSkinName { get; set; }
 		public string LocalizedOldSkinName { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			UUID = new Protocol.Types.mce.UUID();
 			UUID.Read(reader);
 			SerializedSkin = new Protocol.Types.SerializedSkinRef();
@@ -34,8 +35,9 @@ namespace Protocol.Packets
 			LocalizedOldSkinName = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			UUID.Write(writer);
 			SerializedSkin.Write(writer);
 			writer.WriteLengthPrefixedString(LocalizedNewSkinName);

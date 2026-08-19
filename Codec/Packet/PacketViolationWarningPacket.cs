@@ -21,16 +21,18 @@ namespace Protocol.Packets
 		public int ViolationPacketId { get; set; } 
 		public string ViolationContext { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ViolationType = (Protocol.PacketViolationType)VarInt.ReadInt32(reader); 
 			ViolationSeverity = (Protocol.PacketViolationSeverity)VarInt.ReadInt32(reader); 
 			ViolationPacketId = VarInt.ReadInt32(reader); 
 			ViolationContext = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32((int)ViolationType); 
 			writer.WriteVarInt32((int)ViolationSeverity); 
 			writer.WriteVarInt32(ViolationPacketId); 

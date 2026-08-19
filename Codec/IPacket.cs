@@ -5,10 +5,18 @@ using Protocol.Utility.IO;
 
 namespace Protocol.Packets
 {
-	public interface IPacket
+	public class IPacket
 	{
-		int PacketId { get; }
-		void Read(MemoryStreamReader reader);
-		void Write(MemoryStreamWriter writer);
+		ReadOnlyMemory<byte> bytes { get; set; }
+
+		public virtual void Read(MemoryStreamReader reader)
+		{
+			
+		}
+
+		public virtual void Write(MemoryStreamWriter writer)
+		{
+			
+		}
 	}
 }

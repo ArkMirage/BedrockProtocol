@@ -20,16 +20,18 @@ namespace Protocol.Packets
 		public Protocol.Types.Vec3 Position { get; set; }
 		public int Data { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			EventId = VarInt.ReadInt32(reader); 
 			Position = new Protocol.Types.Vec3();
 			Position.Read(reader);
 			Data = VarInt.ReadInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32(EventId); 
 			Position.Write(writer);
 			writer.WriteVarInt32(Data); 

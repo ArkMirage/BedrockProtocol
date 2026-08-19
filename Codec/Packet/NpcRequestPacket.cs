@@ -27,8 +27,9 @@ namespace Protocol.Packets
 		public byte ActionIndex { get; set; }
 		public string SceneName { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			NPCRuntimeID = new Protocol.Types.ActorRuntimeID();
 			NPCRuntimeID.Read(reader);
 			RequestType = (Protocol.NpcRequestPacketPayload.RequestType)reader.ReadByte();
@@ -37,8 +38,9 @@ namespace Protocol.Packets
 			SceneName = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			NPCRuntimeID.Write(writer);
 			writer.WriteByte((byte)RequestType);
 			writer.WriteLengthPrefixedString(Actions);

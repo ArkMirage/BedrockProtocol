@@ -20,15 +20,17 @@ namespace Protocol.Packets
 		public int Score { get; set; } 
 		public string ActivityId { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			LessonAction = VarInt.ReadInt32(reader); 
 			Score = VarInt.ReadInt32(reader); 
 			ActivityId = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32(LessonAction); 
 			writer.WriteVarInt32(Score); 
 			writer.WriteLengthPrefixedString(ActivityId);

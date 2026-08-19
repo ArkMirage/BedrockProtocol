@@ -22,14 +22,16 @@ namespace Protocol.Packets
 		public string Command { get; set; }
 		public bool SuppressOutput { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Command = reader.ReadLengthPrefixedString();
 			SuppressOutput = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(Command);
 			writer.WriteByte(SuppressOutput ? (byte)1 : (byte)0);
 		}

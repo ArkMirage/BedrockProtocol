@@ -27,8 +27,9 @@ namespace Protocol.Packets
 		public Protocol.Types.BlockPos ResultPos { get; set; }
 		public int Face { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PlayerRuntimeID = new Protocol.Types.ActorRuntimeID();
 			PlayerRuntimeID.Read(reader);
 			Action = (Protocol.PlayerActionType)VarInt.ReadInt32(reader); 
@@ -39,8 +40,9 @@ namespace Protocol.Packets
 			Face = VarInt.ReadInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			PlayerRuntimeID.Write(writer);
 			writer.WriteVarInt32((int)Action); 
 			BlockPosition.Write(writer);

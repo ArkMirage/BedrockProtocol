@@ -25,8 +25,9 @@ namespace Protocol.Packets
 		public Protocol.BossBarColor Color { get; set; }
 		public Protocol.BossBarOverlay Overlay { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			TargetActorID = new Protocol.Types.ActorUniqueID();
 			TargetActorID.Read(reader);
 			PlayerID = new Protocol.Types.ActorUniqueID();
@@ -39,8 +40,9 @@ namespace Protocol.Packets
 			Overlay = (Protocol.BossBarOverlay)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			TargetActorID.Write(writer);
 			PlayerID.Write(writer);
 			writer.WriteByte((byte)EventType);

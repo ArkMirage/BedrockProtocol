@@ -24,8 +24,9 @@ namespace Protocol.Packets
 		public int Data { get; set; } 
 		public Optional<Protocol.Types.Vec3> FireAtPosition { get; set; } = new Optional<Protocol.Types.Vec3>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			TargetRuntimeID = new Protocol.Types.ActorRuntimeID();
 			TargetRuntimeID.Read(reader);
 			EventID = (Protocol.ActorEvent)reader.ReadByte();
@@ -38,8 +39,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
-		{
+		public override void Write(MemoryStreamWriter writer)
+		{	
+			base.Write(writer);
 			TargetRuntimeID.Write(writer);
 			writer.WriteByte((byte)EventID);
 			writer.WriteVarInt32(Data); 

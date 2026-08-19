@@ -21,13 +21,15 @@ namespace Protocol.Packets
 
 		public List<Protocol.Types.SharedTypes.v1_26_0.CameraSplineDefinition> CameraDataSplines { get; set; } = new List<Protocol.Types.SharedTypes.v1_26_0.CameraSplineDefinition>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			CameraDataSplines = reader.ReadSlice(() => { var _Item = new Protocol.Types.SharedTypes.v1_26_0.CameraSplineDefinition(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(CameraDataSplines, v => v.Write(writer));
 		}
 	}

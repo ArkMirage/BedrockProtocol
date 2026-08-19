@@ -45,8 +45,9 @@ namespace Protocol.Packets
 		public Optional<Protocol.Types.ServerConfiguration.ServerConfigurationJoinInfo> ServerConfigurationJoinInfo { get; set; } = new Optional<Protocol.Types.ServerConfiguration.ServerConfigurationJoinInfo>();
 		public Protocol.Types.Social.Events.ServerTelemetryData ServerTelemetryData { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			EntityID = new Protocol.Types.ActorUniqueID();
 			EntityID.Read(reader);
 			RuntimeID = new Protocol.Types.ActorRuntimeID();
@@ -89,8 +90,9 @@ namespace Protocol.Packets
 			ServerTelemetryData.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			EntityID.Write(writer);
 			RuntimeID.Write(writer);
 			writer.WriteVarInt32((int)GameType); 

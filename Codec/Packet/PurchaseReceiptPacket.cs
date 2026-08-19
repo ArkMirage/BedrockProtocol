@@ -22,13 +22,15 @@ namespace Protocol.Packets
 
 		public List<string> PurchaseReceipts { get; set; } = new List<string>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PurchaseReceipts = reader.ReadSlice(() => reader.ReadLengthPrefixedString());
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(PurchaseReceipts, v => writer.WriteLengthPrefixedString(v));
 		}
 	}

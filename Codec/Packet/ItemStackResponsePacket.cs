@@ -18,13 +18,15 @@ namespace Protocol.Packets
 
 		public List<Protocol.Types.ItemStackResponseInfo> Responses { get; set; } = new List<Protocol.Types.ItemStackResponseInfo>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Responses = reader.ReadSlice(() => { var _Item = new Protocol.Types.ItemStackResponseInfo(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(Responses, v => v.Write(writer));
 		}
 	}

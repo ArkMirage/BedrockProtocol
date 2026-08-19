@@ -21,8 +21,9 @@ namespace Protocol.Packets
 		public bool UsePlayerID { get; set; }
 		public OneOf<Protocol.Types.LegacyTelemetryEventPacketPayload.Achievement, Protocol.Types.LegacyTelemetryEventPacketPayload.Interaction, Protocol.Types.LegacyTelemetryEventPacketPayload.PortalCreated, Protocol.Types.LegacyTelemetryEventPacketPayload.PortalUsed, Protocol.Types.LegacyTelemetryEventPacketPayload.MobKilled, Protocol.Types.LegacyTelemetryEventPacketPayload.CauldronUsed, Protocol.Types.LegacyTelemetryEventPacketPayload.PlayerDied, Protocol.Types.LegacyTelemetryEventPacketPayload.BossKilled, Protocol.Types.LegacyTelemetryEventPacketPayload.SlashCommand, Protocol.Types.LegacyTelemetryEventPacketPayload.MobBorn, Protocol.Types.LegacyTelemetryEventPacketPayload.POICauldronUsed, Protocol.Types.LegacyTelemetryEventPacketPayload.ComposterUsed, Protocol.Types.LegacyTelemetryEventPacketPayload.BellUsed, Protocol.Types.LegacyTelemetryEventPacketPayload.ActorDefinition, Protocol.Types.LegacyTelemetryEventPacketPayload.RaidUpdate, Protocol.Types.LegacyTelemetryEventPacketPayload.TargetBlockHit, Protocol.Types.LegacyTelemetryEventPacketPayload.PiglinBarter, Protocol.Types.LegacyTelemetryEventPacketPayload.PlayerWaxedOrUnwaxedCopper, Protocol.Types.LegacyTelemetryEventPacketPayload.CodeBuilderRuntimeAction, Protocol.Types.LegacyTelemetryEventPacketPayload.CodeBuilderScoreboard, Protocol.Types.LegacyTelemetryEventPacketPayload.ItemUsed, Protocol.Types.LegacyTelemetryEventPacketPayload.Empty> EventData { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			TargetActorID = new Protocol.Types.ActorUniqueID();
 			TargetActorID.Read(reader);
 			EventType = (Protocol.LegacyTelemetryEventPacketPayload.Type)VarInt.ReadInt32(reader); 
@@ -189,8 +190,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			TargetActorID.Write(writer);
 			writer.WriteVarInt32((int)EventType); 
 			writer.WriteByte(UsePlayerID ? (byte)1 : (byte)0);

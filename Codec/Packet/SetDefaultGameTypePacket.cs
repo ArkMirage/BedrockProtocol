@@ -18,13 +18,15 @@ namespace Protocol.Packets
 
 		public Protocol.GameType DefaultGameType { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			DefaultGameType = (Protocol.GameType)VarInt.ReadInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32((int)DefaultGameType); 
 		}
 	}

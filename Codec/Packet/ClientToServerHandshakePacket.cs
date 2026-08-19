@@ -15,12 +15,14 @@ namespace Protocol.Packets
 	public class ClientToServerHandshakePacket : IPacket
 	{
 		public int PacketId => 4;
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 		}
 	}
 }

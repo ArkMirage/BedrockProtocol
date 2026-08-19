@@ -22,14 +22,16 @@ namespace Protocol.Packets
 		public int ChunkRadius { get; set; } 
 		public byte MaxChunkRadius { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ChunkRadius = VarInt.ReadInt32(reader); 
 			MaxChunkRadius = (byte)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32(ChunkRadius); 
 			writer.WriteByte(MaxChunkRadius);
 		}

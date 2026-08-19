@@ -24,8 +24,9 @@ namespace Protocol.Packets
 		public uint Flags { get; set; } 
 		public uint Layer { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			BlockPosition = new Protocol.Types.BlockPos();
 			BlockPosition.Read(reader);
 			BlockRuntimeID = VarInt.ReadUInt32(reader); 
@@ -33,8 +34,9 @@ namespace Protocol.Packets
 			Layer = VarInt.ReadUInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			BlockPosition.Write(writer);
 			writer.WriteVarUInt32(BlockRuntimeID); 
 			writer.WriteVarUInt32(Flags); 

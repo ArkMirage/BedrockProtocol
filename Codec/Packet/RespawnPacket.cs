@@ -23,8 +23,9 @@ namespace Protocol.Packets
 		public Protocol.PlayerRespawnState State { get; set; }
 		public Protocol.Types.ActorRuntimeID PlayerRuntimeId { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Position = new Protocol.Types.Vec3();
 			Position.Read(reader);
 			State = (Protocol.PlayerRespawnState)reader.ReadByte();
@@ -32,8 +33,9 @@ namespace Protocol.Packets
 			PlayerRuntimeId.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			Position.Write(writer);
 			writer.WriteByte((byte)State);
 			PlayerRuntimeId.Write(writer);

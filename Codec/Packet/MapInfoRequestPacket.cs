@@ -28,15 +28,17 @@ namespace Protocol.Packets
 		public Protocol.Types.ActorUniqueID MapUniqueID { get; set; }
 		public List<Protocol.Types.MapInfoRequestPacketAnon.ClientPixelsProxy> ClientPixelsList { get; set; } = new List<Protocol.Types.MapInfoRequestPacketAnon.ClientPixelsProxy>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			MapUniqueID = new Protocol.Types.ActorUniqueID();
 			MapUniqueID.Read(reader);
 			ClientPixelsList = reader.ReadSliceUint32Length(() => { var _Item = new Protocol.Types.MapInfoRequestPacketAnon.ClientPixelsProxy(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			MapUniqueID.Write(writer);
 			writer.WriteSliceUint32Length(ClientPixelsList, v => v.Write(writer));
 		}

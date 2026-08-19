@@ -23,13 +23,15 @@ namespace Protocol.Packets
 
 		public Protocol.PlayStatus Status { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Status = (Protocol.PlayStatus)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte((byte)Status);
 		}
 	}

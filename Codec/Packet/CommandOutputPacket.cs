@@ -19,16 +19,18 @@ namespace Protocol.Packets
 		public Protocol.Types.CommandOriginData OriginData { get; set; }
 		public Protocol.Types.CommandOutput Output { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			OriginData = new Protocol.Types.CommandOriginData();
 			OriginData.Read(reader);
 			Output = new Protocol.Types.CommandOutput();
 			Output.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			OriginData.Write(writer);
 			Output.Write(writer);
 		}

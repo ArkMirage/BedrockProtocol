@@ -20,8 +20,9 @@ namespace Protocol.Packets
 		public uint FormId { get; set; }
 		public Optional<uint> DataInstanceId { get; set; } = new Optional<uint>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ScreenId = reader.ReadLengthPrefixedString();
 			FormId = reader.ReadUInt32();
 			if (reader.ReadByte() != 0)
@@ -30,8 +31,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(ScreenId);
 			writer.WriteUInt32(FormId);
 			if (DataInstanceId != null && DataInstanceId.HasValue)

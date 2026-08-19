@@ -19,15 +19,17 @@ namespace Protocol.Packets
 		public Protocol.AgentAnimation AgentAnimation { get; set; }
 		public Protocol.Types.ActorRuntimeID RuntimeId { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			AgentAnimation = (Protocol.AgentAnimation)reader.ReadByte();
 			RuntimeId = new Protocol.Types.ActorRuntimeID();
 			RuntimeId.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte((byte)AgentAnimation);
 			RuntimeId.Write(writer);
 		}

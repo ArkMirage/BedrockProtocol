@@ -24,16 +24,18 @@ namespace Protocol.Packets
 		public ulong ByteOffset { get; set; }
 		public byte[] ChunkData { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ResourceName = reader.ReadLengthPrefixedString();
 			ChunkID = reader.ReadUInt32();
 			ByteOffset = reader.ReadUInt64();
 			ChunkData = reader.ReadLengthPrefixedBytes().ToArray();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(ResourceName);
 			writer.WriteUInt32(ChunkID);
 			writer.WriteUInt64(ByteOffset);

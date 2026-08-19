@@ -36,8 +36,9 @@ namespace Protocol.Packets
 		public string DeviceId { get; set; }
 		public Protocol.BuildPlatform BuildPlatform { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			UUID = new Protocol.Types.mce.UUID();
 			UUID.Read(reader);
 			PlayerName = reader.ReadLengthPrefixedString();
@@ -65,8 +66,9 @@ namespace Protocol.Packets
 			BuildPlatform = (Protocol.BuildPlatform)reader.ReadInt32();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			UUID.Write(writer);
 			writer.WriteLengthPrefixedString(PlayerName);
 			TargetRuntimeID.Write(writer);

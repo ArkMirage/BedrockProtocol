@@ -23,16 +23,18 @@ namespace Protocol.Packets
 		public Protocol.Types.ActorUniqueID OriginalMapId { get; set; }
 		public Protocol.Types.ActorUniqueID NewMapId { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			OriginalMapId = new Protocol.Types.ActorUniqueID();
 			OriginalMapId.Read(reader);
 			NewMapId = new Protocol.Types.ActorUniqueID();
 			NewMapId.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			OriginalMapId.Write(writer);
 			NewMapId.Write(writer);
 		}

@@ -19,14 +19,16 @@ namespace Protocol.Packets
 		public int ClientNetworkVersion { get; set; }
 		public string ConnectionRequest { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ClientNetworkVersion = BinaryPrimitives.ReverseEndianness(reader.ReadInt32());
 			ConnectionRequest = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteInt32(BinaryPrimitives.ReverseEndianness(ClientNetworkVersion));
 			writer.WriteLengthPrefixedString(ConnectionRequest);
 		}

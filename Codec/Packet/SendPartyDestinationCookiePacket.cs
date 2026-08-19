@@ -20,15 +20,17 @@ namespace Protocol.Packets
 		public Protocol.PartyDestinationCookieIntent Intent { get; set; }
 		public string DestinationName { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Cookie = reader.ReadLengthPrefixedString();
 			Intent = EnumCodec.FromString<Protocol.PartyDestinationCookieIntent>(reader.ReadLengthPrefixedString());
 			DestinationName = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(Cookie);
 			writer.WriteLengthPrefixedString(EnumCodec.ToString(Intent));
 			writer.WriteLengthPrefixedString(DestinationName);
