@@ -23,16 +23,18 @@ namespace Protocol.Packets
 		public Protocol.Types.BlockPos Position { get; set; }
 		public Protocol.LabTableReactionType Reaction { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Type_ = (Protocol.LabTablePacketPayload.Type)reader.ReadByte();
 			Position = new Protocol.Types.BlockPos();
 			Position.Read(reader);
 			Reaction = (Protocol.LabTableReactionType)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte((byte)Type_);
 			Position.Write(writer);
 			writer.WriteByte((byte)Reaction);

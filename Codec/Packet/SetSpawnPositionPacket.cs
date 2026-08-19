@@ -24,8 +24,9 @@ namespace Protocol.Packets
 		public Protocol.Types.DimensionType DimensionType { get; set; }
 		public Protocol.Types.BlockPos SpawnBlockPos { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			SpawnPositionType = (Protocol.SpawnPositionType)VarInt.ReadInt32(reader); 
 			BlockPosition = new Protocol.Types.BlockPos();
 			BlockPosition.Read(reader);
@@ -35,8 +36,9 @@ namespace Protocol.Packets
 			SpawnBlockPos.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32((int)SpawnPositionType); 
 			BlockPosition.Write(writer);
 			DimensionType.Write(writer);

@@ -27,8 +27,9 @@ namespace Protocol.Packets
 		public List<Protocol.Types.LevelChunkPacketPayload.SubChunkMetadata> CacheMetadata { get; set; } = new List<Protocol.Types.LevelChunkPacketPayload.SubChunkMetadata>();
 		public byte[] SerializedChunkData { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ChunkPosition = new Protocol.Types.ChunkPos();
 			ChunkPosition.Read(reader);
 			DimensionId = new Protocol.Types.DimensionType();
@@ -43,8 +44,9 @@ namespace Protocol.Packets
 			SerializedChunkData = reader.ReadLengthPrefixedBytes().ToArray();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			ChunkPosition.Write(writer);
 			DimensionId.Write(writer);
 			writer.WriteVarUInt32(SubChunksCount); 

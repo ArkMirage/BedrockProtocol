@@ -25,8 +25,9 @@ namespace Protocol.Packets
 		public int EffectDuration { get; set; } 
 		public Protocol.Types.PlayerInputTick Tick { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			TargetRuntimeID = new Protocol.Types.ActorRuntimeID();
 			TargetRuntimeID.Read(reader);
 			EffectID = (Protocol.MovementEffectType)VarInt.ReadInt32(reader); 
@@ -35,8 +36,9 @@ namespace Protocol.Packets
 			Tick.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			TargetRuntimeID.Write(writer);
 			writer.WriteVarInt32((int)EffectID); 
 			writer.WriteVarInt32(EffectDuration); 

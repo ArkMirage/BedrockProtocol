@@ -22,8 +22,9 @@ namespace Protocol.Packets
 		public byte SlotIndex { get; set; }
 		public bool IsDisabled { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PosX = reader.ReadInt32();
 			PosY = reader.ReadInt32();
 			PosZ = reader.ReadInt32();
@@ -31,8 +32,9 @@ namespace Protocol.Packets
 			IsDisabled = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteInt32(PosX);
 			writer.WriteInt32(PosY);
 			writer.WriteInt32(PosZ);

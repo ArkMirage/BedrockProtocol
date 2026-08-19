@@ -30,8 +30,9 @@ namespace Protocol.Packets
 		public long ActorUniqueId { get; set; }
 		public Optional<Protocol.Types.Vec3> FireAtPosition { get; set; } = new Optional<Protocol.Types.Vec3>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			SoundEvent = reader.ReadLengthPrefixedString();
 			Position = new Protocol.Types.Vec3();
 			Position.Read(reader);
@@ -48,8 +49,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(SoundEvent);
 			Position.Write(writer);
 			writer.WriteVarInt32(Data); 

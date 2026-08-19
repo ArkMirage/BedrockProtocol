@@ -18,13 +18,15 @@ namespace Protocol.Packets
 
 		public List<Protocol.Types.ArmorSlotAndDamagePair> ArmorSlotAndDamagePairs { get; set; } = new List<Protocol.Types.ArmorSlotAndDamagePair>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ArmorSlotAndDamagePairs = reader.ReadSlice(() => { var _Item = new Protocol.Types.ArmorSlotAndDamagePair(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(ArmorSlotAndDamagePairs, v => v.Write(writer));
 		}
 	}

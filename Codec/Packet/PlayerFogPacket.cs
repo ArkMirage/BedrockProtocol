@@ -21,13 +21,15 @@ namespace Protocol.Packets
 
 		public List<string> FogStack { get; set; } = new List<string>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			FogStack = reader.ReadSlice(() => reader.ReadLengthPrefixedString());
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(FogStack, v => writer.WriteLengthPrefixedString(v));
 		}
 	}

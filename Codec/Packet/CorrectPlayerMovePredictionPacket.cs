@@ -30,8 +30,9 @@ namespace Protocol.Packets
 		public bool OnGround { get; set; }
 		public Protocol.Types.PlayerInputTick Tick { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PredictionType = (Protocol.RewindType)reader.ReadByte();
 			Pos = new Protocol.Types.Vec3();
 			Pos.Read(reader);
@@ -48,8 +49,9 @@ namespace Protocol.Packets
 			Tick.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte((byte)PredictionType);
 			Pos.Write(writer);
 			PosDelta.Write(writer);

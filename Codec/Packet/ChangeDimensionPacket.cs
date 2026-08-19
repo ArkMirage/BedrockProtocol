@@ -21,8 +21,9 @@ namespace Protocol.Packets
 		public bool Respawn { get; set; }
 		public Optional<uint> LoadingScreenId { get; set; } = new Optional<uint>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			DimensionID = new Protocol.Types.DimensionType();
 			DimensionID.Read(reader);
 			Position = new Protocol.Types.Vec3();
@@ -34,8 +35,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			DimensionID.Write(writer);
 			Position.Write(writer);
 			writer.WriteByte(Respawn ? (byte)1 : (byte)0);

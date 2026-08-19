@@ -30,8 +30,9 @@ namespace Protocol.Packets
 		public long OwnerID { get; set; }
 		public string NewPhotoName { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PhotoName = reader.ReadLengthPrefixedString();
 			PhotoData = reader.ReadLengthPrefixedBytes().ToArray();
 			BookID = reader.ReadLengthPrefixedString();
@@ -41,8 +42,9 @@ namespace Protocol.Packets
 			NewPhotoName = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(PhotoName);
 			writer.WriteLengthPrefixedBytes(PhotoData);
 			writer.WriteLengthPrefixedString(BookID);

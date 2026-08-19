@@ -22,8 +22,9 @@ namespace Protocol.Packets
 		public byte ClientThrottleThreshold { get; set; }
 		public float ClientThrottleScalar { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			CompressionThreshold = reader.ReadUInt16();
 			CompressionAlgorithm = (Protocol.PacketCompressionAlgorithm)reader.ReadUInt16();
 			ClientThrottleEnabled = reader.ReadByte() != 0;
@@ -31,8 +32,9 @@ namespace Protocol.Packets
 			ClientThrottleScalar = reader.ReadSingle();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteUInt16(CompressionThreshold);
 			writer.WriteUInt16((ushort)CompressionAlgorithm);
 			writer.WriteByte(ClientThrottleEnabled ? (byte)1 : (byte)0);

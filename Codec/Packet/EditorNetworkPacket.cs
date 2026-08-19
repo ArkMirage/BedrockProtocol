@@ -20,15 +20,17 @@ namespace Protocol.Packets
 		public string RawVariantName { get; set; }
 		public byte[] RawVariantData { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			RouteToManager = reader.ReadByte() != 0;
 			RawVariantName = reader.ReadLengthPrefixedString();
 			RawVariantData = reader.ReadLengthPrefixedBytes().ToArray();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte(RouteToManager ? (byte)1 : (byte)0);
 			writer.WriteLengthPrefixedString(RawVariantName);
 			writer.WriteLengthPrefixedBytes(RawVariantData);

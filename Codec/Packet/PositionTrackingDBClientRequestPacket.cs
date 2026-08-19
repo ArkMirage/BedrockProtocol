@@ -22,15 +22,17 @@ namespace Protocol.Packets
 		public Protocol.PositionTrackingDBClientRequestPacketPayload.Action Action { get; set; }
 		public Protocol.Types.PositionTrackingId Id { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Action = (Protocol.PositionTrackingDBClientRequestPacketPayload.Action)reader.ReadByte();
 			Id = new Protocol.Types.PositionTrackingId();
 			Id.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte((byte)Action);
 			Id.Write(writer);
 		}

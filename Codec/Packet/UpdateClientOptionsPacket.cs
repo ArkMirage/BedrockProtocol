@@ -22,8 +22,9 @@ namespace Protocol.Packets
 		public Optional<Protocol.GraphicsMode> GraphicsModeChange { get; set; } = new Optional<Protocol.GraphicsMode>();
 		public Optional<bool> FilterProfanityChange { get; set; } = new Optional<bool>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			if (reader.ReadByte() != 0)
 			{
 				GraphicsModeChange = new Optional<Protocol.GraphicsMode>((Protocol.GraphicsMode)reader.ReadByte());
@@ -34,8 +35,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			if (GraphicsModeChange != null && GraphicsModeChange.HasValue)
 			{
 				writer.WriteByte(1);

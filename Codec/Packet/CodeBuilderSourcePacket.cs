@@ -20,15 +20,17 @@ namespace Protocol.Packets
 		public Protocol.CodeBuilderStorageQueryOptions.Category Category { get; set; }
 		public Protocol.CodeBuilderExecutionState.CodeStatus CodeStatus { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Operation = (Protocol.CodeBuilderStorageQueryOptions.Operation)reader.ReadByte();
 			Category = (Protocol.CodeBuilderStorageQueryOptions.Category)reader.ReadByte();
 			CodeStatus = (Protocol.CodeBuilderExecutionState.CodeStatus)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte((byte)Operation);
 			writer.WriteByte((byte)Category);
 			writer.WriteByte((byte)CodeStatus);

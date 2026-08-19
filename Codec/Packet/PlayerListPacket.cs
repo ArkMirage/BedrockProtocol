@@ -22,8 +22,9 @@ namespace Protocol.Packets
 		public List<OneOf<Protocol.Types.PlayerListPacketPayload.RemoveEntry, Protocol.Types.PlayerListPacketPayload.AddEntry>> Entries { get; set; } = new List<OneOf<Protocol.Types.PlayerListPacketPayload.RemoveEntry, Protocol.Types.PlayerListPacketPayload.AddEntry>>();
 		public Protocol.PlayerListPacketType Action { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			var _EntriesCount = VarInt.ReadUInt32(reader); 
 			Entries.Clear();
 			for (int i = 0; i < _EntriesCount; i++)
@@ -53,8 +54,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarUInt32((uint)Entries.Count); 
 			foreach (var _EntriesItem in Entries)
 			{

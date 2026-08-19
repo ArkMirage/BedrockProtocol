@@ -23,15 +23,17 @@ namespace Protocol.Packets
 		public List<string> Values { get; set; } = new List<string>();
 		public Protocol.SoftEnumUpdateType UpdateType { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			EnumName = reader.ReadLengthPrefixedString();
 			Values = reader.ReadSlice(() => reader.ReadLengthPrefixedString());
 			UpdateType = (Protocol.SoftEnumUpdateType)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(EnumName);
 			writer.WriteSlice(Values, v => writer.WriteLengthPrefixedString(v));
 			writer.WriteByte((byte)UpdateType);

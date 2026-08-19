@@ -20,16 +20,18 @@ namespace Protocol.Packets
 		public int EventType { get; set; } 
 		public int EventValue { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			BlockPosition = new Protocol.Types.BlockPos();
 			BlockPosition.Read(reader);
 			EventType = VarInt.ReadInt32(reader); 
 			EventValue = VarInt.ReadInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			BlockPosition.Write(writer);
 			writer.WriteVarInt32(EventType); 
 			writer.WriteVarInt32(EventValue); 

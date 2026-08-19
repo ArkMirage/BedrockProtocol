@@ -18,8 +18,9 @@ namespace Protocol.Packets
 
 		public Optional<Protocol.Types.ServerConfiguration.ClientStoreEntryPointConfiguration> ClientStoreEntryPointConfiguration { get; set; } = new Optional<Protocol.Types.ServerConfiguration.ClientStoreEntryPointConfiguration>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			if (reader.ReadByte() != 0)
 			{
 				var _ClientStoreEntryPointConfigurationValue = new Protocol.Types.ServerConfiguration.ClientStoreEntryPointConfiguration();
@@ -28,8 +29,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			if (ClientStoreEntryPointConfiguration != null && ClientStoreEntryPointConfiguration.HasValue)
 			{
 				writer.WriteByte(1);

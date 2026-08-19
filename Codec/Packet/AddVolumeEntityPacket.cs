@@ -25,8 +25,9 @@ namespace Protocol.Packets
 		public Protocol.Types.DimensionType DimensionType { get; set; }
 		public string EngineVersion { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			EntityNetworkId = new Protocol.Types.EntityNetId();
 			EntityNetworkId.Read(reader);
 			Components = new Protocol.Types.CompoundTag();
@@ -42,8 +43,9 @@ namespace Protocol.Packets
 			EngineVersion = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			EntityNetworkId.Write(writer);
 			Components.Write(writer);
 			writer.WriteLengthPrefixedString(JSONIdentifier);

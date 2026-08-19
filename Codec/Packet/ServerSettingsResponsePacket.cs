@@ -19,14 +19,16 @@ namespace Protocol.Packets
 		public uint FormID { get; set; } 
 		public string FormUIJSON { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			FormID = VarInt.ReadUInt32(reader); 
 			FormUIJSON = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarUInt32(FormID); 
 			writer.WriteLengthPrefixedString(FormUIJSON);
 		}

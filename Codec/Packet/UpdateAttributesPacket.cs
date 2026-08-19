@@ -23,8 +23,9 @@ namespace Protocol.Packets
 		public List<Protocol.Types.AttributeData> AttributeList { get; set; } = new List<Protocol.Types.AttributeData>();
 		public Protocol.Types.PlayerInputTick Tick { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			TargetRuntimeID = new Protocol.Types.ActorRuntimeID();
 			TargetRuntimeID.Read(reader);
 			AttributeList = reader.ReadSlice(() => { var _Item = new Protocol.Types.AttributeData(); _Item.Read(reader); return _Item; });
@@ -32,8 +33,9 @@ namespace Protocol.Packets
 			Tick.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			TargetRuntimeID.Write(writer);
 			writer.WriteSlice(AttributeList, v => v.Write(writer));
 			Tick.Write(writer);

@@ -20,8 +20,9 @@ namespace Protocol.Packets
 		public Protocol.Types.PositionTrackingId Id { get; set; }
 		public Protocol.Types.CompoundTag PositionTrackingData { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Action = (Protocol.PositionTrackingDBServerBroadcastPacketPayload.Action)reader.ReadByte();
 			Id = new Protocol.Types.PositionTrackingId();
 			Id.Read(reader);
@@ -29,8 +30,9 @@ namespace Protocol.Packets
 			PositionTrackingData.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte((byte)Action);
 			Id.Write(writer);
 			PositionTrackingData.Write(writer);

@@ -27,8 +27,9 @@ namespace Protocol.Packets
 		public bool UsingEconomyTrade { get; set; }
 		public Protocol.Types.CompoundTag Data { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ContainerId = (byte)reader.ReadByte();
 			Type_ = (byte)reader.ReadByte();
 			Size = VarInt.ReadInt32(reader); 
@@ -44,8 +45,9 @@ namespace Protocol.Packets
 			Data.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte(ContainerId);
 			writer.WriteByte(Type_);
 			writer.WriteVarInt32(Size); 

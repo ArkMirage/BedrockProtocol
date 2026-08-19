@@ -22,14 +22,16 @@ namespace Protocol.Packets
 		public Protocol.ScoreboardIdentityPacketType ScoreboardIdentityPacketType { get; set; }
 		public List<Protocol.Types.ScoreboardIdentityPacketInfo> ScoreboardIdentityInfo { get; set; } = new List<Protocol.Types.ScoreboardIdentityPacketInfo>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ScoreboardIdentityPacketType = (Protocol.ScoreboardIdentityPacketType)reader.ReadByte();
 			ScoreboardIdentityInfo = reader.ReadSlice(() => { var _Item = new Protocol.Types.ScoreboardIdentityPacketInfo(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte((byte)ScoreboardIdentityPacketType);
 			writer.WriteSlice(ScoreboardIdentityInfo, v => v.Write(writer));
 		}

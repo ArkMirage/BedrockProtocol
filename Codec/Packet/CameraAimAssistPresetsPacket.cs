@@ -24,15 +24,17 @@ namespace Protocol.Packets
 		public List<Protocol.Types.SharedTypes.v1_21_120.CameraAimAssistPresetDefinition> CameraAimAssistCategories { get; set; } = new List<Protocol.Types.SharedTypes.v1_21_120.CameraAimAssistPresetDefinition>();
 		public Protocol.CameraAimAssistPresetsPacketOperation Operation { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			CameraAimAssistPresets = reader.ReadSlice(() => { var _Item = new Protocol.Types.SharedTypes.v1_21_50.CameraAimAssistCategoryDefinition(); _Item.Read(reader); return _Item; });
 			CameraAimAssistCategories = reader.ReadSlice(() => { var _Item = new Protocol.Types.SharedTypes.v1_21_120.CameraAimAssistPresetDefinition(); _Item.Read(reader); return _Item; });
 			Operation = (Protocol.CameraAimAssistPresetsPacketOperation)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(CameraAimAssistPresets, v => v.Write(writer));
 			writer.WriteSlice(CameraAimAssistCategories, v => v.Write(writer));
 			writer.WriteByte((byte)Operation);

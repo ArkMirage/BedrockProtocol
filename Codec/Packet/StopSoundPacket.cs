@@ -20,15 +20,17 @@ namespace Protocol.Packets
 		public bool StopAllSounds { get; set; }
 		public bool StopMusicLegacy { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			SoundName = reader.ReadLengthPrefixedString();
 			StopAllSounds = reader.ReadByte() != 0;
 			StopMusicLegacy = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(SoundName);
 			writer.WriteByte(StopAllSounds ? (byte)1 : (byte)0);
 			writer.WriteByte(StopMusicLegacy ? (byte)1 : (byte)0);

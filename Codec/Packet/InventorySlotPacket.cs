@@ -22,8 +22,9 @@ namespace Protocol.Packets
 		public Optional<Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor> StorageItem { get; set; } = new Optional<Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor>();
 		public Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor Item { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ContainerId = (byte)reader.ReadByte();
 			Slot = VarInt.ReadUInt32(reader); 
 			if (reader.ReadByte() != 0)
@@ -42,8 +43,9 @@ namespace Protocol.Packets
 			Item.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte(ContainerId);
 			writer.WriteVarUInt32(Slot); 
 			if (FullContainerName != null && FullContainerName.HasValue)

@@ -20,15 +20,17 @@ namespace Protocol.Packets
 		public byte ContainerType { get; set; }
 		public bool ServerInitiatedClose { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ContainerId = (byte)reader.ReadByte();
 			ContainerType = (byte)reader.ReadByte();
 			ServerInitiatedClose = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte(ContainerId);
 			writer.WriteByte(ContainerType);
 			writer.WriteByte(ServerInitiatedClose ? (byte)1 : (byte)0);

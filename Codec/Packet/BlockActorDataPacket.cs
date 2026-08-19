@@ -19,16 +19,18 @@ namespace Protocol.Packets
 		public Protocol.Types.BlockPos BlockPosition { get; set; }
 		public Protocol.Types.CompoundTag ActorDataTags { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			BlockPosition = new Protocol.Types.BlockPos();
 			BlockPosition.Read(reader);
 			ActorDataTags = new Protocol.Types.CompoundTag();
 			ActorDataTags.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			BlockPosition.Write(writer);
 			ActorDataTags.Write(writer);
 		}

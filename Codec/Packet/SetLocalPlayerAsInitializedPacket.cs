@@ -21,14 +21,16 @@ namespace Protocol.Packets
 
 		public Protocol.Types.ActorRuntimeID PlayerID { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PlayerID = new Protocol.Types.ActorRuntimeID();
 			PlayerID.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			PlayerID.Write(writer);
 		}
 	}

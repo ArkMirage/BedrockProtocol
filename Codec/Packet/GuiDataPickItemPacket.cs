@@ -23,15 +23,17 @@ namespace Protocol.Packets
 		public string ItemEffectName { get; set; }
 		public int Slot { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ItemName = reader.ReadLengthPrefixedString();
 			ItemEffectName = reader.ReadLengthPrefixedString();
 			Slot = reader.ReadInt32();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(ItemName);
 			writer.WriteLengthPrefixedString(ItemEffectName);
 			writer.WriteInt32(Slot);

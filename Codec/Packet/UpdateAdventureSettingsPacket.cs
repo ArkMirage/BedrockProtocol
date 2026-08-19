@@ -21,14 +21,16 @@ namespace Protocol.Packets
 
 		public Protocol.Types.AdventureSettings AdventureSettings { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			AdventureSettings = new Protocol.Types.AdventureSettings();
 			AdventureSettings.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			AdventureSettings.Write(writer);
 		}
 	}

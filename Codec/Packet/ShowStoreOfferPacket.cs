@@ -22,15 +22,17 @@ namespace Protocol.Packets
 		public Protocol.Types.mce.UUID OfferId { get; set; }
 		public Protocol.ShowStoreOfferRedirectType RedirectType { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			OfferId = new Protocol.Types.mce.UUID();
 			OfferId.Read(reader);
 			RedirectType = (Protocol.ShowStoreOfferRedirectType)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			OfferId.Write(writer);
 			writer.WriteByte((byte)RedirectType);
 		}

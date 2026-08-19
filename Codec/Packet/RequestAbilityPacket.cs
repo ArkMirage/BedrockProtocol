@@ -24,16 +24,18 @@ namespace Protocol.Packets
 		public bool Bool { get; set; }
 		public float Float { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Ability = VarInt.ReadInt32(reader); 
 			ValueType_ = (Protocol.RequestAbilityPacketPayload.Type)reader.ReadByte();
 			Bool = reader.ReadByte() != 0;
 			Float = reader.ReadSingle();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32(Ability); 
 			writer.WriteByte((byte)ValueType_);
 			writer.WriteByte(Bool ? (byte)1 : (byte)0);

@@ -24,8 +24,9 @@ namespace Protocol.Packets
 		public Protocol.Types.SubChunkPos CenterPos { get; set; }
 		public List<Protocol.Types.SubChunkPacketPayload.SubChunkPacketData> SubChunkData { get; set; } = new List<Protocol.Types.SubChunkPacketPayload.SubChunkPacketData>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			CacheEnabled = reader.ReadByte() != 0;
 			DimensionType = new Protocol.Types.DimensionType();
 			DimensionType.Read(reader);
@@ -34,8 +35,9 @@ namespace Protocol.Packets
 			SubChunkData = reader.ReadSlice(() => { var _Item = new Protocol.Types.SubChunkPacketPayload.SubChunkPacketData(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte(CacheEnabled ? (byte)1 : (byte)0);
 			DimensionType.Write(writer);
 			CenterPos.Write(writer);

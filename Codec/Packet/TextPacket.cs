@@ -26,8 +26,9 @@ namespace Protocol.Packets
 		public string PlatformId { get; set; }
 		public Optional<string> FilteredMessage { get; set; } = new Optional<string>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Localize = reader.ReadByte() != 0;
 			var _BodyDisc = (byte)reader.ReadByte();
 			MessageType = (Protocol.TextPacketType)_BodyDisc;
@@ -65,8 +66,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte(Localize ? (byte)1 : (byte)0);
 			writer.WriteByte((byte)MessageType);
 			switch (Body.Index)

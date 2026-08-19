@@ -19,15 +19,17 @@ namespace Protocol.Packets
 		public Protocol.Types.BlockPos Pos { get; set; }
 		public bool IsFrontSide { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Pos = new Protocol.Types.BlockPos();
 			Pos.Read(reader);
 			IsFrontSide = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			Pos.Write(writer);
 			writer.WriteByte(IsFrontSide ? (byte)1 : (byte)0);
 		}

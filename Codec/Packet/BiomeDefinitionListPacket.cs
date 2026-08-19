@@ -23,8 +23,9 @@ namespace Protocol.Packets
 		public Dictionary<ushort, Protocol.Types.BiomeDefinitionData> MapOfBiomeNamesToData { get; set; } = new Dictionary<ushort, Protocol.Types.BiomeDefinitionData>();
 		public Protocol.Types.BiomeStringList StringList { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			var _MapOfBiomeNamesToDataCount = VarInt.ReadUInt32(reader); 
 			MapOfBiomeNamesToData.Clear();
 			for (int i = 0; i < _MapOfBiomeNamesToDataCount; i++)
@@ -38,8 +39,9 @@ namespace Protocol.Packets
 			StringList.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarUInt32((uint)MapOfBiomeNamesToData.Count); 
 			foreach (var _MapOfBiomeNamesToDataPair in MapOfBiomeNamesToData)
 			{

@@ -32,8 +32,9 @@ namespace Protocol.Packets
 		public List<Protocol.Types.MaterialReducerDataEntry> MaterialReducers { get; set; } = new List<Protocol.Types.MaterialReducerDataEntry>();
 		public bool ClearRecipes { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ShapedRecipes = reader.ReadSlice(() => { var _Item = new Protocol.Types.ShapedRecipePayload(); _Item.Read(reader); return _Item; });
 			ShapelessRecipes = reader.ReadSlice(() => { var _Item = new Protocol.Types.ShapelessRecipePayload(); _Item.Read(reader); return _Item; });
 			MultiRecipes = reader.ReadSlice(() => { var _Item = new Protocol.Types.MultiRecipePayload(); _Item.Read(reader); return _Item; });
@@ -48,8 +49,9 @@ namespace Protocol.Packets
 			ClearRecipes = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(ShapedRecipes, v => v.Write(writer));
 			writer.WriteSlice(ShapelessRecipes, v => v.Write(writer));
 			writer.WriteSlice(MultiRecipes, v => v.Write(writer));

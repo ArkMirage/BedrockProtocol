@@ -32,8 +32,9 @@ namespace Protocol.Packets
 		public Protocol.Types.PropertySyncData SynchedProperties { get; set; }
 		public List<Protocol.Types.ActorLink> ActorLinks { get; set; } = new List<Protocol.Types.ActorLink>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			TargetActorID = new Protocol.Types.ActorUniqueID();
 			TargetActorID.Read(reader);
 			TargetRuntimeID = new Protocol.Types.ActorRuntimeID();
@@ -55,8 +56,9 @@ namespace Protocol.Packets
 			ActorLinks = reader.ReadSlice(() => { var _Item = new Protocol.Types.ActorLink(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			TargetActorID.Write(writer);
 			TargetRuntimeID.Write(writer);
 			writer.WriteLengthPrefixedString(ActorType);

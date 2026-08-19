@@ -19,8 +19,9 @@ namespace Protocol.Packets
 		public Protocol.Connection.DisconnectFailReason Reason { get; set; } 
 		public OneOf<Protocol.Types.DisconnectPacketMessages, object> Messages { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Reason = (Protocol.Connection.DisconnectFailReason)VarInt.ReadInt32(reader); 
 			var _MessagesDisc = VarInt.ReadUInt32(reader); 
 			switch (_MessagesDisc)
@@ -42,8 +43,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32((int)Reason); 
 			switch (Messages.Index)
 			{

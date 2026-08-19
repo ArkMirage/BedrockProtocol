@@ -26,8 +26,9 @@ namespace Protocol.Packets
 		public Protocol.Types.PackIdVersion WorldTemplateIdAndVersion { get; set; }
 		public List<Protocol.Types.PackInfoData> ResourcePacks { get; set; } = new List<Protocol.Types.PackInfoData>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ResourcePackRequired = reader.ReadByte() != 0;
 			HasAddonPacks = reader.ReadByte() != 0;
 			HasScripts = reader.ReadByte() != 0;
@@ -37,8 +38,9 @@ namespace Protocol.Packets
 			ResourcePacks = reader.ReadSlice(() => { var _Item = new Protocol.Types.PackInfoData(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte(ResourcePackRequired ? (byte)1 : (byte)0);
 			writer.WriteByte(HasAddonPacks ? (byte)1 : (byte)0);
 			writer.WriteByte(HasScripts ? (byte)1 : (byte)0);

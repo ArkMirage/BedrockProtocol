@@ -39,8 +39,9 @@ namespace Protocol.Packets
 		public Protocol.Types.Vec3 CameraOrientation { get; set; }
 		public Protocol.Types.Vec2 RawMoveVector { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PlayerRotation = new Protocol.Types.Vec2();
 			PlayerRotation.Read(reader);
 			Position = new Protocol.Types.Vec3();
@@ -100,8 +101,9 @@ namespace Protocol.Packets
 			RawMoveVector.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			PlayerRotation.Write(writer);
 			Position.Write(writer);
 			MoveVector.Write(writer);

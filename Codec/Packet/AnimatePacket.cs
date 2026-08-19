@@ -24,8 +24,9 @@ namespace Protocol.Packets
 		public float Data { get; set; }
 		public Optional<Protocol.ActorSwingSource> SwingSource { get; set; } = new Optional<Protocol.ActorSwingSource>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Action = (Protocol.AnimatePacketPayload.Action)reader.ReadByte();
 			TargetActorRuntimeID = new Protocol.Types.ActorRuntimeID();
 			TargetActorRuntimeID.Read(reader);
@@ -36,8 +37,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte((byte)Action);
 			TargetActorRuntimeID.Write(writer);
 			writer.WriteSingle(Data);
