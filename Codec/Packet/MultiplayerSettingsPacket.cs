@@ -19,7 +19,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class MultiplayerSettingsPacket : IPacket
 	{
-		public int PacketId => 139;
+		public override int PacketId => 139;
 
 		public Protocol.MultiplayerSettingsPacketType PacketType { get; set; } 
 

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class StructureTemplateDataRequestPacket : IPacket
 	{
-		public int PacketId => 132;
+		public override int PacketId => 132;
 
 		public string StructureName { get; set; }
 		public Protocol.Types.BlockPos StructurePosition { get; set; }

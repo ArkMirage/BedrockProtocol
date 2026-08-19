@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class UpdateSoftEnumPacket : IPacket
 	{
-		public int PacketId => 114;
+		public override int PacketId => 114;
 
 		public string EnumName { get; set; }
 		public List<string> Values { get; set; } = new List<string>();

@@ -18,7 +18,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ClientCacheStatusPacket : IPacket
 	{
-		public int PacketId => 129;
+		public override int PacketId => 129;
 
 		public bool IsCacheSupported { get; set; }
 

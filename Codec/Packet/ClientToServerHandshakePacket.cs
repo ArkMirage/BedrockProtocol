@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientToServerHandshakePacket : IPacket
 	{
-		public int PacketId => 4;
+		public override int PacketId => 4;
 		public override void Read(MemoryStreamReader reader)
 		{
 			base.Read(reader);

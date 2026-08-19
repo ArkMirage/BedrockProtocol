@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class DeathInfoPacket : IPacket
 	{
-		public int PacketId => 189;
+		public override int PacketId => 189;
 
 		public string DeathCauseAttackName { get; set; }
 		public List<string> DeathCauseMessageList { get; set; } = new List<string>();

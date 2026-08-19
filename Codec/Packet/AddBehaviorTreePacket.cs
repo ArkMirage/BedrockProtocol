@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class AddBehaviorTreePacket : IPacket
 	{
-		public int PacketId => 89;
+		public override int PacketId => 89;
 
 		public string BehaviorTreeStructureJSON { get; set; }
 

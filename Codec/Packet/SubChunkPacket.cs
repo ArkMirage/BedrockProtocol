@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SubChunkPacket : IPacket
 	{
-		public int PacketId => 174;
+		public override int PacketId => 174;
 
 		public bool CacheEnabled { get; set; }
 		public Protocol.Types.DimensionType DimensionType { get; set; }

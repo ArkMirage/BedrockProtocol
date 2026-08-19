@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class UpdateClientOptionsPacket : IPacket
 	{
-		public int PacketId => 323;
+		public override int PacketId => 323;
 
 		public Optional<Protocol.GraphicsMode> GraphicsModeChange { get; set; } = new Optional<Protocol.GraphicsMode>();
 		public Optional<bool> FilterProfanityChange { get; set; } = new Optional<bool>();

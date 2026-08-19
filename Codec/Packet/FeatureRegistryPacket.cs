@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class FeatureRegistryPacket : IPacket
 	{
-		public int PacketId => 191;
+		public override int PacketId => 191;
 
 		public List<Protocol.Types.FeatureRegistry.FeatureBinaryJsonFormat> FeaturesDataList { get; set; } = new List<Protocol.Types.FeatureRegistry.FeatureBinaryJsonFormat>();
 

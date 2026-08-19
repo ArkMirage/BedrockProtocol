@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SetScorePacket : IPacket
 	{
-		public int PacketId => 108;
+		public override int PacketId => 108;
 
 		public List<OneOf<Protocol.Types.RemoveScore, Protocol.Types.ChangePlayerScore, Protocol.Types.ChangeEntityScore, Protocol.Types.ChangeFakePlayerScore>> ScoreInfo { get; set; } = new List<OneOf<Protocol.Types.RemoveScore, Protocol.Types.ChangePlayerScore, Protocol.Types.ChangeEntityScore, Protocol.Types.ChangeFakePlayerScore>>();
 		public Protocol.ScorePacketEntryAction Action { get; set; }

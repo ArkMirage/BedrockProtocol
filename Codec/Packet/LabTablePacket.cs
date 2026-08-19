@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class LabTablePacket : IPacket
 	{
-		public int PacketId => 109;
+		public override int PacketId => 109;
 
 		public Protocol.LabTablePacketPayload.Type Type_ { get; set; }
 		public Protocol.Types.BlockPos Position { get; set; }

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class VoxelShapesPacket : IPacket
 	{
-		public int PacketId => 337;
+		public override int PacketId => 337;
 
 		public List<Protocol.Types.VoxelShapes.SerializableVoxelShape> Shapes { get; set; } = new List<Protocol.Types.VoxelShapes.SerializableVoxelShape>();
 		public Dictionary<string, Protocol.Types.VoxelShapes.RegistryHandle> NameMap { get; set; } = new Dictionary<string, Protocol.Types.VoxelShapes.RegistryHandle>();

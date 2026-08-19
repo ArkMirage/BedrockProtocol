@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class AutomationClientConnectPacket : IPacket
 	{
-		public int PacketId => 95;
+		public override int PacketId => 95;
 
 		public Protocol.Types.WebSocketPacketData WebSocketData { get; set; }
 

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class PlayerToggleCrafterSlotRequestPacket : IPacket
 	{
-		public int PacketId => 306;
+		public override int PacketId => 306;
 
 		public int PosX { get; set; }
 		public int PosY { get; set; }

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class StructureTemplateDataResponsePacket : IPacket
 	{
-		public int PacketId => 133;
+		public override int PacketId => 133;
 
 		public string StructureName { get; set; }
 		public Protocol.Types.CompoundTag StructureSNBT { get; set; }

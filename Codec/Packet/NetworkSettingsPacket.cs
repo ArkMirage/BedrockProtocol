@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class NetworkSettingsPacket : IPacket
 	{
-		public int PacketId => 143;
+		public override int PacketId => 143;
 
 		public ushort CompressionThreshold { get; set; }
 		public Protocol.PacketCompressionAlgorithm CompressionAlgorithm { get; set; }

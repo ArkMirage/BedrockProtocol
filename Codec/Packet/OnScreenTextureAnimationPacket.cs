@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class OnScreenTextureAnimationPacket : IPacket
 	{
-		public int PacketId => 130;
+		public override int PacketId => 130;
 
 		public uint EffectId { get; set; }
 

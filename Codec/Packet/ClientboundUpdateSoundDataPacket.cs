@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientboundUpdateSoundDataPacket : IPacket
 	{
-		public int PacketId => 348;
+		public override int PacketId => 348;
 
 		public Protocol.Types.ServerSoundHandle ServerSoundHandle { get; set; }
 		public OneOf<Protocol.Types.SoundDataEvent.Stop, Protocol.Types.SoundDataEvent.SetVolume, Protocol.Types.SoundDataEvent.SetPitch, Protocol.Types.SoundDataEvent.Fade, Protocol.Types.SoundDataEvent.SeekTo, Protocol.Types.SoundDataEvent.Pause, Protocol.Types.SoundDataEvent.Resume> Stop { get; set; }

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class UpdateTradePacket : IPacket
 	{
-		public int PacketId => 80;
+		public override int PacketId => 80;
 
 		public byte ContainerId { get; set; }
 		public byte Type_ { get; set; }

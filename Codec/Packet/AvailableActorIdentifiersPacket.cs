@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class AvailableActorIdentifiersPacket : IPacket
 	{
-		public int PacketId => 119;
+		public override int PacketId => 119;
 
 		public Protocol.Types.CompoundTag IdentifierList { get; set; }
 

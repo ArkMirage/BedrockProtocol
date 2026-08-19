@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ClientMovementPredictionSyncPacket : IPacket
 	{
-		public int PacketId => 322;
+		public override int PacketId => 322;
 
 		public Protocol.Types.ActorDataFlagComponent ActorDataFlag { get; set; }
 		public Protocol.Types.ActorDataBoundingBoxComponent ActorBoundingBox { get; set; }

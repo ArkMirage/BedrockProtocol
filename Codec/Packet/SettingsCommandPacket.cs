@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SettingsCommandPacket : IPacket
 	{
-		public int PacketId => 140;
+		public override int PacketId => 140;
 
 		public string Command { get; set; }
 		public bool SuppressOutput { get; set; }

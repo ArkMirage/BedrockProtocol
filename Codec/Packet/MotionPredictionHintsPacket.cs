@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class MotionPredictionHintsPacket : IPacket
 	{
-		public int PacketId => 157;
+		public override int PacketId => 157;
 
 		public Protocol.Types.ActorRuntimeID MRuntimeId { get; set; }
 		public Protocol.Types.Vec3 MMotion { get; set; }

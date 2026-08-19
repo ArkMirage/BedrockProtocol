@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ServerSettingsResponsePacket : IPacket
 	{
-		public int PacketId => 103;
+		public override int PacketId => 103;
 
 		public uint FormID { get; set; } 
 		public string FormUIJSON { get; set; }

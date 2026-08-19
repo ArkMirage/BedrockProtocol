@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class PrimitiveShapesPacket : IPacket
 	{
-		public int PacketId => 328;
+		public override int PacketId => 328;
 
 		public List<Protocol.Types.PrimitiveShapeDataPayload> ArrayOfPrimitiveShapesCanBeAMixOfNewUpdatedOrRemoved { get; set; } = new List<Protocol.Types.PrimitiveShapeDataPayload>();
 

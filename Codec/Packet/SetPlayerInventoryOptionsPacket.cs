@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class SetPlayerInventoryOptionsPacket : IPacket
 	{
-		public int PacketId => 307;
+		public override int PacketId => 307;
 
 		public Protocol.Types.InventoryOptions InventoryOptions { get; set; }
 

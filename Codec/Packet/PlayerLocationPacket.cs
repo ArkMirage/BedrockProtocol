@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PlayerLocationPacket : IPacket
 	{
-		public int PacketId => 326;
+		public override int PacketId => 326;
 
 		public Protocol.Types.ActorUniqueID TargetActorID { get; set; }
 		public OneOf<Protocol.Types.PlayerLocationPacketPayload.CoordinatesLocation, Protocol.Types.PlayerLocationPacketPayload.HiddenLocation> Location { get; set; }

@@ -20,7 +20,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class CorrectPlayerMovePredictionPacket : IPacket
 	{
-		public int PacketId => 161;
+		public override int PacketId => 161;
 
 		public Protocol.RewindType PredictionType { get; set; }
 		public Protocol.Types.Vec3 Pos { get; set; }

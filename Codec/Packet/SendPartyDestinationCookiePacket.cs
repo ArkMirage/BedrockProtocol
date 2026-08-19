@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class SendPartyDestinationCookiePacket : IPacket
 	{
-		public int PacketId => 349;
+		public override int PacketId => 349;
 
 		public string Cookie { get; set; }
 		public Protocol.PartyDestinationCookieIntent Intent { get; set; }

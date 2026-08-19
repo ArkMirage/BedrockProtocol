@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class LoginPacket : IPacket
 	{
-		public int PacketId => 1;
+		public override int PacketId => 1;
 
 		public int ClientNetworkVersion { get; set; }
 		public string ConnectionRequest { get; set; }

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class SubClientLoginPacket : IPacket
 	{
-		public int PacketId => 94;
+		public override int PacketId => 94;
 
 		public string SubClientConnectionRequest { get; set; }
 

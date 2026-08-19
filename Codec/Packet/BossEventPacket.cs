@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class BossEventPacket : IPacket
 	{
-		public int PacketId => 74;
+		public override int PacketId => 74;
 
 		public Protocol.Types.ActorUniqueID TargetActorID { get; set; }
 		public Protocol.Types.ActorUniqueID PlayerID { get; set; }

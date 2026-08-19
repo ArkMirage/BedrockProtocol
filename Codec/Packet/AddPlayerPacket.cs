@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class AddPlayerPacket : IPacket
 	{
-		public int PacketId => 12;
+		public override int PacketId => 12;
 
 		public Protocol.Types.mce.UUID UUID { get; set; }
 		public string PlayerName { get; set; }

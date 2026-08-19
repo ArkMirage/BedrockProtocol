@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class MobEquipmentPacket : IPacket
 	{
-		public int PacketId => 31;
+		public override int PacketId => 31;
 
 		public Protocol.Types.ActorRuntimeID TargetRuntimeID { get; set; }
 		public Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor Item { get; set; }

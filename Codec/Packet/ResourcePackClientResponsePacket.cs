@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ResourcePackClientResponsePacket : IPacket
 	{
-		public int PacketId => 8;
+		public override int PacketId => 8;
 
 		public OneOf<Protocol.Types.ResourcePackClientResponsePacketPayload.Cancel, Protocol.Types.ResourcePackClientResponsePacketPayload.Downloading, Protocol.Types.ResourcePackClientResponsePacketPayload.DownloadingFinished, Protocol.Types.ResourcePackClientResponsePacketPayload.ResourcePackStackFinished> Response { get; set; }
 		public Protocol.ResourcePackResponse ResponseType { get; set; }

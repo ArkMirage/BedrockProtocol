@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class DisconnectPacket : IPacket
 	{
-		public int PacketId => 5;
+		public override int PacketId => 5;
 
 		public Protocol.Connection.DisconnectFailReason Reason { get; set; } 
 		public OneOf<Protocol.Types.DisconnectPacketMessages, object> Messages { get; set; }

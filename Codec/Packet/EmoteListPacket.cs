@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class EmoteListPacket : IPacket
 	{
-		public int PacketId => 152;
+		public override int PacketId => 152;
 
 		public Protocol.Types.ActorRuntimeID RuntimeId { get; set; }
 		public List<Protocol.Types.mce.UUID> EmotePieceIds { get; set; } = new List<Protocol.Types.mce.UUID>();

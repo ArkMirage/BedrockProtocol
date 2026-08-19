@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class CameraSplinePacket : IPacket
 	{
-		public int PacketId => 338;
+		public override int PacketId => 338;
 
 		public List<Protocol.Types.SharedTypes.v1_26_0.CameraSplineDefinition> CameraDataSplines { get; set; } = new List<Protocol.Types.SharedTypes.v1_26_0.CameraSplineDefinition>();
 

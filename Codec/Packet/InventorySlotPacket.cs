@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class InventorySlotPacket : IPacket
 	{
-		public int PacketId => 50;
+		public override int PacketId => 50;
 
 		public byte ContainerId { get; set; }
 		public uint Slot { get; set; } 

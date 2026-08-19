@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class SetDisplayObjectivePacket : IPacket
 	{
-		public int PacketId => 107;
+		public override int PacketId => 107;
 
 		public string DisplaySlotName { get; set; }
 		public string ObjectiveName { get; set; }

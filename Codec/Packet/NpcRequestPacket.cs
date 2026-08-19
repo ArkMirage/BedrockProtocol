@@ -19,7 +19,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class NpcRequestPacket : IPacket
 	{
-		public int PacketId => 98;
+		public override int PacketId => 98;
 
 		public Protocol.Types.ActorRuntimeID NPCRuntimeID { get; set; }
 		public Protocol.NpcRequestPacketPayload.RequestType RequestType { get; set; }

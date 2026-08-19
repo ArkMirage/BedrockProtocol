@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SpawnParticleEffectPacket : IPacket
 	{
-		public int PacketId => 118;
+		public override int PacketId => 118;
 
 		public byte DimensionId { get; set; }
 		public Protocol.Types.ActorUniqueID ActorId { get; set; }

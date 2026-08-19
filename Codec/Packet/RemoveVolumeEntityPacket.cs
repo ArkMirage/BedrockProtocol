@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class RemoveVolumeEntityPacket : IPacket
 	{
-		public int PacketId => 167;
+		public override int PacketId => 167;
 
 		public Protocol.Types.EntityNetId EntityNetworkId { get; set; }
 		public Protocol.Types.DimensionType DimensionType { get; set; }

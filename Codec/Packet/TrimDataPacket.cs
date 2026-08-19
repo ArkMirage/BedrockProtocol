@@ -18,7 +18,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class TrimDataPacket : IPacket
 	{
-		public int PacketId => 302;
+		public override int PacketId => 302;
 
 		public List<Protocol.Types.TrimPattern> TrimPatternList { get; set; } = new List<Protocol.Types.TrimPattern>();
 		public List<Protocol.Types.TrimMaterial> TrimMaterialList { get; set; } = new List<Protocol.Types.TrimMaterial>();

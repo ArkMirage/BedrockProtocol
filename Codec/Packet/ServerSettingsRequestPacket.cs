@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ServerSettingsRequestPacket : IPacket
 	{
-		public int PacketId => 102;
+		public override int PacketId => 102;
 		public override void Read(MemoryStreamReader reader)
 		{
 			base.Read(reader);

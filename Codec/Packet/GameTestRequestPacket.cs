@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class GameTestRequestPacket : IPacket
 	{
-		public int PacketId => 194;
+		public override int PacketId => 194;
 
 		public int MaxTestsPerBatch { get; set; } 
 		public int RepeatCount { get; set; } 

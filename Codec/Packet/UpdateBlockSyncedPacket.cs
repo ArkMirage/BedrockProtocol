@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class UpdateBlockSyncedPacket : IPacket
 	{
-		public int PacketId => 110;
+		public override int PacketId => 110;
 
 		public Protocol.Types.BlockPos BlockPosition { get; set; }
 		public uint BlockRuntimeID { get; set; } 

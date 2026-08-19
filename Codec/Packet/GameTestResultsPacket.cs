@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class GameTestResultsPacket : IPacket
 	{
-		public int PacketId => 195;
+		public override int PacketId => 195;
 
 		public bool Succeeded { get; set; }
 		public string Error { get; set; }

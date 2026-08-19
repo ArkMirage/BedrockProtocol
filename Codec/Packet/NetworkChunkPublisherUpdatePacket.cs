@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class NetworkChunkPublisherUpdatePacket : IPacket
 	{
-		public int PacketId => 121;
+		public override int PacketId => 121;
 
 		public Protocol.Types.BlockPos NewPositionForView { get; set; }
 		public uint NewRadiusForView { get; set; } 

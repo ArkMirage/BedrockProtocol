@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ChangeMobPropertyPacket : IPacket
 	{
-		public int PacketId => 182;
+		public override int PacketId => 182;
 
 		public Protocol.Types.ActorUniqueID ActorId { get; set; }
 		public string PropertyName { get; set; }

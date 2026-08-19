@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientboundDebugRendererPacket : IPacket
 	{
-		public int PacketId => 164;
+		public override int PacketId => 164;
 
 		public Protocol.ClientboundDebugRendererPacketPayload.PayloadType Type_ { get; set; }
 		public Optional<Protocol.Types.ClientboundDebugRendererPacketPayload.DebugMarkerData> DebugMarkerData { get; set; } = new Optional<Protocol.Types.ClientboundDebugRendererPacketPayload.DebugMarkerData>();

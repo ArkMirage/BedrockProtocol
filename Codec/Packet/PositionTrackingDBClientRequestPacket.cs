@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PositionTrackingDBClientRequestPacket : IPacket
 	{
-		public int PacketId => 154;
+		public override int PacketId => 154;
 
 		public Protocol.PositionTrackingDBClientRequestPacketPayload.Action Action { get; set; }
 		public Protocol.Types.PositionTrackingId Id { get; set; }

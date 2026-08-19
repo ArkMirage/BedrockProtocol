@@ -21,7 +21,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SetActorMotionPacket : IPacket
 	{
-		public int PacketId => 40;
+		public override int PacketId => 40;
 
 		public Protocol.Types.ActorRuntimeID TargetRuntimeID { get; set; }
 		public Protocol.Types.Vec3 Motion { get; set; }

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ScriptMessagePacket : IPacket
 	{
-		public int PacketId => 177;
+		public override int PacketId => 177;
 
 		public string MessageId { get; set; }
 		public string MessageValue { get; set; }

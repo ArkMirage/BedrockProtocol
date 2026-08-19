@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class CompletedUsingItemPacket : IPacket
 	{
-		public int PacketId => 142;
+		public override int PacketId => 142;
 
 		public short ItemId { get; set; }
 		public int ItemUseMethod { get; set; }

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PlayerUpdateEntityOverridesPacket : IPacket
 	{
-		public int PacketId => 325;
+		public override int PacketId => 325;
 
 		public Protocol.Types.ActorUniqueID TargetID { get; set; }
 		public uint PropertyIndex { get; set; } 

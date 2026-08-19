@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PlayerVideoCapturePacket : IPacket
 	{
-		public int PacketId => 324;
+		public override int PacketId => 324;
 
 		public OneOf<Protocol.Types.PlayerVideoCapturePacketPayload.StartVideoCapture, Protocol.Types.PlayerVideoCapturePacketPayload.StopVideoCapture> StartVideoCapture { get; set; }
 		public OneOf<Protocol.Types.PlayerVideoCapturePacketPayload.StartVideoCapture, Protocol.Types.PlayerVideoCapturePacketPayload.StopVideoCapture> StopVideoCapture { get; set; }

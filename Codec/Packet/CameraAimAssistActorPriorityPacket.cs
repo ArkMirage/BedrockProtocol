@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class CameraAimAssistActorPriorityPacket : IPacket
 	{
-		public int PacketId => 339;
+		public override int PacketId => 339;
 
 		public List<Protocol.Types.CameraAimAssistActorPriority.PriorityData> CameraAimAssistActorPriorityList { get; set; } = new List<Protocol.Types.CameraAimAssistActorPriority.PriorityData>();
 

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class SetActorDataPacket : IPacket
 	{
-		public int PacketId => 39;
+		public override int PacketId => 39;
 
 		public Protocol.Types.ActorRuntimeID TargetRuntimeID { get; set; }
 		public Protocol.Types.SynchedActorData.CopyableDataList ActorData { get; set; }

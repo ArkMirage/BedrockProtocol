@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ItemRegistryPacket : IPacket
 	{
-		public int PacketId => 162;
+		public override int PacketId => 162;
 
 		public List<Protocol.Types.ItemData> ItemData { get; set; } = new List<Protocol.Types.ItemData>();
 

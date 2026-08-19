@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class EmotePacket : IPacket
 	{
-		public int PacketId => 138;
+		public override int PacketId => 138;
 
 		public Protocol.Types.ActorRuntimeID ActorRuntimeId { get; set; }
 		public string EmoteId { get; set; }

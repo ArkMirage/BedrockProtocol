@@ -18,7 +18,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class MapCreateLockedCopyPacket : IPacket
 	{
-		public int PacketId => 131;
+		public override int PacketId => 131;
 
 		public Protocol.Types.ActorUniqueID OriginalMapId { get; set; }
 		public Protocol.Types.ActorUniqueID NewMapId { get; set; }

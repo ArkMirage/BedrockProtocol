@@ -19,7 +19,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PlayerActionPacket : IPacket
 	{
-		public int PacketId => 36;
+		public override int PacketId => 36;
 
 		public Protocol.Types.ActorRuntimeID PlayerRuntimeID { get; set; }
 		public Protocol.PlayerActionType Action { get; set; } 

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class CraftingDataPacket : IPacket
 	{
-		public int PacketId => 52;
+		public override int PacketId => 52;
 
 		public List<Protocol.Types.ShapedRecipePayload> ShapedRecipes { get; set; } = new List<Protocol.Types.ShapedRecipePayload>();
 		public List<Protocol.Types.ShapelessRecipePayload> ShapelessRecipes { get; set; } = new List<Protocol.Types.ShapelessRecipePayload>();

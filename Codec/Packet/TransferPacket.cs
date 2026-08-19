@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class TransferPacket : IPacket
 	{
-		public int PacketId => 85;
+		public override int PacketId => 85;
 
 		public string ServerAddress { get; set; }
 		public ushort ServerPort { get; set; }

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PlayerListPacket : IPacket
 	{
-		public int PacketId => 63;
+		public override int PacketId => 63;
 
 		public List<OneOf<Protocol.Types.PlayerListPacketPayload.RemoveEntry, Protocol.Types.PlayerListPacketPayload.AddEntry>> Entries { get; set; } = new List<OneOf<Protocol.Types.PlayerListPacketPayload.RemoveEntry, Protocol.Types.PlayerListPacketPayload.AddEntry>>();
 		public Protocol.PlayerListPacketType Action { get; set; }

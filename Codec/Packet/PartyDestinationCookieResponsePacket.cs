@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class PartyDestinationCookieResponsePacket : IPacket
 	{
-		public int PacketId => 350;
+		public override int PacketId => 350;
 
 		public string Cookie { get; set; }
 		public bool Accepted { get; set; }

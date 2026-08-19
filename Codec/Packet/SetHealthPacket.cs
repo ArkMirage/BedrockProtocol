@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class SetHealthPacket : IPacket
 	{
-		public int PacketId => 42;
+		public override int PacketId => 42;
 
 		public int Health { get; set; } 
 

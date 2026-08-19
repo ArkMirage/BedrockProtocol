@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class RefreshEntitlementsPacket : IPacket
 	{
-		public int PacketId => 305;
+		public override int PacketId => 305;
 		public override void Read(MemoryStreamReader reader)
 		{
 			base.Read(reader);

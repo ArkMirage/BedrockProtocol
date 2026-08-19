@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ContainerClosePacket : IPacket
 	{
-		public int PacketId => 47;
+		public override int PacketId => 47;
 
 		public byte ContainerId { get; set; }
 		public byte ContainerType { get; set; }

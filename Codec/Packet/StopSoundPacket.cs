@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class StopSoundPacket : IPacket
 	{
-		public int PacketId => 87;
+		public override int PacketId => 87;
 
 		public string SoundName { get; set; }
 		public bool StopAllSounds { get; set; }

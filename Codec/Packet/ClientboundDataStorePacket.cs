@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientboundDataStorePacket : IPacket
 	{
-		public int PacketId => 330;
+		public override int PacketId => 330;
 
 		public List<OneOf<Protocol.Types.Bedrock.DDUI.DataStoreUpdate, Protocol.Types.Bedrock.DDUI.DataStoreChange, Protocol.Types.Bedrock.DDUI.DataStoreRemoval>> Updates { get; set; } = new List<OneOf<Protocol.Types.Bedrock.DDUI.DataStoreUpdate, Protocol.Types.Bedrock.DDUI.DataStoreChange, Protocol.Types.Bedrock.DDUI.DataStoreRemoval>>();
 

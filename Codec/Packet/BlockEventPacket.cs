@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class BlockEventPacket : IPacket
 	{
-		public int PacketId => 26;
+		public override int PacketId => 26;
 
 		public Protocol.Types.BlockPos BlockPosition { get; set; }
 		public int EventType { get; set; } 

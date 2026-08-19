@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class UpdatePlayerGameTypePacket : IPacket
 	{
-		public int PacketId => 151;
+		public override int PacketId => 151;
 
 		public Protocol.GameType PlayerGameType { get; set; } 
 		public Protocol.Types.ActorUniqueID TargetPlayer { get; set; }

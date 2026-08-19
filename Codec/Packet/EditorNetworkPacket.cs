@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class EditorNetworkPacket : IPacket
 	{
-		public int PacketId => 190;
+		public override int PacketId => 190;
 
 		public bool RouteToManager { get; set; }
 		public string RawVariantName { get; set; }

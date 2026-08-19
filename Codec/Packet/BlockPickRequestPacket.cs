@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class BlockPickRequestPacket : IPacket
 	{
-		public int PacketId => 34;
+		public override int PacketId => 34;
 
 		public Protocol.Types.BlockPos Position { get; set; }
 		public bool WithData { get; set; }

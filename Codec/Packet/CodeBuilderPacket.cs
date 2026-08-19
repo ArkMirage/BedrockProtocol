@@ -18,7 +18,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class CodeBuilderPacket : IPacket
 	{
-		public int PacketId => 150;
+		public override int PacketId => 150;
 
 		public string URL { get; set; }
 		public bool ShouldOpenCodeBuilder { get; set; }

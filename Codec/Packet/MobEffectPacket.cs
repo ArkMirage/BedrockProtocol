@@ -25,7 +25,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class MobEffectPacket : IPacket
 	{
-		public int PacketId => 28;
+		public override int PacketId => 28;
 
 		public Protocol.Types.ActorRuntimeID TargetRuntimeID { get; set; }
 		public Protocol.MobEffectPacketPayload.Event EventID { get; set; }

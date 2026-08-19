@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ContainerSetDataPacket : IPacket
 	{
-		public int PacketId => 51;
+		public override int PacketId => 51;
 
 		public byte ContainerID { get; set; }
 		public int ID { get; set; } 

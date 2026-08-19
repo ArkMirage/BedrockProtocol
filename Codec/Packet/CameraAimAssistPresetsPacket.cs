@@ -18,7 +18,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class CameraAimAssistPresetsPacket : IPacket
 	{
-		public int PacketId => 320;
+		public override int PacketId => 320;
 
 		public List<Protocol.Types.SharedTypes.v1_21_50.CameraAimAssistCategoryDefinition> CameraAimAssistPresets { get; set; } = new List<Protocol.Types.SharedTypes.v1_21_50.CameraAimAssistCategoryDefinition>();
 		public List<Protocol.Types.SharedTypes.v1_21_120.CameraAimAssistPresetDefinition> CameraAimAssistCategories { get; set; } = new List<Protocol.Types.SharedTypes.v1_21_120.CameraAimAssistPresetDefinition>();

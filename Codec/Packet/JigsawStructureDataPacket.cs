@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class JigsawStructureDataPacket : IPacket
 	{
-		public int PacketId => 313;
+		public override int PacketId => 313;
 
 		public Protocol.Types.CompoundTag JigsawStructureDataTag { get; set; }
 

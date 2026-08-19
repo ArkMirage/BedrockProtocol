@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class RemoveObjectivePacket : IPacket
 	{
-		public int PacketId => 106;
+		public override int PacketId => 106;
 
 		public string ObjectiveName { get; set; }
 

@@ -19,7 +19,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SetTitlePacket : IPacket
 	{
-		public int PacketId => 88;
+		public override int PacketId => 88;
 
 		public Protocol.SetTitlePacketPayload.TitleType TitleType { get; set; } 
 		public string TitleText { get; set; }

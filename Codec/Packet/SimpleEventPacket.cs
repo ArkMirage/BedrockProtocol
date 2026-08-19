@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SimpleEventPacket : IPacket
 	{
-		public int PacketId => 64;
+		public override int PacketId => 64;
 
 		public Protocol.SimpleEventPacketPayload.Subtype Type_ { get; set; }
 

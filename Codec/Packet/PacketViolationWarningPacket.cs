@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class PacketViolationWarningPacket : IPacket
 	{
-		public int PacketId => 156;
+		public override int PacketId => 156;
 
 		public Protocol.PacketViolationType ViolationType { get; set; } 
 		public Protocol.PacketViolationSeverity ViolationSeverity { get; set; } 

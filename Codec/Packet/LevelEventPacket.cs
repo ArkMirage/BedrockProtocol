@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class LevelEventPacket : IPacket
 	{
-		public int PacketId => 25;
+		public override int PacketId => 25;
 
 		public int EventId { get; set; } 
 		public Protocol.Types.Vec3 Position { get; set; }

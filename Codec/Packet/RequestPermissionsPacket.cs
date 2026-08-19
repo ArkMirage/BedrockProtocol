@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class RequestPermissionsPacket : IPacket
 	{
-		public int PacketId => 185;
+		public override int PacketId => 185;
 
 		public long TargetPlayerIdSRawID { get; set; }
 		public int PlayerPermissionLevel { get; set; } 

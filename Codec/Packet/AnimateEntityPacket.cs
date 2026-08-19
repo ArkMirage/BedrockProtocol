@@ -23,7 +23,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class AnimateEntityPacket : IPacket
 	{
-		public int PacketId => 158;
+		public override int PacketId => 158;
 
 		public string MAnimation { get; set; }
 		public string MNextState { get; set; }

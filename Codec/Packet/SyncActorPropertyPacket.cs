@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SyncActorPropertyPacket : IPacket
 	{
-		public int PacketId => 165;
+		public override int PacketId => 165;
 
 		public Protocol.Types.CompoundTag PropertyData { get; set; }
 

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ShowCreditsPacket : IPacket
 	{
-		public int PacketId => 75;
+		public override int PacketId => 75;
 
 		public Protocol.Types.ActorRuntimeID PlayerRuntimeID { get; set; }
 		public int CreditsState { get; set; } 

@@ -23,7 +23,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class MapInfoRequestPacket : IPacket
 	{
-		public int PacketId => 68;
+		public override int PacketId => 68;
 
 		public Protocol.Types.ActorUniqueID MapUniqueID { get; set; }
 		public List<Protocol.Types.MapInfoRequestPacketAnon.ClientPixelsProxy> ClientPixelsList { get; set; } = new List<Protocol.Types.MapInfoRequestPacketAnon.ClientPixelsProxy>();

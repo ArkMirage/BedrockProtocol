@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class NetworkStackLatencyPacket : IPacket
 	{
-		public int PacketId => 115;
+		public override int PacketId => 115;
 
 		public ulong CreationTime { get; set; }
 		public bool IsFromServer { get; set; }

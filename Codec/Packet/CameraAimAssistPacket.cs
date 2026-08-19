@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class CameraAimAssistPacket : IPacket
 	{
-		public int PacketId => 316;
+		public override int PacketId => 316;
 
 		public string PresetId { get; set; }
 		public Protocol.Types.Vec2 ViewAngle { get; set; }

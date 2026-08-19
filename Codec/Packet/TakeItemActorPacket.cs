@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class TakeItemActorPacket : IPacket
 	{
-		public int PacketId => 17;
+		public override int PacketId => 17;
 
 		public Protocol.Types.ActorRuntimeID ItemRuntimeID { get; set; }
 		public Protocol.Types.ActorRuntimeID ActorRuntimeID { get; set; }

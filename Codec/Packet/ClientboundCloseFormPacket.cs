@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ClientboundCloseFormPacket : IPacket
 	{
-		public int PacketId => 310;
+		public override int PacketId => 310;
 		public override void Read(MemoryStreamReader reader)
 		{
 			base.Read(reader);

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class LegacyTelemetryEventPacket : IPacket
 	{
-		public int PacketId => 65;
+		public override int PacketId => 65;
 
 		public Protocol.Types.ActorUniqueID TargetActorID { get; set; }
 		public Protocol.LegacyTelemetryEventPacketPayload.Type EventType { get; set; } 

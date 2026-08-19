@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class CreativeContentPacket : IPacket
 	{
-		public int PacketId => 145;
+		public override int PacketId => 145;
 
 		public List<Protocol.Types.CreativeGroupInfoPayload> Groups { get; set; } = new List<Protocol.Types.CreativeGroupInfoPayload>();
 		public List<Protocol.Types.CreativeItemEntryPayload> Entries { get; set; } = new List<Protocol.Types.CreativeItemEntryPayload>();

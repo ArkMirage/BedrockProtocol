@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ResourcePackDataInfoPacket : IPacket
 	{
-		public int PacketId => 82;
+		public override int PacketId => 82;
 
 		public string ResourceName { get; set; }
 		public uint ChunkSize { get; set; }

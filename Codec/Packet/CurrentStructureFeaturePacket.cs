@@ -18,7 +18,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class CurrentStructureFeaturePacket : IPacket
 	{
-		public int PacketId => 314;
+		public override int PacketId => 314;
 
 		public string CurrentStructureFeature { get; set; }
 

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class PlayerInputPacket : IPacket
 	{
-		public int PacketId => 57;
+		public override int PacketId => 57;
 
 		public Protocol.Types.Vec2 Move { get; set; }
 		public bool Jumping { get; set; }

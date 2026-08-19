@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class MoveActorDeltaPacket : IPacket
 	{
-		public int PacketId => 111;
+		public override int PacketId => 111;
 
 		public Protocol.Types.MoveActorDeltaData MoveData { get; set; }
 
