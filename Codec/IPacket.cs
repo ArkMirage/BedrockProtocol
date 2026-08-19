@@ -10,6 +10,33 @@ namespace Protocol.Packets
 		public virtual int PacketId { get; }
 		public ReadOnlyMemory<byte> bytes { get; set; }
 
+		public void Decode(ReadOnlyMemory<byte> data)
+		{
+			bytes = data;
+			using (var mem = new MemoryStreamReader(data))
+			{
+				VarInt.ReadInt32(mem);
+				Read(mem);
+			}
+		}
+
+		public ReadOnlyMemory<byte> Encode()
+		{
+			if (bytes.IsEmpty)
+			{
+				using (var mem = new MemoryStream())
+				{
+					var writer = new MemoryStreamWriter(mem);
+					VarInt.WriteInt32(mem, PacketId);
+					Write(writer);
+					mem.Flush();
+					bytes = mem.ToArray();
+				}
+			}
+
+			return bytes;
+		}
+
 		public virtual void Read(MemoryStreamReader reader)
 		{
 
