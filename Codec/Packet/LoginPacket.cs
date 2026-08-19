@@ -17,20 +17,20 @@ namespace Protocol.Packets
 		public override int PacketId => 1;
 
 		public int ClientNetworkVersion { get; set; }
-		public string ConnectionRequest { get; set; }
+		public ReadOnlyMemory<byte> ConnectionRequest { get; set; }
 
 		public override void Read(MemoryStreamReader reader)
 		{
 			base.Read(reader);
 			ClientNetworkVersion = BinaryPrimitives.ReverseEndianness(reader.ReadInt32());
-			ConnectionRequest = reader.ReadLengthPrefixedString();
+			ConnectionRequest = reader.ReadLengthPrefixedBytes();
 		}
 
 		public override void Write(MemoryStreamWriter writer)
 		{
 			base.Write(writer);
 			writer.WriteInt32(BinaryPrimitives.ReverseEndianness(ClientNetworkVersion));
-			writer.WriteLengthPrefixedString(ConnectionRequest);
+			writer.WriteLengthPrefixedBytes(ConnectionRequest.ToArray());
 		}
 	}
 }

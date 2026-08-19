@@ -45,7 +45,10 @@ public static class VarInt
 
 			result |= (uint)(b0 & 0x7f) << (j++ * 7);
 
-			if (j > maxSize) throw new OverflowException("VarInt too big");
+			if (j > maxSize)
+			{
+				throw new OverflowException("VarInt too big");
+			}
 		} while ((b0 & 0x80) == 0x80);
 
 		return result;
@@ -68,10 +71,12 @@ public static class VarInt
 
 			result |= (ulong)(b0 & 0x7f) << (j++ * 7);
 
-			if (j > maxSize) throw new OverflowException("VarInt too big");
+			if (j > maxSize)
+			{
+				throw new OverflowException("VarInt too big");
+			}
 		} while ((b0 & 0x80) == 0x80);
 
-		var byteArray = bytes.ToArray();
 
 	//	if (printBytes) Console.WriteLine($"Long bytes: {Protocol.Codec.IO.Packet.HexDump(byteArray)} ");
 
