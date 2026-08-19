@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class UnlockedRecipesPacket : IPacket
 	{
-		public int PacketId => 199;
+		public override int PacketId => 199;
 
 		public Protocol.UnlockedRecipesPacketPayload.PacketType PacketType { get; set; }
 		public List<string> UnlockedRecipesList { get; set; } = new List<string>();

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class UpdateAttributesPacket : IPacket
 	{
-		public int PacketId => 29;
+		public override int PacketId => 29;
 
 		public Protocol.Types.ActorRuntimeID TargetRuntimeID { get; set; }
 		public List<Protocol.Types.AttributeData> AttributeList { get; set; } = new List<Protocol.Types.AttributeData>();

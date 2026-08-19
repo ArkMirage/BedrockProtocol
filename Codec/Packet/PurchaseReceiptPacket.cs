@@ -18,7 +18,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PurchaseReceiptPacket : IPacket
 	{
-		public int PacketId => 92;
+		public override int PacketId => 92;
 
 		public List<string> PurchaseReceipts { get; set; } = new List<string>();
 

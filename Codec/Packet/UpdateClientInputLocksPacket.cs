@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class UpdateClientInputLocksPacket : IPacket
 	{
-		public int PacketId => 196;
+		public override int PacketId => 196;
 
 		public uint InputLockComponentData { get; set; } 
 

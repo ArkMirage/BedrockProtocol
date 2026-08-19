@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class GameRulesChangedPacket : IPacket
 	{
-		public int PacketId => 72;
+		public override int PacketId => 72;
 
 		public Protocol.Types.GameRulesChangedPacketData RuleData { get; set; }
 

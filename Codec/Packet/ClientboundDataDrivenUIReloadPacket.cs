@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientboundDataDrivenUIReloadPacket : IPacket
 	{
-		public int PacketId => 335;
+		public override int PacketId => 335;
 		public override void Read(MemoryStreamReader reader)
 		{
 			base.Read(reader);

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class GuiDataPickItemPacket : IPacket
 	{
-		public int PacketId => 54;
+		public override int PacketId => 54;
 
 		public string ItemName { get; set; }
 		public string ItemEffectName { get; set; }

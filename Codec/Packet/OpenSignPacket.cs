@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class OpenSignPacket : IPacket
 	{
-		public int PacketId => 303;
+		public override int PacketId => 303;
 
 		public Protocol.Types.BlockPos Pos { get; set; }
 		public bool IsFrontSide { get; set; }

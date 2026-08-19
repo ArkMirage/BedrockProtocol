@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class UpdateSubChunkBlocksPacket : IPacket
 	{
-		public int PacketId => 172;
+		public override int PacketId => 172;
 
 		public Protocol.Types.BlockPos SubChunkBlockPosition { get; set; }
 		public Protocol.Types.UpdateSubChunkBlocksChangedInfo BlocksChanged { get; set; }

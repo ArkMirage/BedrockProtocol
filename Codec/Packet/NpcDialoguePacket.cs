@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class NpcDialoguePacket : IPacket
 	{
-		public int PacketId => 169;
+		public override int PacketId => 169;
 
 		public ulong NpcIdRawId { get; set; }
 		public Protocol.NpcDialoguePacketPayload.NpcDialogueActionType NpcDialogueActionType { get; set; } 

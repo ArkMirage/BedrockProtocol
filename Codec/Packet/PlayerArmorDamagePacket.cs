@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class PlayerArmorDamagePacket : IPacket
 	{
-		public int PacketId => 149;
+		public override int PacketId => 149;
 
 		public List<Protocol.Types.ArmorSlotAndDamagePair> ArmorSlotAndDamagePairs { get; set; } = new List<Protocol.Types.ArmorSlotAndDamagePair>();
 

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class MobArmorEquipmentPacket : IPacket
 	{
-		public int PacketId => 32;
+		public override int PacketId => 32;
 
 		public Protocol.Types.ActorRuntimeID TargetRuntimeID { get; set; }
 		public Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor Head { get; set; }

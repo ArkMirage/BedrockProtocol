@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ItemStackResponsePacket : IPacket
 	{
-		public int PacketId => 148;
+		public override int PacketId => 148;
 
 		public List<Protocol.Types.ItemStackResponseInfo> Responses { get; set; } = new List<Protocol.Types.ItemStackResponseInfo>();
 

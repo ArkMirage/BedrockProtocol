@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ShowStoreOfferPacket : IPacket
 	{
-		public int PacketId => 91;
+		public override int PacketId => 91;
 
 		public Protocol.Types.mce.UUID OfferId { get; set; }
 		public Protocol.ShowStoreOfferRedirectType RedirectType { get; set; }

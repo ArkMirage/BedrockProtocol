@@ -18,7 +18,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class AnvilDamagePacket : IPacket
 	{
-		public int PacketId => 141;
+		public override int PacketId => 141;
 
 		public Protocol.Types.BlockPos BlockPosition { get; set; }
 

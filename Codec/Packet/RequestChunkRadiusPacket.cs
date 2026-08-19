@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class RequestChunkRadiusPacket : IPacket
 	{
-		public int PacketId => 69;
+		public override int PacketId => 69;
 
 		public int ChunkRadius { get; set; } 
 		public byte MaxChunkRadius { get; set; }

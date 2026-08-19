@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class PartyChangedPacket : IPacket
 	{
-		public int PacketId => 342;
+		public override int PacketId => 342;
 
 		public Optional<Protocol.Types.PlayerPartyInfo> PartyInfo { get; set; } = new Optional<Protocol.Types.PlayerPartyInfo>();
 

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class RemoveActorPacket : IPacket
 	{
-		public int PacketId => 14;
+		public override int PacketId => 14;
 
 		public Protocol.Types.ActorUniqueID TargetActorID { get; set; }
 

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class RequestNetworkSettingsPacket : IPacket
 	{
-		public int PacketId => 193;
+		public override int PacketId => 193;
 
 		public int ClientNetworkVersion { get; set; }
 

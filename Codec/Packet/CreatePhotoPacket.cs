@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class CreatePhotoPacket : IPacket
 	{
-		public int PacketId => 171;
+		public override int PacketId => 171;
 
 		public ulong RawID { get; set; }
 		public string PhotoName { get; set; }

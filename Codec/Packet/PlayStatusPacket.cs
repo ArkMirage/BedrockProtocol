@@ -19,7 +19,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PlayStatusPacket : IPacket
 	{
-		public int PacketId => 2;
+		public override int PacketId => 2;
 
 		public Protocol.PlayStatus Status { get; set; }
 

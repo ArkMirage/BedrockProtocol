@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ClientCacheBlobStatusPacket : IPacket
 	{
-		public int PacketId => 135;
+		public override int PacketId => 135;
 
 		public List<ulong> MissingIds { get; set; } = new List<ulong>();
 		public List<ulong> FoundIds { get; set; } = new List<ulong>();

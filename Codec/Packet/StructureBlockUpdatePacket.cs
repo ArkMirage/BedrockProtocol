@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class StructureBlockUpdatePacket : IPacket
 	{
-		public int PacketId => 90;
+		public override int PacketId => 90;
 
 		public Protocol.Types.BlockPos BlockPosition { get; set; }
 		public Protocol.Types.StructureEditorData StructureData { get; set; }

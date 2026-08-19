@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientboundControlSchemeSetPacket : IPacket
 	{
-		public int PacketId => 327;
+		public override int PacketId => 327;
 
 		public Protocol.ControlScheme.Scheme ControlScheme { get; set; }
 

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class DimensionDataPacket : IPacket
 	{
-		public int PacketId => 180;
+		public override int PacketId => 180;
 
 		public Dictionary<string, Protocol.Types.DimensionDefinitionGroup.DimensionDefinition> Definitions { get; set; } = new Dictionary<string, Protocol.Types.DimensionDefinitionGroup.DimensionDefinition>();
 

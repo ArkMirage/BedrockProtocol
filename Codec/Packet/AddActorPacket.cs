@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class AddActorPacket : IPacket
 	{
-		public int PacketId => 13;
+		public override int PacketId => 13;
 
 		public Protocol.Types.ActorUniqueID TargetActorID { get; set; }
 		public Protocol.Types.ActorRuntimeID TargetRuntimeID { get; set; }

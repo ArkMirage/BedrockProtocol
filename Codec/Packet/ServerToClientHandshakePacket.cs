@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ServerToClientHandshakePacket : IPacket
 	{
-		public int PacketId => 3;
+		public override int PacketId => 3;
 
 		public string HandshakeWebToken { get; set; }
 

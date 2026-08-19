@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class AgentAnimationPacket : IPacket
 	{
-		public int PacketId => 304;
+		public override int PacketId => 304;
 
 		public Protocol.AgentAnimation AgentAnimation { get; set; }
 		public Protocol.Types.ActorRuntimeID RuntimeId { get; set; }

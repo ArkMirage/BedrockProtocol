@@ -18,7 +18,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class BiomeDefinitionListPacket : IPacket
 	{
-		public int PacketId => 122;
+		public override int PacketId => 122;
 
 		public Dictionary<ushort, Protocol.Types.BiomeDefinitionData> MapOfBiomeNamesToData { get; set; } = new Dictionary<ushort, Protocol.Types.BiomeDefinitionData>();
 		public Protocol.Types.BiomeStringList StringList { get; set; }

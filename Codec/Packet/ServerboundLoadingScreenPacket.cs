@@ -21,7 +21,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ServerboundLoadingScreenPacket : IPacket
 	{
-		public int PacketId => 312;
+		public override int PacketId => 312;
 
 		public Protocol.ServerboundLoadingScreenPacketType LoadingScreenPacketType { get; set; } 
 		public Optional<uint> LoadingScreenId { get; set; } = new Optional<uint>();

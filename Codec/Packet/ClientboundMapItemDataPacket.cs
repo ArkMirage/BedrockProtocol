@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientboundMapItemDataPacket : IPacket
 	{
-		public int PacketId => 67;
+		public override int PacketId => 67;
 
 		public Protocol.Types.ActorUniqueID MapID { get; set; }
 		public byte Dimension { get; set; }

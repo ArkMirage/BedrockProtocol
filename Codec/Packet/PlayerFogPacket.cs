@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PlayerFogPacket : IPacket
 	{
-		public int PacketId => 160;
+		public override int PacketId => 160;
 
 		public List<string> FogStack { get; set; } = new List<string>();
 

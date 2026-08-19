@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class TickingAreasLoadStatusPacket : IPacket
 	{
-		public int PacketId => 179;
+		public override int PacketId => 179;
 
 		public bool WaitingForPreload { get; set; }
 

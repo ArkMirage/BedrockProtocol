@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class RespawnPacket : IPacket
 	{
-		public int PacketId => 45;
+		public override int PacketId => 45;
 
 		public Protocol.Types.Vec3 Position { get; set; }
 		public Protocol.PlayerRespawnState State { get; set; }

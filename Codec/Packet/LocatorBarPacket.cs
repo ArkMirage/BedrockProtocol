@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class LocatorBarPacket : IPacket
 	{
-		public int PacketId => 341;
+		public override int PacketId => 341;
 
 		public List<Protocol.Types.LocatorBarWaypointPayload> Waypoints { get; set; } = new List<Protocol.Types.LocatorBarWaypointPayload>();
 

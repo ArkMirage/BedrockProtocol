@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientboundDataDrivenUIShowScreenPacket : IPacket
 	{
-		public int PacketId => 333;
+		public override int PacketId => 333;
 
 		public string ScreenId { get; set; }
 		public uint FormId { get; set; }

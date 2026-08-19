@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ModalFormResponsePacket : IPacket
 	{
-		public int PacketId => 101;
+		public override int PacketId => 101;
 
 		public uint FormID { get; set; } 
 		public Optional<string> JSONResponse { get; set; } = new Optional<string>();

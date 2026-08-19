@@ -20,7 +20,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PhotoTransferPacket : IPacket
 	{
-		public int PacketId => 99;
+		public override int PacketId => 99;
 
 		public string PhotoName { get; set; }
 		public byte[] PhotoData { get; set; }

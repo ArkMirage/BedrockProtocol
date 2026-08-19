@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class SubChunkRequestPacket : IPacket
 	{
-		public int PacketId => 175;
+		public override int PacketId => 175;
 
 		public Protocol.Types.DimensionType DimensionType { get; set; }
 		public List<Protocol.Types.SubChunkPacketPayload.SubChunkPosOffset> SubChunkPositionOffsetList { get; set; } = new List<Protocol.Types.SubChunkPacketPayload.SubChunkPosOffset>();

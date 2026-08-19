@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ShowProfilePacket : IPacket
 	{
-		public int PacketId => 104;
+		public override int PacketId => 104;
 
 		public string PlayerXUID { get; set; }
 

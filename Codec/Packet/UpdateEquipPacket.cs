@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class UpdateEquipPacket : IPacket
 	{
-		public int PacketId => 81;
+		public override int PacketId => 81;
 
 		public byte ContainerId { get; set; }
 		public byte Type_ { get; set; }

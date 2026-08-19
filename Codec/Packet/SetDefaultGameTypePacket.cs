@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class SetDefaultGameTypePacket : IPacket
 	{
-		public int PacketId => 105;
+		public override int PacketId => 105;
 
 		public Protocol.GameType DefaultGameType { get; set; } 
 

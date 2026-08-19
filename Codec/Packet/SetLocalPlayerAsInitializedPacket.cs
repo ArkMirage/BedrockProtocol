@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SetLocalPlayerAsInitializedPacket : IPacket
 	{
-		public int PacketId => 113;
+		public override int PacketId => 113;
 
 		public Protocol.Types.ActorRuntimeID PlayerID { get; set; }
 

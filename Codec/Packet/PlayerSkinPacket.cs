@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PlayerSkinPacket : IPacket
 	{
-		public int PacketId => 93;
+		public override int PacketId => 93;
 
 		public Protocol.Types.mce.UUID UUID { get; set; }
 		public Protocol.Types.SerializedSkinRef SerializedSkin { get; set; }

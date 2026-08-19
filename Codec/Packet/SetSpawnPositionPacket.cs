@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SetSpawnPositionPacket : IPacket
 	{
-		public int PacketId => 43;
+		public override int PacketId => 43;
 
 		public Protocol.SpawnPositionType SpawnPositionType { get; set; } 
 		public Protocol.Types.BlockPos BlockPosition { get; set; }

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientboundTextureShiftPacket : IPacket
 	{
-		public int PacketId => 336;
+		public override int PacketId => 336;
 
 		public Protocol.ClientboundTextureShiftPacketPayload.Action ActionID { get; set; }
 		public string CollectionName { get; set; }

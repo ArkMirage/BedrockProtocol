@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ItemStackRequestPacket : IPacket
 	{
-		public int PacketId => 147;
+		public override int PacketId => 147;
 
 		public List<Protocol.Types.ItemStackRequestPacketData.RequestData> Requests { get; set; } = new List<Protocol.Types.ItemStackRequestPacketData.RequestData>();
 

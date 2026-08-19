@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class CommandBlockUpdatePacket : IPacket
 	{
-		public int PacketId => 78;
+		public override int PacketId => 78;
 
 		public OneOf<Protocol.Types.CommandBlockUpdatePacketPayload.EntityCommandTarget, Protocol.Types.CommandBlockUpdatePacketPayload.BlockCommandData> Target { get; set; }
 		public string Command { get; set; }

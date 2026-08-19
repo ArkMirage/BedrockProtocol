@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ServerboundDiagnosticsPacket : IPacket
 	{
-		public int PacketId => 315;
+		public override int PacketId => 315;
 
 		public float AvgFps { get; set; }
 		public float AvgServerSimTickTimeMS { get; set; }

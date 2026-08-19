@@ -18,7 +18,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SyncWorldClocksPacket : IPacket
 	{
-		public int PacketId => 344;
+		public override int PacketId => 344;
 
 		public OneOf<Protocol.Types.SyncWorldClocksPacketPayload.SyncStateData, Protocol.Types.SyncWorldClocksPacketPayload.InitializeRegistryData, Protocol.Types.SyncWorldClocksPacketPayload.AddTimeMarkerData, Protocol.Types.SyncWorldClocksPacketPayload.RemoveTimeMarkerData> Data { get; set; }
 

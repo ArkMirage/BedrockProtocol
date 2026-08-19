@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class AwardAchievementPacket : IPacket
 	{
-		public int PacketId => 309;
+		public override int PacketId => 309;
 
 		public int AchievementID { get; set; }
 

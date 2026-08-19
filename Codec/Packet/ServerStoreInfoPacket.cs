@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ServerStoreInfoPacket : IPacket
 	{
-		public int PacketId => 346;
+		public override int PacketId => 346;
 
 		public Optional<Protocol.Types.ServerConfiguration.ClientStoreEntryPointConfiguration> ClientStoreEntryPointConfiguration { get; set; } = new Optional<Protocol.Types.ServerConfiguration.ClientStoreEntryPointConfiguration>();
 

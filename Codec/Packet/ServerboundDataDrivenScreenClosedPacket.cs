@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ServerboundDataDrivenScreenClosedPacket : IPacket
 	{
-		public int PacketId => 343;
+		public override int PacketId => 343;
 
 		public uint FormId { get; set; }
 		public Protocol.DataDrivenScreenClosedReason CloseReason { get; set; }

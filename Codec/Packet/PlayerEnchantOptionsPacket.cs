@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class PlayerEnchantOptionsPacket : IPacket
 	{
-		public int PacketId => 146;
+		public override int PacketId => 146;
 
 		public List<Protocol.Types.ItemEnchantOption> Options { get; set; } = new List<Protocol.Types.ItemEnchantOption>();
 

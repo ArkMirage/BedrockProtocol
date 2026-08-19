@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ResourcePackStackPacket : IPacket
 	{
-		public int PacketId => 7;
+		public override int PacketId => 7;
 
 		public bool TexturePackRequired { get; set; }
 		public List<Protocol.Types.PackInstanceId> TexturePackList { get; set; } = new List<Protocol.Types.PackInstanceId>();

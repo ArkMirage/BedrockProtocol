@@ -19,7 +19,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class LevelSoundEventPacket : IPacket
 	{
-		public int PacketId => 123;
+		public override int PacketId => 123;
 
 		public string SoundEvent { get; set; }
 		public Protocol.Types.Vec3 Position { get; set; }

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class DebugInfoPacket : IPacket
 	{
-		public int PacketId => 155;
+		public override int PacketId => 155;
 
 		public Protocol.Types.ActorUniqueID ActorId { get; set; }
 		public string Data { get; set; }

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ContainerOpenPacket : IPacket
 	{
-		public int PacketId => 46;
+		public override int PacketId => 46;
 
 		public byte ContainerId { get; set; }
 		public byte ContainerType { get; set; }

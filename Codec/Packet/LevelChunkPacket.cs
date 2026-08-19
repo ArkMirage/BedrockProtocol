@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class LevelChunkPacket : IPacket
 	{
-		public int PacketId => 58;
+		public override int PacketId => 58;
 
 		public Protocol.Types.ChunkPos ChunkPosition { get; set; }
 		public Protocol.Types.DimensionType DimensionId { get; set; }

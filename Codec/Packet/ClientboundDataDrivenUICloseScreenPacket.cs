@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientboundDataDrivenUICloseScreenPacket : IPacket
 	{
-		public int PacketId => 334;
+		public override int PacketId => 334;
 
 		public Optional<uint> FormId { get; set; } = new Optional<uint>();
 

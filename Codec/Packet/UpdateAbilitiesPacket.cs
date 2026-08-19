@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class UpdateAbilitiesPacket : IPacket
 	{
-		public int PacketId => 187;
+		public override int PacketId => 187;
 
 		public Protocol.Types.SerializedAbilitiesData Data { get; set; }
 

@@ -18,7 +18,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ContainerRegistryCleanupPacket : IPacket
 	{
-		public int PacketId => 317;
+		public override int PacketId => 317;
 
 		public List<Protocol.Types.FullContainerName> RemovedContainers { get; set; } = new List<Protocol.Types.FullContainerName>();
 

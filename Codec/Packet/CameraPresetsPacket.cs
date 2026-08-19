@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class CameraPresetsPacket : IPacket
 	{
-		public int PacketId => 198;
+		public override int PacketId => 198;
 
 		public Protocol.Types.CameraPresets CameraPresets { get; set; }
 

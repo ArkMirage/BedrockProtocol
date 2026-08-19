@@ -19,7 +19,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ClientCameraAimAssistPacket : IPacket
 	{
-		public int PacketId => 321;
+		public override int PacketId => 321;
 
 		public string CameraPresetId { get; set; }
 		public Protocol.ClientCameraAimAssistPacketAction Action { get; set; }

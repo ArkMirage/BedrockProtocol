@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class SetLastHurtByPacket : IPacket
 	{
-		public int PacketId => 96;
+		public override int PacketId => 96;
 
 		public Protocol.ActorType LastHurtBy { get; set; } 
 

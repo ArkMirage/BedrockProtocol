@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PlayerStartItemCooldownPacket : IPacket
 	{
-		public int PacketId => 176;
+		public override int PacketId => 176;
 
 		public string ItemCategory { get; set; }
 		public int DurationTicks { get; set; } 

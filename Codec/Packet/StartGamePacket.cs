@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class StartGamePacket : IPacket
 	{
-		public int PacketId => 11;
+		public override int PacketId => 11;
 
 		public Protocol.Types.ActorUniqueID EntityID { get; set; }
 		public Protocol.Types.ActorRuntimeID RuntimeID { get; set; }

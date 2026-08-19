@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class AvailableCommandsPacket : IPacket
 	{
-		public int PacketId => 76;
+		public override int PacketId => 76;
 
 		public List<string> EnumValues { get; set; } = new List<string>();
 		public List<string> ChainedSubcommandValues { get; set; } = new List<string>();

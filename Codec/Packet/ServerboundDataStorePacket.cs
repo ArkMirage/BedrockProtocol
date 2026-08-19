@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ServerboundDataStorePacket : IPacket
 	{
-		public int PacketId => 332;
+		public override int PacketId => 332;
 
 		public Protocol.Types.Bedrock.DDUI.DataStoreUpdate Update { get; set; }
 

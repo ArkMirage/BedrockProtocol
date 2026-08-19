@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SpawnExperienceOrbPacket : IPacket
 	{
-		public int PacketId => 66;
+		public override int PacketId => 66;
 
 		public Protocol.Types.Vec3 Position { get; set; }
 		public int XPValue { get; set; } 

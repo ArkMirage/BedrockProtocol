@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class HurtArmorPacket : IPacket
 	{
-		public int PacketId => 38;
+		public override int PacketId => 38;
 
 		public int Cause { get; set; } 
 		public int Damage { get; set; } 

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class InteractPacket : IPacket
 	{
-		public int PacketId => 33;
+		public override int PacketId => 33;
 
 		public Protocol.InteractPacketPayload.Action Action { get; set; }
 		public Protocol.Types.ActorRuntimeID TargetRuntimeID { get; set; }

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class CameraShakePacket : IPacket
 	{
-		public int PacketId => 159;
+		public override int PacketId => 159;
 
 		public float Intensity { get; set; }
 		public float Seconds { get; set; }

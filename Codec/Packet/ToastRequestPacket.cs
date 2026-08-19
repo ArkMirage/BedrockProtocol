@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ToastRequestPacket : IPacket
 	{
-		public int PacketId => 186;
+		public override int PacketId => 186;
 
 		public string Title { get; set; }
 		public string Content { get; set; }

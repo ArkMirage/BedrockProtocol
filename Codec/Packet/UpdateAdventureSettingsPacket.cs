@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class UpdateAdventureSettingsPacket : IPacket
 	{
-		public int PacketId => 188;
+		public override int PacketId => 188;
 
 		public Protocol.Types.AdventureSettings AdventureSettings { get; set; }
 

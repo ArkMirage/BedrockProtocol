@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class LessonProgressPacket : IPacket
 	{
-		public int PacketId => 183;
+		public override int PacketId => 183;
 
 		public int LessonAction { get; set; } 
 		public int Score { get; set; } 

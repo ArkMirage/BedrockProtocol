@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class PlaySoundPacket : IPacket
 	{
-		public int PacketId => 86;
+		public override int PacketId => 86;
 
 		public string Name { get; set; }
 		public Protocol.Types.BlockPos Position { get; set; }

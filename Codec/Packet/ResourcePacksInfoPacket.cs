@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ResourcePacksInfoPacket : IPacket
 	{
-		public int PacketId => 6;
+		public override int PacketId => 6;
 
 		public bool ResourcePackRequired { get; set; }
 		public bool HasAddonPacks { get; set; }

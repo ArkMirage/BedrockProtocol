@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class AddVolumeEntityPacket : IPacket
 	{
-		public int PacketId => 166;
+		public override int PacketId => 166;
 
 		public Protocol.Types.EntityNetId EntityNetworkId { get; set; }
 		public Protocol.Types.CompoundTag Components { get; set; }

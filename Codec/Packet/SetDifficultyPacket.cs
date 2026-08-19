@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SetDifficultyPacket : IPacket
 	{
-		public int PacketId => 60;
+		public override int PacketId => 60;
 
 		public uint Difficulty { get; set; } 
 

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class AddPaintingPacket : IPacket
 	{
-		public int PacketId => 22;
+		public override int PacketId => 22;
 
 		public Protocol.Types.ActorUniqueID TargetActorID { get; set; }
 		public Protocol.Types.ActorRuntimeID TargetRuntimeID { get; set; }

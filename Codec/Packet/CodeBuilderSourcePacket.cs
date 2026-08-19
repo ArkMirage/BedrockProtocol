@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class CodeBuilderSourcePacket : IPacket
 	{
-		public int PacketId => 178;
+		public override int PacketId => 178;
 
 		public Protocol.CodeBuilderStorageQueryOptions.Operation Operation { get; set; }
 		public Protocol.CodeBuilderStorageQueryOptions.Category Category { get; set; }

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class BookEditPacket : IPacket
 	{
-		public int PacketId => 97;
+		public override int PacketId => 97;
 
 		public int BookSlot { get; set; } 
 		public OneOf<Protocol.Types.BookEditAction.ReplacePage, Protocol.Types.BookEditAction.AddPage, Protocol.Types.BookEditAction.DeletePage, Protocol.Types.BookEditAction.SwapPages, Protocol.Types.BookEditAction.Finalize> Operation { get; set; }

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class InventoryContentPacket : IPacket
 	{
-		public int PacketId => 49;
+		public override int PacketId => 49;
 
 		public uint ContainerId { get; set; } 
 		public List<Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor> Slots { get; set; } = new List<Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor>();

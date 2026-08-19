@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class AgentActionEventPacket : IPacket
 	{
-		public int PacketId => 181;
+		public override int PacketId => 181;
 
 		public string RequestId { get; set; }
 		public Protocol.AgentActionType Action { get; set; }

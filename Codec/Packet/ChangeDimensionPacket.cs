@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ChangeDimensionPacket : IPacket
 	{
-		public int PacketId => 61;
+		public override int PacketId => 61;
 
 		public Protocol.Types.DimensionType DimensionID { get; set; }
 		public Protocol.Types.Vec3 Position { get; set; }

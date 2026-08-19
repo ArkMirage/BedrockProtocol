@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ServerStatsPacket : IPacket
 	{
-		public int PacketId => 192;
+		public override int PacketId => 192;
 
 		public float ServerTime { get; set; }
 		public float NetworkTime { get; set; }

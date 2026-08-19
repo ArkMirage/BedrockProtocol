@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ServerPresenceInfoPacket : IPacket
 	{
-		public int PacketId => 347;
+		public override int PacketId => 347;
 
 		public Optional<Protocol.Types.ServerConfiguration.PresenceConfiguration> PresenceConfiguration { get; set; } = new Optional<Protocol.Types.ServerConfiguration.PresenceConfiguration>();
 

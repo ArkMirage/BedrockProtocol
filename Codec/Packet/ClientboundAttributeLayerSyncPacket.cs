@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientboundAttributeLayerSyncPacket : IPacket
 	{
-		public int PacketId => 345;
+		public override int PacketId => 345;
 
 		public OneOf<Protocol.Types.AttributeLayerSyncPacketData.UpdateAttributeLayersData, Protocol.Types.AttributeLayerSyncPacketData.UpdateAttributeLayerSettingsData, Protocol.Types.AttributeLayerSyncPacketData.UpdateEnvironmentAttributesData, Protocol.Types.AttributeLayerSyncPacketData.RemoveEnvironmentAttributesData> Data { get; set; }
 

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SimulationTypePacket : IPacket
 	{
-		public int PacketId => 168;
+		public override int PacketId => 168;
 
 		public Protocol.SimulationType SimType { get; set; }
 

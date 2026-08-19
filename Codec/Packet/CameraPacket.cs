@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class CameraPacket : IPacket
 	{
-		public int PacketId => 73;
+		public override int PacketId => 73;
 
 		public Protocol.Types.ActorUniqueID CameraID { get; set; }
 		public Protocol.Types.ActorUniqueID TargetPlayerID { get; set; }

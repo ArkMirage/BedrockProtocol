@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ServerPlayerPostMovePositionPacket : IPacket
 	{
-		public int PacketId => 16;
+		public override int PacketId => 16;
 
 		public Protocol.Types.Vec3 Pos { get; set; }
 

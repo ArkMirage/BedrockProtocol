@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class PlayerHotbarPacket : IPacket
 	{
-		public int PacketId => 48;
+		public override int PacketId => 48;
 
 		public uint SelectedSlot { get; set; } 
 		public byte ContainerID { get; set; }

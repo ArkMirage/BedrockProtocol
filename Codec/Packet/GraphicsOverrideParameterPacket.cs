@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class GraphicsOverrideParameterPacket : IPacket
 	{
-		public int PacketId => 331;
+		public override int PacketId => 331;
 
 		public Dictionary<float, Protocol.Types.Vec3> ParameterKeyframeValues { get; set; } = new Dictionary<float, Protocol.Types.Vec3>();
 		public Optional<float> FloatValue { get; set; } = new Optional<float>();

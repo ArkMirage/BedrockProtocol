@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ActorPickRequestPacket : IPacket
 	{
-		public int PacketId => 35;
+		public override int PacketId => 35;
 
 		public long ActorID { get; set; }
 		public byte MaxSlots { get; set; }

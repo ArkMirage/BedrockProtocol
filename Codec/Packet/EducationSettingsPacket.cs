@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class EducationSettingsPacket : IPacket
 	{
-		public int PacketId => 137;
+		public override int PacketId => 137;
 
 		public Protocol.Types.EducationLevelSettings EducationLevelSettings { get; set; }
 

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SetScoreboardIdentityPacket : IPacket
 	{
-		public int PacketId => 112;
+		public override int PacketId => 112;
 
 		public Protocol.ScoreboardIdentityPacketType ScoreboardIdentityPacketType { get; set; }
 		public List<Protocol.Types.ScoreboardIdentityPacketInfo> ScoreboardIdentityInfo { get; set; } = new List<Protocol.Types.ScoreboardIdentityPacketInfo>();

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class EduUriResourcePacket : IPacket
 	{
-		public int PacketId => 170;
+		public override int PacketId => 170;
 
 		public Protocol.Types.EduSharedUriResource EduSharedURIResource { get; set; }
 

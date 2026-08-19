@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class MoveActorAbsolutePacket : IPacket
 	{
-		public int PacketId => 18;
+		public override int PacketId => 18;
 
 		public Protocol.Types.MoveActorAbsoluteData MoveData { get; set; }
 

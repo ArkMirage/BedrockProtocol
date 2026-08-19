@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ServerboundPackSettingChangePacket : IPacket
 	{
-		public int PacketId => 329;
+		public override int PacketId => 329;
 
 		public Protocol.Types.mce.UUID PackId { get; set; }
 		public string PackSettingName { get; set; }

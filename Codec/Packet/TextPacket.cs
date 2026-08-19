@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class TextPacket : IPacket
 	{
-		public int PacketId => 9;
+		public override int PacketId => 9;
 
 		public bool Localize { get; set; }
 		public OneOf<Protocol.Types.TextPacketPayload.MessageOnly, Protocol.Types.TextPacketPayload.AuthorAndMessage, Protocol.Types.TextPacketPayload.MessageAndParams> Body { get; set; }

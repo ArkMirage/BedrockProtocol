@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SetHudPacket : IPacket
 	{
-		public int PacketId => 308;
+		public override int PacketId => 308;
 
 		public List<Protocol.HudElement> HudElement { get; set; } = new List<Protocol.HudElement>(); 
 		public Protocol.HudVisibility HudVisible { get; set; } 

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class RequestAbilityPacket : IPacket
 	{
-		public int PacketId => 184;
+		public override int PacketId => 184;
 
 		public int Ability { get; set; } 
 		public Protocol.RequestAbilityPacketPayload.Type ValueType_ { get; set; }

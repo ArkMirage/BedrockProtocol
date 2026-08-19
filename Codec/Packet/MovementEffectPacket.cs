@@ -18,7 +18,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class MovementEffectPacket : IPacket
 	{
-		public int PacketId => 318;
+		public override int PacketId => 318;
 
 		public Protocol.Types.ActorRuntimeID TargetRuntimeID { get; set; }
 		public Protocol.MovementEffectType EffectID { get; set; } 

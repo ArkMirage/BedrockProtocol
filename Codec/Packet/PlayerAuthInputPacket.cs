@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PlayerAuthInputPacket : IPacket
 	{
-		public int PacketId => 144;
+		public override int PacketId => 144;
 
 		public Protocol.Types.Vec2 PlayerRotation { get; set; }
 		public Protocol.Types.Vec3 Position { get; set; }

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class MovePlayerPacket : IPacket
 	{
-		public int PacketId => 19;
+		public override int PacketId => 19;
 
 		public Protocol.Types.ActorRuntimeID PlayerRuntimeID { get; set; }
 		public Protocol.Types.Vec3 Position { get; set; }

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class CameraInstructionPacket : IPacket
 	{
-		public int PacketId => 300;
+		public override int PacketId => 300;
 
 		public Protocol.Types.CameraInstruction CameraInstruction { get; set; }
 

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class InventoryTransactionPacket : IPacket
 	{
-		public int PacketId => 30;
+		public override int PacketId => 30;
 
 		public Protocol.Types.TypedClientNetId_struct_ItemStackLegacyRequestIdTag_int32_t_0 LegacyRequestID { get; set; }
 		public Optional<List<Protocol.Types.LegacySetSlot>> LegacySetItemSlots { get; set; } = new Optional<List<Protocol.Types.LegacySetSlot>>();

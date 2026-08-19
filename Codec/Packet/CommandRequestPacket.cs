@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class CommandRequestPacket : IPacket
 	{
-		public int PacketId => 77;
+		public override int PacketId => 77;
 
 		public string Command { get; set; }
 		public Protocol.Types.CommandOriginData Origin { get; set; }

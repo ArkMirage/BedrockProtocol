@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SetPlayerGameTypePacket : IPacket
 	{
-		public int PacketId => 62;
+		public override int PacketId => 62;
 
 		public Protocol.GameType PlayerGameType { get; set; } 
 

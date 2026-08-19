@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class BlockActorDataPacket : IPacket
 	{
-		public int PacketId => 56;
+		public override int PacketId => 56;
 
 		public Protocol.Types.BlockPos BlockPosition { get; set; }
 		public Protocol.Types.CompoundTag ActorDataTags { get; set; }

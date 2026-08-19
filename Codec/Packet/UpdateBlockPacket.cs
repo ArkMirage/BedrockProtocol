@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class UpdateBlockPacket : IPacket
 	{
-		public int PacketId => 21;
+		public override int PacketId => 21;
 
 		public Protocol.Types.BlockPos BlockPosition { get; set; }
 		public uint BlockRuntimeID { get; set; } 

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class LecternUpdatePacket : IPacket
 	{
-		public int PacketId => 125;
+		public override int PacketId => 125;
 
 		public byte NewPageToShow { get; set; }
 		public byte TotalPages { get; set; }

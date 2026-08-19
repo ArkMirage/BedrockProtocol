@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class LevelEventGenericPacket : IPacket
 	{
-		public int PacketId => 124;
+		public override int PacketId => 124;
 
 		public int EventId { get; set; } 
 		public Protocol.Types.CompoundTag CTD { get; set; }

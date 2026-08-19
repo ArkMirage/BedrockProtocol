@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SetTimePacket : IPacket
 	{
-		public int PacketId => 10;
+		public override int PacketId => 10;
 
 		public int Time { get; set; } 
 
