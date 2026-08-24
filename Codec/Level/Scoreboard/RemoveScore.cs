@@ -16,7 +16,7 @@ namespace Protocol.Types
 	{
 		public Protocol.ScorePacketEntryAction Action { get; set; }
 		public ScoreboardId ScoreboardId { get; set; }
-		public DoubleOptional<string> ObjectiveName { get; set; } = new DoubleOptional<string>();
+		public Optional<string> ObjectiveName { get; set; } = new Optional<string>();
 
 		public void Read(MemoryStreamReader reader)
 		{
