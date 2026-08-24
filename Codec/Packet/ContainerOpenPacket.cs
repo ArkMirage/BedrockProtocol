@@ -14,15 +14,16 @@ namespace Protocol.Packets
 {
 	public class ContainerOpenPacket : IPacket
 	{
-		public int PacketId => 46;
+		public override int PacketId => 46;
 
 		public byte ContainerId { get; set; }
 		public byte ContainerType { get; set; }
 		public Protocol.Types.BlockPos Position { get; set; }
 		public Protocol.Types.ActorUniqueID TargetActorID { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ContainerId = (byte)reader.ReadByte();
 			ContainerType = (byte)reader.ReadByte();
 			Position = new Protocol.Types.BlockPos();
@@ -31,8 +32,9 @@ namespace Protocol.Packets
 			TargetActorID.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte(ContainerId);
 			writer.WriteByte(ContainerType);
 			Position.Write(writer);

@@ -14,12 +14,13 @@ namespace Protocol.Packets
 {
 	public class ClientboundDataStorePacket : IPacket
 	{
-		public int PacketId => 330;
+		public override int PacketId => 330;
 
 		public List<OneOf<Protocol.Types.Bedrock.DDUI.DataStoreUpdate, Protocol.Types.Bedrock.DDUI.DataStoreChange, Protocol.Types.Bedrock.DDUI.DataStoreRemoval>> Updates { get; set; } = new List<OneOf<Protocol.Types.Bedrock.DDUI.DataStoreUpdate, Protocol.Types.Bedrock.DDUI.DataStoreChange, Protocol.Types.Bedrock.DDUI.DataStoreRemoval>>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			var _UpdatesCount = VarInt.ReadUInt32(reader); 
 			Updates.Clear();
 			for (int i = 0; i < _UpdatesCount; i++)
@@ -56,8 +57,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarUInt32((uint)Updates.Count); 
 			foreach (var _UpdatesItem in Updates)
 			{

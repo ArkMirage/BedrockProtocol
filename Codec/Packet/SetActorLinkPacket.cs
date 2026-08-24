@@ -17,18 +17,20 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SetActorLinkPacket : IPacket
 	{
-		public int PacketId => 41;
+		public override int PacketId => 41;
 
 		public Protocol.Types.ActorLink Link { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Link = new Protocol.Types.ActorLink();
 			Link.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			Link.Write(writer);
 		}
 	}

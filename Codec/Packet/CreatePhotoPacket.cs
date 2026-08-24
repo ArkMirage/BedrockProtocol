@@ -14,21 +14,23 @@ namespace Protocol.Packets
 {
 	public class CreatePhotoPacket : IPacket
 	{
-		public int PacketId => 171;
+		public override int PacketId => 171;
 
 		public ulong RawID { get; set; }
 		public string PhotoName { get; set; }
 		public string PhotoItemName { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			RawID = reader.ReadUInt64();
 			PhotoName = reader.ReadLengthPrefixedString();
 			PhotoItemName = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteUInt64(RawID);
 			writer.WriteLengthPrefixedString(PhotoName);
 			writer.WriteLengthPrefixedString(PhotoItemName);

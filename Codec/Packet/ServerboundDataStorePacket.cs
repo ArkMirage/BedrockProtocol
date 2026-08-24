@@ -14,18 +14,20 @@ namespace Protocol.Packets
 {
 	public class ServerboundDataStorePacket : IPacket
 	{
-		public int PacketId => 332;
+		public override int PacketId => 332;
 
 		public Protocol.Types.Bedrock.DDUI.DataStoreUpdate Update { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Update = new Protocol.Types.Bedrock.DDUI.DataStoreUpdate();
 			Update.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			Update.Write(writer);
 		}
 	}

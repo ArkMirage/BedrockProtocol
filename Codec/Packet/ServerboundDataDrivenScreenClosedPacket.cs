@@ -14,19 +14,21 @@ namespace Protocol.Packets
 {
 	public class ServerboundDataDrivenScreenClosedPacket : IPacket
 	{
-		public int PacketId => 343;
+		public override int PacketId => 343;
 
 		public uint FormId { get; set; }
 		public Protocol.DataDrivenScreenClosedReason CloseReason { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			FormId = reader.ReadUInt32();
 			CloseReason = EnumCodec.FromString<Protocol.DataDrivenScreenClosedReason>(reader.ReadLengthPrefixedString());
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteUInt32(FormId);
 			writer.WriteLengthPrefixedString(EnumCodec.ToString(CloseReason));
 		}

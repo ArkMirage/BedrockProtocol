@@ -17,17 +17,19 @@ namespace Protocol.Packets
 	/// </summary>
 	public class UpdateClientInputLocksPacket : IPacket
 	{
-		public int PacketId => 196;
+		public override int PacketId => 196;
 
 		public uint InputLockComponentData { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			InputLockComponentData = VarInt.ReadUInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarUInt32(InputLockComponentData); 
 		}
 	}

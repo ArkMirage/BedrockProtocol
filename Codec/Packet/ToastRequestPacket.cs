@@ -14,19 +14,21 @@ namespace Protocol.Packets
 {
 	public class ToastRequestPacket : IPacket
 	{
-		public int PacketId => 186;
+		public override int PacketId => 186;
 
 		public string Title { get; set; }
 		public string Content { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Title = reader.ReadLengthPrefixedString();
 			Content = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(Title);
 			writer.WriteLengthPrefixedString(Content);
 		}

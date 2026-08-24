@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class PlaySoundPacket : IPacket
 	{
-		public int PacketId => 86;
+		public override int PacketId => 86;
 
 		public string Name { get; set; }
 		public Protocol.Types.BlockPos Position { get; set; }
@@ -23,8 +23,9 @@ namespace Protocol.Packets
 		public int LoopCount { get; set; } 
 		public Optional<Protocol.Types.ServerSoundHandle> ServerSoundHandle { get; set; } = new Optional<Protocol.Types.ServerSoundHandle>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Name = reader.ReadLengthPrefixedString();
 			Position = new Protocol.Types.BlockPos();
 			Position.Read(reader);
@@ -39,8 +40,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(Name);
 			Position.Write(writer);
 			writer.WriteSingle(Volume);

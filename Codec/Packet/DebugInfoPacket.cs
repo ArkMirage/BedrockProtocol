@@ -14,20 +14,22 @@ namespace Protocol.Packets
 {
 	public class DebugInfoPacket : IPacket
 	{
-		public int PacketId => 155;
+		public override int PacketId => 155;
 
 		public Protocol.Types.ActorUniqueID ActorId { get; set; }
 		public string Data { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ActorId = new Protocol.Types.ActorUniqueID();
 			ActorId.Read(reader);
 			Data = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			ActorId.Write(writer);
 			writer.WriteLengthPrefixedString(Data);
 		}

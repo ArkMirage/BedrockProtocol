@@ -17,22 +17,24 @@ namespace Protocol.Packets
 	/// </summary>
 	public class StructureTemplateDataResponsePacket : IPacket
 	{
-		public int PacketId => 133;
+		public override int PacketId => 133;
 
 		public string StructureName { get; set; }
 		public Protocol.Types.CompoundTag StructureSNBT { get; set; }
 		public Protocol.StructureTemplateResponseType ResponseType { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			StructureName = reader.ReadLengthPrefixedString();
 			StructureSNBT = new Protocol.Types.CompoundTag();
 			StructureSNBT.Read(reader);
 			ResponseType = (Protocol.StructureTemplateResponseType)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(StructureName);
 			StructureSNBT.Write(writer);
 			writer.WriteByte((byte)ResponseType);

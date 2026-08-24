@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientboundMapItemDataPacket : IPacket
 	{
-		public int PacketId => 67;
+		public override int PacketId => 67;
 
 		public Protocol.Types.ActorUniqueID MapID { get; set; }
 		public byte Dimension { get; set; }
@@ -30,8 +30,9 @@ namespace Protocol.Packets
 		public Optional<int> StartY { get; set; } = new Optional<int>(); 
 		public Optional<List<uint>> Pixels { get; set; } = new Optional<List<uint>>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			MapID = new Protocol.Types.ActorUniqueID();
 			MapID.Read(reader);
 			Dimension = (byte)reader.ReadByte();
@@ -76,8 +77,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			MapID.Write(writer);
 			writer.WriteByte(Dimension);
 			writer.WriteByte(IsLocked ? (byte)1 : (byte)0);

@@ -14,18 +14,20 @@ namespace Protocol.Packets
 {
 	public class AvailableActorIdentifiersPacket : IPacket
 	{
-		public int PacketId => 119;
+		public override int PacketId => 119;
 
 		public Protocol.Types.CompoundTag IdentifierList { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			IdentifierList = new Protocol.Types.CompoundTag();
 			IdentifierList.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			IdentifierList.Write(writer);
 		}
 	}

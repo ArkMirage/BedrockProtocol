@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class UpdateBlockSyncedPacket : IPacket
 	{
-		public int PacketId => 110;
+		public override int PacketId => 110;
 
 		public Protocol.Types.BlockPos BlockPosition { get; set; }
 		public uint BlockRuntimeID { get; set; } 
@@ -26,8 +26,9 @@ namespace Protocol.Packets
 		public ulong UniqueActorId { get; set; } 
 		public ulong ActorSyncMessage { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			BlockPosition = new Protocol.Types.BlockPos();
 			BlockPosition.Read(reader);
 			BlockRuntimeID = VarInt.ReadUInt32(reader); 
@@ -37,8 +38,9 @@ namespace Protocol.Packets
 			ActorSyncMessage = VarInt.ReadUInt64(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			BlockPosition.Write(writer);
 			writer.WriteVarUInt32(BlockRuntimeID); 
 			writer.WriteVarUInt32(Flags); 

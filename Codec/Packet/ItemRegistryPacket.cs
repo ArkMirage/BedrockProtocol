@@ -17,17 +17,19 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ItemRegistryPacket : IPacket
 	{
-		public int PacketId => 162;
+		public override int PacketId => 162;
 
 		public List<Protocol.Types.ItemData> ItemData { get; set; } = new List<Protocol.Types.ItemData>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ItemData = reader.ReadSlice(() => { var _Item = new Protocol.Types.ItemData(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(ItemData, v => v.Write(writer));
 		}
 	}

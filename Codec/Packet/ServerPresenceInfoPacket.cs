@@ -14,12 +14,13 @@ namespace Protocol.Packets
 {
 	public class ServerPresenceInfoPacket : IPacket
 	{
-		public int PacketId => 347;
+		public override int PacketId => 347;
 
 		public Optional<Protocol.Types.ServerConfiguration.PresenceConfiguration> PresenceConfiguration { get; set; } = new Optional<Protocol.Types.ServerConfiguration.PresenceConfiguration>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			if (reader.ReadByte() != 0)
 			{
 				var _PresenceConfigurationValue = new Protocol.Types.ServerConfiguration.PresenceConfiguration();
@@ -28,8 +29,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			if (PresenceConfiguration != null && PresenceConfiguration.HasValue)
 			{
 				writer.WriteByte(1);

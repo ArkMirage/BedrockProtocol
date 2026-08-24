@@ -17,17 +17,19 @@ namespace Protocol.Packets
 	/// </summary>
 	public class AddBehaviorTreePacket : IPacket
 	{
-		public int PacketId => 89;
+		public override int PacketId => 89;
 
 		public string BehaviorTreeStructureJSON { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			BehaviorTreeStructureJSON = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(BehaviorTreeStructureJSON);
 		}
 	}

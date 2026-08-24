@@ -14,21 +14,23 @@ namespace Protocol.Packets
 {
 	public class CameraPacket : IPacket
 	{
-		public int PacketId => 73;
+		public override int PacketId => 73;
 
 		public Protocol.Types.ActorUniqueID CameraID { get; set; }
 		public Protocol.Types.ActorUniqueID TargetPlayerID { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			CameraID = new Protocol.Types.ActorUniqueID();
 			CameraID.Read(reader);
 			TargetPlayerID = new Protocol.Types.ActorUniqueID();
 			TargetPlayerID.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			CameraID.Write(writer);
 			TargetPlayerID.Write(writer);
 		}

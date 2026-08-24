@@ -17,17 +17,19 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ClientCacheMissResponsePacket : IPacket
 	{
-		public int PacketId => 136;
+		public override int PacketId => 136;
 
 		public List<Protocol.Types.MissingBlobData> MissingBlobs { get; set; } = new List<Protocol.Types.MissingBlobData>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			MissingBlobs = reader.ReadSlice(() => { var _Item = new Protocol.Types.MissingBlobData(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(MissingBlobs, v => v.Write(writer));
 		}
 	}

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ResourcePackDataInfoPacket : IPacket
 	{
-		public int PacketId => 82;
+		public override int PacketId => 82;
 
 		public string ResourceName { get; set; }
 		public uint ChunkSize { get; set; }
@@ -27,8 +27,9 @@ namespace Protocol.Packets
 		public bool IsPremiumPack { get; set; }
 		public byte PackType { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ResourceName = reader.ReadLengthPrefixedString();
 			ChunkSize = reader.ReadUInt32();
 			NumberOfChunks = reader.ReadUInt32();
@@ -38,8 +39,9 @@ namespace Protocol.Packets
 			PackType = (byte)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(ResourceName);
 			writer.WriteUInt32(ChunkSize);
 			writer.WriteUInt32(NumberOfChunks);

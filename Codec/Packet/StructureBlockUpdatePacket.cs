@@ -14,15 +14,16 @@ namespace Protocol.Packets
 {
 	public class StructureBlockUpdatePacket : IPacket
 	{
-		public int PacketId => 90;
+		public override int PacketId => 90;
 
 		public Protocol.Types.BlockPos BlockPosition { get; set; }
 		public Protocol.Types.StructureEditorData StructureData { get; set; }
 		public bool Trigger { get; set; }
 		public bool IsWaterlogged { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			BlockPosition = new Protocol.Types.BlockPos();
 			BlockPosition.Read(reader);
 			StructureData = new Protocol.Types.StructureEditorData();
@@ -31,8 +32,9 @@ namespace Protocol.Packets
 			IsWaterlogged = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			BlockPosition.Write(writer);
 			StructureData.Write(writer);
 			writer.WriteByte(Trigger ? (byte)1 : (byte)0);

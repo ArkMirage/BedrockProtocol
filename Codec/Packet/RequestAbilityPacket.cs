@@ -17,23 +17,25 @@ namespace Protocol.Packets
 	/// </summary>
 	public class RequestAbilityPacket : IPacket
 	{
-		public int PacketId => 184;
+		public override int PacketId => 184;
 
 		public int Ability { get; set; } 
 		public Protocol.RequestAbilityPacketPayload.Type ValueType_ { get; set; }
 		public bool Bool { get; set; }
 		public float Float { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Ability = VarInt.ReadInt32(reader); 
 			ValueType_ = (Protocol.RequestAbilityPacketPayload.Type)reader.ReadByte();
 			Bool = reader.ReadByte() != 0;
 			Float = reader.ReadSingle();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32(Ability); 
 			writer.WriteByte((byte)ValueType_);
 			writer.WriteByte(Bool ? (byte)1 : (byte)0);

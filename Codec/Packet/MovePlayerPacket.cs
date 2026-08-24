@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class MovePlayerPacket : IPacket
 	{
-		public int PacketId => 19;
+		public override int PacketId => 19;
 
 		public Protocol.Types.ActorRuntimeID PlayerRuntimeID { get; set; }
 		public Protocol.Types.Vec3 Position { get; set; }
@@ -26,8 +26,9 @@ namespace Protocol.Packets
 		public Optional<Protocol.Types.MovePlayerTeleportData> TeleportData { get; set; } = new Optional<Protocol.Types.MovePlayerTeleportData>();
 		public Protocol.Types.PlayerInputTick Tick { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PlayerRuntimeID = new Protocol.Types.ActorRuntimeID();
 			PlayerRuntimeID.Read(reader);
 			Position = new Protocol.Types.Vec3();
@@ -49,8 +50,9 @@ namespace Protocol.Packets
 			Tick.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			PlayerRuntimeID.Write(writer);
 			Position.Write(writer);
 			Rotation.Write(writer);

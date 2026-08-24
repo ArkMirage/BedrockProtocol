@@ -17,19 +17,21 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ClientCacheBlobStatusPacket : IPacket
 	{
-		public int PacketId => 135;
+		public override int PacketId => 135;
 
 		public List<ulong> MissingIds { get; set; } = new List<ulong>();
 		public List<ulong> FoundIds { get; set; } = new List<ulong>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			MissingIds = reader.ReadSlice(() => reader.ReadUInt64());
 			FoundIds = reader.ReadSlice(() => reader.ReadUInt64());
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(MissingIds, v => writer.WriteUInt64(v));
 			writer.WriteSlice(FoundIds, v => writer.WriteUInt64(v));
 		}

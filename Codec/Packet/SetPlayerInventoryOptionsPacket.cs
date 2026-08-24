@@ -14,18 +14,20 @@ namespace Protocol.Packets
 {
 	public class SetPlayerInventoryOptionsPacket : IPacket
 	{
-		public int PacketId => 307;
+		public override int PacketId => 307;
 
 		public Protocol.Types.InventoryOptions InventoryOptions { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			InventoryOptions = new Protocol.Types.InventoryOptions();
 			InventoryOptions.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			InventoryOptions.Write(writer);
 		}
 	}

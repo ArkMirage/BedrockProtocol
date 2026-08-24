@@ -14,21 +14,23 @@ namespace Protocol.Packets
 {
 	public class UpdateSubChunkBlocksPacket : IPacket
 	{
-		public int PacketId => 172;
+		public override int PacketId => 172;
 
 		public Protocol.Types.BlockPos SubChunkBlockPosition { get; set; }
 		public Protocol.Types.UpdateSubChunkBlocksChangedInfo BlocksChanged { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			SubChunkBlockPosition = new Protocol.Types.BlockPos();
 			SubChunkBlockPosition.Read(reader);
 			BlocksChanged = new Protocol.Types.UpdateSubChunkBlocksChangedInfo();
 			BlocksChanged.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			SubChunkBlockPosition.Write(writer);
 			BlocksChanged.Write(writer);
 		}

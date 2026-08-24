@@ -14,12 +14,13 @@ namespace Protocol.Packets
 {
 	public class PartyChangedPacket : IPacket
 	{
-		public int PacketId => 342;
+		public override int PacketId => 342;
 
 		public Optional<Protocol.Types.PlayerPartyInfo> PartyInfo { get; set; } = new Optional<Protocol.Types.PlayerPartyInfo>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			if (reader.ReadByte() != 0)
 			{
 				var _PartyInfoValue = new Protocol.Types.PlayerPartyInfo();
@@ -28,8 +29,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			if (PartyInfo != null && PartyInfo.HasValue)
 			{
 				writer.WriteByte(1);

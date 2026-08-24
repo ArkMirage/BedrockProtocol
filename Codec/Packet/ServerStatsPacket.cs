@@ -17,19 +17,21 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ServerStatsPacket : IPacket
 	{
-		public int PacketId => 192;
+		public override int PacketId => 192;
 
 		public float ServerTime { get; set; }
 		public float NetworkTime { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ServerTime = reader.ReadSingle();
 			NetworkTime = reader.ReadSingle();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSingle(ServerTime);
 			writer.WriteSingle(NetworkTime);
 		}

@@ -17,14 +17,15 @@ namespace Protocol.Packets
 	/// </summary>
 	public class VoxelShapesPacket : IPacket
 	{
-		public int PacketId => 337;
+		public override int PacketId => 337;
 
 		public List<Protocol.Types.VoxelShapes.SerializableVoxelShape> Shapes { get; set; } = new List<Protocol.Types.VoxelShapes.SerializableVoxelShape>();
 		public Dictionary<string, Protocol.Types.VoxelShapes.RegistryHandle> NameMap { get; set; } = new Dictionary<string, Protocol.Types.VoxelShapes.RegistryHandle>();
 		public ushort CustomShapeCount { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Shapes = reader.ReadSlice(() => { var _Item = new Protocol.Types.VoxelShapes.SerializableVoxelShape(); _Item.Read(reader); return _Item; });
 			var _NameMapCount = VarInt.ReadUInt32(reader); 
 			NameMap.Clear();
@@ -38,8 +39,9 @@ namespace Protocol.Packets
 			CustomShapeCount = reader.ReadUInt16();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(Shapes, v => v.Write(writer));
 			writer.WriteVarUInt32((uint)NameMap.Count); 
 			foreach (var _NameMapPair in NameMap)

@@ -14,14 +14,15 @@ namespace Protocol.Packets
 {
 	public class UpdatePlayerGameTypePacket : IPacket
 	{
-		public int PacketId => 151;
+		public override int PacketId => 151;
 
 		public Protocol.GameType PlayerGameType { get; set; } 
 		public Protocol.Types.ActorUniqueID TargetPlayer { get; set; }
 		public Protocol.Types.PlayerInputTick Tick { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PlayerGameType = (Protocol.GameType)VarInt.ReadInt32(reader); 
 			TargetPlayer = new Protocol.Types.ActorUniqueID();
 			TargetPlayer.Read(reader);
@@ -29,8 +30,9 @@ namespace Protocol.Packets
 			Tick.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32((int)PlayerGameType); 
 			TargetPlayer.Write(writer);
 			Tick.Write(writer);

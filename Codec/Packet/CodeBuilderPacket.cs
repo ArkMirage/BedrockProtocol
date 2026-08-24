@@ -18,19 +18,21 @@ namespace Protocol.Packets
 	/// </summary>
 	public class CodeBuilderPacket : IPacket
 	{
-		public int PacketId => 150;
+		public override int PacketId => 150;
 
 		public string URL { get; set; }
 		public bool ShouldOpenCodeBuilder { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			URL = reader.ReadLengthPrefixedString();
 			ShouldOpenCodeBuilder = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(URL);
 			writer.WriteByte(ShouldOpenCodeBuilder ? (byte)1 : (byte)0);
 		}

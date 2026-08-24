@@ -14,19 +14,21 @@ namespace Protocol.Packets
 {
 	public class PartyDestinationCookieResponsePacket : IPacket
 	{
-		public int PacketId => 350;
+		public override int PacketId => 350;
 
 		public string Cookie { get; set; }
 		public bool Accepted { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Cookie = reader.ReadLengthPrefixedString();
 			Accepted = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(Cookie);
 			writer.WriteByte(Accepted ? (byte)1 : (byte)0);
 		}

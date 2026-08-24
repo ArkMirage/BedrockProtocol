@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class GameTestRequestPacket : IPacket
 	{
-		public int PacketId => 194;
+		public override int PacketId => 194;
 
 		public int MaxTestsPerBatch { get; set; } 
 		public int RepeatCount { get; set; } 
@@ -24,8 +24,9 @@ namespace Protocol.Packets
 		public int TestsPerRow { get; set; } 
 		public string TestName { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			MaxTestsPerBatch = VarInt.ReadInt32(reader); 
 			RepeatCount = VarInt.ReadInt32(reader); 
 			Rotation = (Protocol.Rotation)reader.ReadByte();
@@ -36,8 +37,9 @@ namespace Protocol.Packets
 			TestName = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32(MaxTestsPerBatch); 
 			writer.WriteVarInt32(RepeatCount); 
 			writer.WriteByte((byte)Rotation);

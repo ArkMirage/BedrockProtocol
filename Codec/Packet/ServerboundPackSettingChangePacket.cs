@@ -14,14 +14,15 @@ namespace Protocol.Packets
 {
 	public class ServerboundPackSettingChangePacket : IPacket
 	{
-		public int PacketId => 329;
+		public override int PacketId => 329;
 
 		public Protocol.Types.mce.UUID PackId { get; set; }
 		public string PackSettingName { get; set; }
 		public OneOf<float, bool, string> PackSettingValue { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PackId = new Protocol.Types.mce.UUID();
 			PackId.Read(reader);
 			PackSettingName = reader.ReadLengthPrefixedString();
@@ -48,8 +49,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			PackId.Write(writer);
 			writer.WriteLengthPrefixedString(PackSettingName);
 			switch (PackSettingValue.Index)

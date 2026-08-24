@@ -14,15 +14,16 @@ namespace Protocol.Packets
 {
 	public class TransferPacket : IPacket
 	{
-		public int PacketId => 85;
+		public override int PacketId => 85;
 
 		public string ServerAddress { get; set; }
 		public ushort ServerPort { get; set; }
 		public bool ReloadWorld { get; set; }
 		public Optional<Protocol.Types.ServerConfiguration.GatheringsConfigurationJoinInfo> GatheringsConfiguration { get; set; } = new Optional<Protocol.Types.ServerConfiguration.GatheringsConfigurationJoinInfo>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ServerAddress = reader.ReadLengthPrefixedString();
 			ServerPort = reader.ReadUInt16();
 			ReloadWorld = reader.ReadByte() != 0;
@@ -34,8 +35,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(ServerAddress);
 			writer.WriteUInt16(ServerPort);
 			writer.WriteByte(ReloadWorld ? (byte)1 : (byte)0);

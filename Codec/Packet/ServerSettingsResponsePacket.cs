@@ -14,19 +14,21 @@ namespace Protocol.Packets
 {
 	public class ServerSettingsResponsePacket : IPacket
 	{
-		public int PacketId => 103;
+		public override int PacketId => 103;
 
 		public uint FormID { get; set; } 
 		public string FormUIJSON { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			FormID = VarInt.ReadUInt32(reader); 
 			FormUIJSON = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarUInt32(FormID); 
 			writer.WriteLengthPrefixedString(FormUIJSON);
 		}

@@ -14,17 +14,19 @@ namespace Protocol.Packets
 {
 	public class PlayerEnchantOptionsPacket : IPacket
 	{
-		public int PacketId => 146;
+		public override int PacketId => 146;
 
 		public List<Protocol.Types.ItemEnchantOption> Options { get; set; } = new List<Protocol.Types.ItemEnchantOption>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Options = reader.ReadSlice(() => { var _Item = new Protocol.Types.ItemEnchantOption(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(Options, v => v.Write(writer));
 		}
 	}

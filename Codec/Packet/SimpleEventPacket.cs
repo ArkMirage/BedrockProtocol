@@ -17,17 +17,19 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SimpleEventPacket : IPacket
 	{
-		public int PacketId => 64;
+		public override int PacketId => 64;
 
 		public Protocol.SimpleEventPacketPayload.Subtype Type_ { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Type_ = (Protocol.SimpleEventPacketPayload.Subtype)reader.ReadUInt16();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteUInt16((ushort)Type_);
 		}
 	}

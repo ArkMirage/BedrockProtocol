@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class SetDisplayObjectivePacket : IPacket
 	{
-		public int PacketId => 107;
+		public override int PacketId => 107;
 
 		public string DisplaySlotName { get; set; }
 		public string ObjectiveName { get; set; }
@@ -22,8 +22,9 @@ namespace Protocol.Packets
 		public string CriteriaName { get; set; }
 		public int SortOrder { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			DisplaySlotName = reader.ReadLengthPrefixedString();
 			ObjectiveName = reader.ReadLengthPrefixedString();
 			ObjectiveDisplayName = reader.ReadLengthPrefixedString();
@@ -31,8 +32,9 @@ namespace Protocol.Packets
 			SortOrder = VarInt.ReadInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(DisplaySlotName);
 			writer.WriteLengthPrefixedString(ObjectiveName);
 			writer.WriteLengthPrefixedString(ObjectiveDisplayName);

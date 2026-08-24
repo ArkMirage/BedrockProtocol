@@ -14,21 +14,23 @@ namespace Protocol.Packets
 {
 	public class PlayerHotbarPacket : IPacket
 	{
-		public int PacketId => 48;
+		public override int PacketId => 48;
 
 		public uint SelectedSlot { get; set; } 
 		public byte ContainerID { get; set; }
 		public bool ShouldSelectSlot { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			SelectedSlot = VarInt.ReadUInt32(reader); 
 			ContainerID = (byte)reader.ReadByte();
 			ShouldSelectSlot = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarUInt32(SelectedSlot); 
 			writer.WriteByte(ContainerID);
 			writer.WriteByte(ShouldSelectSlot ? (byte)1 : (byte)0);

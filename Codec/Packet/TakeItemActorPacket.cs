@@ -17,21 +17,23 @@ namespace Protocol.Packets
 	/// </summary>
 	public class TakeItemActorPacket : IPacket
 	{
-		public int PacketId => 17;
+		public override int PacketId => 17;
 
 		public Protocol.Types.ActorRuntimeID ItemRuntimeID { get; set; }
 		public Protocol.Types.ActorRuntimeID ActorRuntimeID { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ItemRuntimeID = new Protocol.Types.ActorRuntimeID();
 			ItemRuntimeID.Read(reader);
 			ActorRuntimeID = new Protocol.Types.ActorRuntimeID();
 			ActorRuntimeID.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			ItemRuntimeID.Write(writer);
 			ActorRuntimeID.Write(writer);
 		}

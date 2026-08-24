@@ -19,21 +19,23 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ClientCameraAimAssistPacket : IPacket
 	{
-		public int PacketId => 321;
+		public override int PacketId => 321;
 
 		public string CameraPresetId { get; set; }
 		public Protocol.ClientCameraAimAssistPacketAction Action { get; set; }
 		public bool AllowAimAssist { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			CameraPresetId = reader.ReadLengthPrefixedString();
 			Action = (Protocol.ClientCameraAimAssistPacketAction)reader.ReadByte();
 			AllowAimAssist = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(CameraPresetId);
 			writer.WriteByte((byte)Action);
 			writer.WriteByte(AllowAimAssist ? (byte)1 : (byte)0);

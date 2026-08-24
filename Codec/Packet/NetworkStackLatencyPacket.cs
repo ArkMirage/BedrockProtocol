@@ -17,19 +17,21 @@ namespace Protocol.Packets
 	/// </summary>
 	public class NetworkStackLatencyPacket : IPacket
 	{
-		public int PacketId => 115;
+		public override int PacketId => 115;
 
 		public ulong CreationTime { get; set; }
 		public bool IsFromServer { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			CreationTime = reader.ReadUInt64();
 			IsFromServer = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteUInt64(CreationTime);
 			writer.WriteByte(IsFromServer ? (byte)1 : (byte)0);
 		}

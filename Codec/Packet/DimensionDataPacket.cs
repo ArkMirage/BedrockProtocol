@@ -17,12 +17,13 @@ namespace Protocol.Packets
 	/// </summary>
 	public class DimensionDataPacket : IPacket
 	{
-		public int PacketId => 180;
+		public override int PacketId => 180;
 
 		public Dictionary<string, Protocol.Types.DimensionDefinitionGroup.DimensionDefinition> Definitions { get; set; } = new Dictionary<string, Protocol.Types.DimensionDefinitionGroup.DimensionDefinition>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			var _DefinitionsCount = VarInt.ReadUInt32(reader); 
 			Definitions.Clear();
 			for (int i = 0; i < _DefinitionsCount; i++)
@@ -34,8 +35,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarUInt32((uint)Definitions.Count); 
 			foreach (var _DefinitionsPair in Definitions)
 			{

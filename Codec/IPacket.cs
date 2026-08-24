@@ -5,10 +5,47 @@ using Protocol.Utility.IO;
 
 namespace Protocol.Packets
 {
-	public interface IPacket
+	public abstract class IPacket
 	{
-		int PacketId { get; }
-		void Read(MemoryStreamReader reader);
-		void Write(MemoryStreamWriter writer);
+		public virtual int PacketId { get; }
+		public ReadOnlyMemory<byte> bytes { get; set; }
+
+		public void Decode(ReadOnlyMemory<byte> data)
+		{
+			bytes = data;
+			using (var mem = new MemoryStreamReader(data))
+			{
+				// Packet id prefix is an UNSIGNED varint (not the zigzag "varint32" primitive).
+				VarInt.ReadUInt32(mem);
+				Read(mem);
+			}
+		}
+
+		public ReadOnlyMemory<byte> Encode()
+		{
+			if (bytes.IsEmpty)
+			{
+				using (var mem = new MemoryStream())
+				{
+					var writer = new MemoryStreamWriter(mem);
+					VarInt.WriteUInt32(mem,(uint)PacketId);
+					Write(writer);
+					mem.Flush();
+					bytes = mem.ToArray();
+				}
+			}
+
+			return bytes;
+		}
+
+		public virtual void Read(MemoryStreamReader reader)
+		{
+
+		}
+
+		public virtual void Write(MemoryStreamWriter writer)
+		{
+
+		}
 	}
 }

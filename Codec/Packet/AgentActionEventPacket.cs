@@ -14,21 +14,23 @@ namespace Protocol.Packets
 {
 	public class AgentActionEventPacket : IPacket
 	{
-		public int PacketId => 181;
+		public override int PacketId => 181;
 
 		public string RequestId { get; set; }
 		public Protocol.AgentActionType Action { get; set; }
 		public string Response { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			RequestId = reader.ReadLengthPrefixedString();
 			Action = (Protocol.AgentActionType)reader.ReadInt32();
 			Response = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(RequestId);
 			writer.WriteInt32((int)Action);
 			writer.WriteLengthPrefixedString(Response);

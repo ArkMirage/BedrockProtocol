@@ -17,19 +17,21 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SetHudPacket : IPacket
 	{
-		public int PacketId => 308;
+		public override int PacketId => 308;
 
 		public List<Protocol.HudElement> HudElement { get; set; } = new List<Protocol.HudElement>(); 
 		public Protocol.HudVisibility HudVisible { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			HudElement = reader.ReadSlice(() => (Protocol.HudElement)VarInt.ReadInt32(reader));
 			HudVisible = (Protocol.HudVisibility)VarInt.ReadInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(HudElement, v => writer.WriteVarInt32((int)v));
 			writer.WriteVarInt32((int)HudVisible); 
 		}

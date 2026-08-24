@@ -17,18 +17,20 @@ namespace Protocol.Packets
 	/// </summary>
 	public class EducationSettingsPacket : IPacket
 	{
-		public int PacketId => 137;
+		public override int PacketId => 137;
 
 		public Protocol.Types.EducationLevelSettings EducationLevelSettings { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			EducationLevelSettings = new Protocol.Types.EducationLevelSettings();
 			EducationLevelSettings.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			EducationLevelSettings.Write(writer);
 		}
 	}

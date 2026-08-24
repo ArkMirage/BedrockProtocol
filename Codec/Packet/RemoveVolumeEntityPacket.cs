@@ -14,21 +14,23 @@ namespace Protocol.Packets
 {
 	public class RemoveVolumeEntityPacket : IPacket
 	{
-		public int PacketId => 167;
+		public override int PacketId => 167;
 
 		public Protocol.Types.EntityNetId EntityNetworkId { get; set; }
 		public Protocol.Types.DimensionType DimensionType { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			EntityNetworkId = new Protocol.Types.EntityNetId();
 			EntityNetworkId.Read(reader);
 			DimensionType = new Protocol.Types.DimensionType();
 			DimensionType.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			EntityNetworkId.Write(writer);
 			DimensionType.Write(writer);
 		}

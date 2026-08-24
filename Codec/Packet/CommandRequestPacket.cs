@@ -14,15 +14,16 @@ namespace Protocol.Packets
 {
 	public class CommandRequestPacket : IPacket
 	{
-		public int PacketId => 77;
+		public override int PacketId => 77;
 
 		public string Command { get; set; }
 		public Protocol.Types.CommandOriginData Origin { get; set; }
 		public bool IsInternal { get; set; }
 		public Protocol.CurrentCmdVersion Version { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Command = reader.ReadLengthPrefixedString();
 			Origin = new Protocol.Types.CommandOriginData();
 			Origin.Read(reader);
@@ -30,8 +31,9 @@ namespace Protocol.Packets
 			Version = EnumCodec.FromString<Protocol.CurrentCmdVersion>(reader.ReadLengthPrefixedString());
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(Command);
 			Origin.Write(writer);
 			writer.WriteByte(IsInternal ? (byte)1 : (byte)0);

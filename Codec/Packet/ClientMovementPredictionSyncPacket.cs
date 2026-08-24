@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ClientMovementPredictionSyncPacket : IPacket
 	{
-		public int PacketId => 322;
+		public override int PacketId => 322;
 
 		public Protocol.Types.ActorDataFlagComponent ActorDataFlag { get; set; }
 		public Protocol.Types.ActorDataBoundingBoxComponent ActorBoundingBox { get; set; }
@@ -25,8 +25,9 @@ namespace Protocol.Packets
 		public Protocol.Types.ActorUniqueID ActorUniqueID { get; set; }
 		public bool ActorFlyingState { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ActorDataFlag = new Protocol.Types.ActorDataFlagComponent();
 			ActorDataFlag.Read(reader);
 			ActorBoundingBox = new Protocol.Types.ActorDataBoundingBoxComponent();
@@ -37,8 +38,9 @@ namespace Protocol.Packets
 			ActorFlyingState = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			ActorDataFlag.Write(writer);
 			ActorBoundingBox.Write(writer);
 			writer.WriteSliceOfLen(MovementAttributes, 9, v => writer.WriteSingle(v));

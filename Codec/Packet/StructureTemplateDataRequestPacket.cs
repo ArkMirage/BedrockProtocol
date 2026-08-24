@@ -17,15 +17,16 @@ namespace Protocol.Packets
 	/// </summary>
 	public class StructureTemplateDataRequestPacket : IPacket
 	{
-		public int PacketId => 132;
+		public override int PacketId => 132;
 
 		public string StructureName { get; set; }
 		public Protocol.Types.BlockPos StructurePosition { get; set; }
 		public Protocol.Types.StructureSettings StructureSettings { get; set; }
 		public Protocol.StructureTemplateRequestOperation RequestedOperation { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			StructureName = reader.ReadLengthPrefixedString();
 			StructurePosition = new Protocol.Types.BlockPos();
 			StructurePosition.Read(reader);
@@ -34,8 +35,9 @@ namespace Protocol.Packets
 			RequestedOperation = (Protocol.StructureTemplateRequestOperation)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(StructureName);
 			StructurePosition.Write(writer);
 			StructureSettings.Write(writer);

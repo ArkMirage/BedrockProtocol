@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class MobArmorEquipmentPacket : IPacket
 	{
-		public int PacketId => 32;
+		public override int PacketId => 32;
 
 		public Protocol.Types.ActorRuntimeID TargetRuntimeID { get; set; }
 		public Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor Head { get; set; }
@@ -26,8 +26,9 @@ namespace Protocol.Packets
 		public Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor Feet { get; set; }
 		public Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor Body { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			TargetRuntimeID = new Protocol.Types.ActorRuntimeID();
 			TargetRuntimeID.Read(reader);
 			Head = new Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor();
@@ -42,8 +43,9 @@ namespace Protocol.Packets
 			Body.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			TargetRuntimeID.Write(writer);
 			Head.Write(writer);
 			Torso.Write(writer);

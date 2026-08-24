@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ResourcePackStackPacket : IPacket
 	{
-		public int PacketId => 7;
+		public override int PacketId => 7;
 
 		public bool TexturePackRequired { get; set; }
 		public List<Protocol.Types.PackInstanceId> TexturePackList { get; set; } = new List<Protocol.Types.PackInstanceId>();
@@ -25,8 +25,9 @@ namespace Protocol.Packets
 		public Protocol.Types.Experiments Experiments { get; set; }
 		public bool IncludeEditorPacks { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			TexturePackRequired = reader.ReadByte() != 0;
 			TexturePackList = reader.ReadSlice(() => { var _Item = new Protocol.Types.PackInstanceId(); _Item.Read(reader); return _Item; });
 			BaseGameVersion = reader.ReadLengthPrefixedString();
@@ -35,8 +36,9 @@ namespace Protocol.Packets
 			IncludeEditorPacks = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte(TexturePackRequired ? (byte)1 : (byte)0);
 			writer.WriteSlice(TexturePackList, v => v.Write(writer));
 			writer.WriteLengthPrefixedString(BaseGameVersion);

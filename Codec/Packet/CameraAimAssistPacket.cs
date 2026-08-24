@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class CameraAimAssistPacket : IPacket
 	{
-		public int PacketId => 316;
+		public override int PacketId => 316;
 
 		public string PresetId { get; set; }
 		public Protocol.Types.Vec2 ViewAngle { get; set; }
@@ -23,8 +23,9 @@ namespace Protocol.Packets
 		public Protocol.CameraAimAssistPacketPayload.Action Action { get; set; }
 		public bool ShowDebugRender { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PresetId = reader.ReadLengthPrefixedString();
 			ViewAngle = new Protocol.Types.Vec2();
 			ViewAngle.Read(reader);
@@ -34,8 +35,9 @@ namespace Protocol.Packets
 			ShowDebugRender = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(PresetId);
 			ViewAngle.Write(writer);
 			writer.WriteSingle(Distance);

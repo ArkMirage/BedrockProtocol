@@ -14,19 +14,21 @@ namespace Protocol.Packets
 {
 	public class UnlockedRecipesPacket : IPacket
 	{
-		public int PacketId => 199;
+		public override int PacketId => 199;
 
 		public Protocol.UnlockedRecipesPacketPayload.PacketType PacketType { get; set; }
 		public List<string> UnlockedRecipesList { get; set; } = new List<string>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PacketType = (Protocol.UnlockedRecipesPacketPayload.PacketType)reader.ReadUInt32();
 			UnlockedRecipesList = reader.ReadSlice(() => reader.ReadLengthPrefixedString());
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteUInt32((uint)PacketType);
 			writer.WriteSlice(UnlockedRecipesList, v => writer.WriteLengthPrefixedString(v));
 		}

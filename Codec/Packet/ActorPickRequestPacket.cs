@@ -14,21 +14,23 @@ namespace Protocol.Packets
 {
 	public class ActorPickRequestPacket : IPacket
 	{
-		public int PacketId => 35;
+		public override int PacketId => 35;
 
 		public long ActorID { get; set; }
 		public byte MaxSlots { get; set; }
 		public bool WithData { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ActorID = reader.ReadInt64();
 			MaxSlots = (byte)reader.ReadByte();
 			WithData = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteInt64(ActorID);
 			writer.WriteByte(MaxSlots);
 			writer.WriteByte(WithData ? (byte)1 : (byte)0);

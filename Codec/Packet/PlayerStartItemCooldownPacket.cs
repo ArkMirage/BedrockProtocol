@@ -17,19 +17,21 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PlayerStartItemCooldownPacket : IPacket
 	{
-		public int PacketId => 176;
+		public override int PacketId => 176;
 
 		public string ItemCategory { get; set; }
 		public int DurationTicks { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ItemCategory = reader.ReadLengthPrefixedString();
 			DurationTicks = VarInt.ReadInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(ItemCategory);
 			writer.WriteVarInt32(DurationTicks); 
 		}

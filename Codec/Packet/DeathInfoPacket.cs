@@ -17,19 +17,21 @@ namespace Protocol.Packets
 	/// </summary>
 	public class DeathInfoPacket : IPacket
 	{
-		public int PacketId => 189;
+		public override int PacketId => 189;
 
 		public string DeathCauseAttackName { get; set; }
 		public List<string> DeathCauseMessageList { get; set; } = new List<string>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			DeathCauseAttackName = reader.ReadLengthPrefixedString();
 			DeathCauseMessageList = reader.ReadSlice(() => reader.ReadLengthPrefixedString());
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(DeathCauseAttackName);
 			writer.WriteSlice(DeathCauseMessageList, v => writer.WriteLengthPrefixedString(v));
 		}

@@ -14,14 +14,15 @@ namespace Protocol.Packets
 {
 	public class SubChunkRequestPacket : IPacket
 	{
-		public int PacketId => 175;
+		public override int PacketId => 175;
 
 		public Protocol.Types.DimensionType DimensionType { get; set; }
 		public List<Protocol.Types.SubChunkPacketPayload.SubChunkPosOffset> SubChunkPositionOffsetList { get; set; } = new List<Protocol.Types.SubChunkPacketPayload.SubChunkPosOffset>();
 		public Protocol.Types.SubChunkPos CenterPos { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			DimensionType = new Protocol.Types.DimensionType();
 			DimensionType.Read(reader);
 			SubChunkPositionOffsetList = reader.ReadSlice(() => { var _Item = new Protocol.Types.SubChunkPacketPayload.SubChunkPosOffset(); _Item.Read(reader); return _Item; });
@@ -29,8 +30,9 @@ namespace Protocol.Packets
 			CenterPos.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			DimensionType.Write(writer);
 			writer.WriteSlice(SubChunkPositionOffsetList, v => v.Write(writer));
 			CenterPos.Write(writer);

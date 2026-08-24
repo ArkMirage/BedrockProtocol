@@ -17,21 +17,23 @@ namespace Protocol.Packets
 	/// </summary>
 	public class GameTestResultsPacket : IPacket
 	{
-		public int PacketId => 195;
+		public override int PacketId => 195;
 
 		public bool Succeeded { get; set; }
 		public string Error { get; set; }
 		public string TestName { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Succeeded = reader.ReadByte() != 0;
 			Error = reader.ReadLengthPrefixedString();
 			TestName = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte(Succeeded ? (byte)1 : (byte)0);
 			writer.WriteLengthPrefixedString(Error);
 			writer.WriteLengthPrefixedString(TestName);

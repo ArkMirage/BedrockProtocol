@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ServerboundDiagnosticsPacket : IPacket
 	{
-		public int PacketId => 315;
+		public override int PacketId => 315;
 
 		public float AvgFps { get; set; }
 		public float AvgServerSimTickTimeMS { get; set; }
@@ -31,8 +31,9 @@ namespace Protocol.Packets
 		public Optional<List<Protocol.Types.ECS.Profiling.Diagnostics.SystemCategory>> SystemCategories { get; set; } = new Optional<List<Protocol.Types.ECS.Profiling.Diagnostics.SystemCategory>>();
 		public List<Protocol.Types.Bedrock.Profile.Whisker.Diagnostics.ScopeDataSummary> WhiskerScopes { get; set; } = new List<Protocol.Types.Bedrock.Profile.Whisker.Diagnostics.ScopeDataSummary>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			AvgFps = reader.ReadSingle();
 			AvgServerSimTickTimeMS = reader.ReadSingle();
 			AvgClientSimTickTimeMS = reader.ReadSingle();
@@ -52,8 +53,9 @@ namespace Protocol.Packets
 			WhiskerScopes = reader.ReadSlice(() => { var _Item = new Protocol.Types.Bedrock.Profile.Whisker.Diagnostics.ScopeDataSummary(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSingle(AvgFps);
 			writer.WriteSingle(AvgServerSimTickTimeMS);
 			writer.WriteSingle(AvgClientSimTickTimeMS);

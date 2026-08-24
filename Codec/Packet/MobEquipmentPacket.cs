@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class MobEquipmentPacket : IPacket
 	{
-		public int PacketId => 31;
+		public override int PacketId => 31;
 
 		public Protocol.Types.ActorRuntimeID TargetRuntimeID { get; set; }
 		public Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor Item { get; set; }
@@ -22,8 +22,9 @@ namespace Protocol.Packets
 		public byte SelectedSlot { get; set; }
 		public byte ContainerID { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			TargetRuntimeID = new Protocol.Types.ActorRuntimeID();
 			TargetRuntimeID.Read(reader);
 			Item = new Protocol.Types.NetworkItemStackDescriptor.NetworkItemStackDescriptor();
@@ -33,8 +34,9 @@ namespace Protocol.Packets
 			ContainerID = (byte)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			TargetRuntimeID.Write(writer);
 			Item.Write(writer);
 			writer.WriteByte(Slot);

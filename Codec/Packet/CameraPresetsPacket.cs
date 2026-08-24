@@ -14,18 +14,20 @@ namespace Protocol.Packets
 {
 	public class CameraPresetsPacket : IPacket
 	{
-		public int PacketId => 198;
+		public override int PacketId => 198;
 
 		public Protocol.Types.CameraPresets CameraPresets { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			CameraPresets = new Protocol.Types.CameraPresets();
 			CameraPresets.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			CameraPresets.Write(writer);
 		}
 	}

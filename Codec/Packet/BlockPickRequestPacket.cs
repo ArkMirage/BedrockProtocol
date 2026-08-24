@@ -14,22 +14,24 @@ namespace Protocol.Packets
 {
 	public class BlockPickRequestPacket : IPacket
 	{
-		public int PacketId => 34;
+		public override int PacketId => 34;
 
 		public Protocol.Types.BlockPos Position { get; set; }
 		public bool WithData { get; set; }
 		public byte MaxSlots { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Position = new Protocol.Types.BlockPos();
 			Position.Read(reader);
 			WithData = reader.ReadByte() != 0;
 			MaxSlots = (byte)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			Position.Write(writer);
 			writer.WriteByte(WithData ? (byte)1 : (byte)0);
 			writer.WriteByte(MaxSlots);

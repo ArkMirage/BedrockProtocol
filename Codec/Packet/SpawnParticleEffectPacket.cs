@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SpawnParticleEffectPacket : IPacket
 	{
-		public int PacketId => 118;
+		public override int PacketId => 118;
 
 		public byte DimensionId { get; set; }
 		public Protocol.Types.ActorUniqueID ActorId { get; set; }
@@ -25,8 +25,9 @@ namespace Protocol.Packets
 		public string EffectName { get; set; }
 		public Optional<string> MolangVariables { get; set; } = new Optional<string>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			DimensionId = (byte)reader.ReadByte();
 			ActorId = new Protocol.Types.ActorUniqueID();
 			ActorId.Read(reader);
@@ -39,8 +40,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte(DimensionId);
 			ActorId.Write(writer);
 			Position.Write(writer);

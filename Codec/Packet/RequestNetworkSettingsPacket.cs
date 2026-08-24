@@ -17,17 +17,19 @@ namespace Protocol.Packets
 	/// </summary>
 	public class RequestNetworkSettingsPacket : IPacket
 	{
-		public int PacketId => 193;
+		public override int PacketId => 193;
 
 		public int ClientNetworkVersion { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ClientNetworkVersion = BinaryPrimitives.ReverseEndianness(reader.ReadInt32());
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteInt32(BinaryPrimitives.ReverseEndianness(ClientNetworkVersion));
 		}
 	}

@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class EmotePacket : IPacket
 	{
-		public int PacketId => 138;
+		public override int PacketId => 138;
 
 		public Protocol.Types.ActorRuntimeID ActorRuntimeId { get; set; }
 		public string EmoteId { get; set; }
@@ -26,8 +26,9 @@ namespace Protocol.Packets
 		public string PlatformId { get; set; }
 		public byte Flags { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ActorRuntimeId = new Protocol.Types.ActorRuntimeID();
 			ActorRuntimeId.Read(reader);
 			EmoteId = reader.ReadLengthPrefixedString();
@@ -37,8 +38,9 @@ namespace Protocol.Packets
 			Flags = (byte)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			ActorRuntimeId.Write(writer);
 			writer.WriteLengthPrefixedString(EmoteId);
 			writer.WriteVarUInt32(EmoteLengthTicks); 

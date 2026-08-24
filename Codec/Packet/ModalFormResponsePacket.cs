@@ -17,14 +17,15 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ModalFormResponsePacket : IPacket
 	{
-		public int PacketId => 101;
+		public override int PacketId => 101;
 
 		public uint FormID { get; set; } 
 		public Optional<string> JSONResponse { get; set; } = new Optional<string>();
 		public Optional<Protocol.ModalFormCancelReason> FormCancelReason { get; set; } = new Optional<Protocol.ModalFormCancelReason>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			FormID = VarInt.ReadUInt32(reader); 
 			if (reader.ReadByte() != 0)
 			{
@@ -36,8 +37,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarUInt32(FormID); 
 			if (JSONResponse != null && JSONResponse.HasValue)
 			{

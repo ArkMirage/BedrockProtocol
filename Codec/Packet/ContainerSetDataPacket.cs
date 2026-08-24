@@ -14,21 +14,23 @@ namespace Protocol.Packets
 {
 	public class ContainerSetDataPacket : IPacket
 	{
-		public int PacketId => 51;
+		public override int PacketId => 51;
 
 		public byte ContainerID { get; set; }
 		public int ID { get; set; } 
 		public int Value { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ContainerID = (byte)reader.ReadByte();
 			ID = VarInt.ReadInt32(reader); 
 			Value = VarInt.ReadInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte(ContainerID);
 			writer.WriteVarInt32(ID); 
 			writer.WriteVarInt32(Value); 

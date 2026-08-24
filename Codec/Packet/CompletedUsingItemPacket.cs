@@ -14,19 +14,21 @@ namespace Protocol.Packets
 {
 	public class CompletedUsingItemPacket : IPacket
 	{
-		public int PacketId => 142;
+		public override int PacketId => 142;
 
 		public short ItemId { get; set; }
 		public int ItemUseMethod { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ItemId = reader.ReadInt16();
 			ItemUseMethod = reader.ReadInt32();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteInt16(ItemId);
 			writer.WriteInt32(ItemUseMethod);
 		}

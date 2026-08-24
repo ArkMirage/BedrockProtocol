@@ -17,20 +17,22 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ShowCreditsPacket : IPacket
 	{
-		public int PacketId => 75;
+		public override int PacketId => 75;
 
 		public Protocol.Types.ActorRuntimeID PlayerRuntimeID { get; set; }
 		public int CreditsState { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PlayerRuntimeID = new Protocol.Types.ActorRuntimeID();
 			PlayerRuntimeID.Read(reader);
 			CreditsState = VarInt.ReadInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			PlayerRuntimeID.Write(writer);
 			writer.WriteVarInt32(CreditsState); 
 		}

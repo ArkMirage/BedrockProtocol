@@ -17,15 +17,16 @@ namespace Protocol.Packets
 	/// </summary>
 	public class PlayerUpdateEntityOverridesPacket : IPacket
 	{
-		public int PacketId => 325;
+		public override int PacketId => 325;
 
 		public Protocol.Types.ActorUniqueID TargetID { get; set; }
 		public uint PropertyIndex { get; set; } 
 		public OneOf<Protocol.Types.PlayerUpdateEntityOverridesPacketPayload.ClearOverride, Protocol.Types.PlayerUpdateEntityOverridesPacketPayload.RemoveOverride, Protocol.Types.PlayerUpdateEntityOverridesPacketPayload.IntOverride, Protocol.Types.PlayerUpdateEntityOverridesPacketPayload.FloatOverride> Update { get; set; }
 		public Protocol.UpdateType Type_ { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			TargetID = new Protocol.Types.ActorUniqueID();
 			TargetID.Read(reader);
 			PropertyIndex = VarInt.ReadUInt32(reader); 
@@ -66,8 +67,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			TargetID.Write(writer);
 			writer.WriteVarUInt32(PropertyIndex); 
 			writer.WriteByte((byte)Type_);

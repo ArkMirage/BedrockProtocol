@@ -18,17 +18,19 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ContainerRegistryCleanupPacket : IPacket
 	{
-		public int PacketId => 317;
+		public override int PacketId => 317;
 
 		public List<Protocol.Types.FullContainerName> RemovedContainers { get; set; } = new List<Protocol.Types.FullContainerName>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			RemovedContainers = reader.ReadSlice(() => { var _Item = new Protocol.Types.FullContainerName(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(RemovedContainers, v => v.Write(writer));
 		}
 	}

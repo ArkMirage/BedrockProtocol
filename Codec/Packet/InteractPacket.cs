@@ -17,14 +17,15 @@ namespace Protocol.Packets
 	/// </summary>
 	public class InteractPacket : IPacket
 	{
-		public int PacketId => 33;
+		public override int PacketId => 33;
 
 		public Protocol.InteractPacketPayload.Action Action { get; set; }
 		public Protocol.Types.ActorRuntimeID TargetRuntimeID { get; set; }
 		public Optional<Protocol.Types.Vec3> Position { get; set; } = new Optional<Protocol.Types.Vec3>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Action = (Protocol.InteractPacketPayload.Action)reader.ReadByte();
 			TargetRuntimeID = new Protocol.Types.ActorRuntimeID();
 			TargetRuntimeID.Read(reader);
@@ -36,8 +37,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte((byte)Action);
 			TargetRuntimeID.Write(writer);
 			if (Position != null && Position.HasValue)

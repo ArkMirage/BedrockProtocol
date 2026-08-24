@@ -17,18 +17,20 @@ namespace Protocol.Packets
 	/// </summary>
 	public class GameRulesChangedPacket : IPacket
 	{
-		public int PacketId => 72;
+		public override int PacketId => 72;
 
 		public Protocol.Types.GameRulesChangedPacketData RuleData { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			RuleData = new Protocol.Types.GameRulesChangedPacketData();
 			RuleData.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			RuleData.Write(writer);
 		}
 	}

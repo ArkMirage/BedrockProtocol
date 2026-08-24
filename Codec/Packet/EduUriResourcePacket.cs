@@ -14,18 +14,20 @@ namespace Protocol.Packets
 {
 	public class EduUriResourcePacket : IPacket
 	{
-		public int PacketId => 170;
+		public override int PacketId => 170;
 
 		public Protocol.Types.EduSharedUriResource EduSharedURIResource { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			EduSharedURIResource = new Protocol.Types.EduSharedUriResource();
 			EduSharedURIResource.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			EduSharedURIResource.Write(writer);
 		}
 	}

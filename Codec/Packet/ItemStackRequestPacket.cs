@@ -14,17 +14,19 @@ namespace Protocol.Packets
 {
 	public class ItemStackRequestPacket : IPacket
 	{
-		public int PacketId => 147;
+		public override int PacketId => 147;
 
 		public List<Protocol.Types.ItemStackRequestPacketData.RequestData> Requests { get; set; } = new List<Protocol.Types.ItemStackRequestPacketData.RequestData>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Requests = reader.ReadSlice(() => { var _Item = new Protocol.Types.ItemStackRequestPacketData.RequestData(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(Requests, v => v.Write(writer));
 		}
 	}

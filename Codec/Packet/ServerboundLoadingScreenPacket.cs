@@ -21,13 +21,14 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ServerboundLoadingScreenPacket : IPacket
 	{
-		public int PacketId => 312;
+		public override int PacketId => 312;
 
 		public Protocol.ServerboundLoadingScreenPacketType LoadingScreenPacketType { get; set; } 
 		public Optional<uint> LoadingScreenId { get; set; } = new Optional<uint>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			LoadingScreenPacketType = (Protocol.ServerboundLoadingScreenPacketType)VarInt.ReadInt32(reader); 
 			if (reader.ReadByte() != 0)
 			{
@@ -35,8 +36,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32((int)LoadingScreenPacketType); 
 			if (LoadingScreenId != null && LoadingScreenId.HasValue)
 			{

@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientboundUpdateSoundDataPacket : IPacket
 	{
-		public int PacketId => 348;
+		public override int PacketId => 348;
 
 		public Protocol.Types.ServerSoundHandle ServerSoundHandle { get; set; }
 		public OneOf<Protocol.Types.SoundDataEvent.Stop, Protocol.Types.SoundDataEvent.SetVolume, Protocol.Types.SoundDataEvent.SetPitch, Protocol.Types.SoundDataEvent.Fade, Protocol.Types.SoundDataEvent.SeekTo, Protocol.Types.SoundDataEvent.Pause, Protocol.Types.SoundDataEvent.Resume> Stop { get; set; }
@@ -25,8 +25,9 @@ namespace Protocol.Packets
 		public OneOf<Protocol.Types.SoundDataEvent.Stop, Protocol.Types.SoundDataEvent.SetVolume, Protocol.Types.SoundDataEvent.SetPitch, Protocol.Types.SoundDataEvent.Fade, Protocol.Types.SoundDataEvent.SeekTo, Protocol.Types.SoundDataEvent.Pause, Protocol.Types.SoundDataEvent.Resume> Pause { get; set; }
 		public OneOf<Protocol.Types.SoundDataEvent.Stop, Protocol.Types.SoundDataEvent.SetVolume, Protocol.Types.SoundDataEvent.SetPitch, Protocol.Types.SoundDataEvent.Fade, Protocol.Types.SoundDataEvent.SeekTo, Protocol.Types.SoundDataEvent.Pause, Protocol.Types.SoundDataEvent.Resume> Resume { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ServerSoundHandle = new Protocol.Types.ServerSoundHandle();
 			ServerSoundHandle.Read(reader);
 			var _StopDisc = VarInt.ReadUInt32(reader); 
@@ -416,8 +417,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			ServerSoundHandle.Write(writer);
 			switch (Stop.Index)
 			{

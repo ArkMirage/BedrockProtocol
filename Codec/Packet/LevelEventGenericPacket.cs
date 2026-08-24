@@ -14,20 +14,22 @@ namespace Protocol.Packets
 {
 	public class LevelEventGenericPacket : IPacket
 	{
-		public int PacketId => 124;
+		public override int PacketId => 124;
 
 		public int EventId { get; set; } 
 		public Protocol.Types.CompoundTag CTD { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			EventId = VarInt.ReadInt32(reader); 
 			CTD = new Protocol.Types.CompoundTag();
 			CTD.Deserialize(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32(EventId); 
 			CTD.Serialize(writer);
 		}

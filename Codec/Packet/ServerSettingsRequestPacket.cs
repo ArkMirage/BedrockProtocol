@@ -17,13 +17,15 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ServerSettingsRequestPacket : IPacket
 	{
-		public int PacketId => 102;
-		public void Read(MemoryStreamReader reader)
+		public override int PacketId => 102;
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 		}
 	}
 }

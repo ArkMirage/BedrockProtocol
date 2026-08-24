@@ -14,18 +14,20 @@ namespace Protocol.Packets
 {
 	public class UpdateAbilitiesPacket : IPacket
 	{
-		public int PacketId => 187;
+		public override int PacketId => 187;
 
 		public Protocol.Types.SerializedAbilitiesData Data { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Data = new Protocol.Types.SerializedAbilitiesData();
 			Data.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			Data.Write(writer);
 		}
 	}

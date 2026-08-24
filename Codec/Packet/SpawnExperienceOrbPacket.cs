@@ -17,20 +17,22 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SpawnExperienceOrbPacket : IPacket
 	{
-		public int PacketId => 66;
+		public override int PacketId => 66;
 
 		public Protocol.Types.Vec3 Position { get; set; }
 		public int XPValue { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Position = new Protocol.Types.Vec3();
 			Position.Read(reader);
 			XPValue = VarInt.ReadInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			Position.Write(writer);
 			writer.WriteVarInt32(XPValue); 
 		}

@@ -17,17 +17,19 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SimulationTypePacket : IPacket
 	{
-		public int PacketId => 168;
+		public override int PacketId => 168;
 
 		public Protocol.SimulationType SimType { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			SimType = (Protocol.SimulationType)reader.ReadByte();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte((byte)SimType);
 		}
 	}

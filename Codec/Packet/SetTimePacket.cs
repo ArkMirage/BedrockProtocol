@@ -17,17 +17,19 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SetTimePacket : IPacket
 	{
-		public int PacketId => 10;
+		public override int PacketId => 10;
 
 		public int Time { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Time = VarInt.ReadInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32(Time); 
 		}
 	}

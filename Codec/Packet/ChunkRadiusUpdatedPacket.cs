@@ -14,17 +14,19 @@ namespace Protocol.Packets
 {
 	public class ChunkRadiusUpdatedPacket : IPacket
 	{
-		public int PacketId => 70;
+		public override int PacketId => 70;
 
 		public int ChunkRadius { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ChunkRadius = VarInt.ReadInt32(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32(ChunkRadius); 
 		}
 	}

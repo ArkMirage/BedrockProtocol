@@ -17,7 +17,7 @@ namespace Protocol.Packets
 	/// </summary>
 	public class CommandBlockUpdatePacket : IPacket
 	{
-		public int PacketId => 78;
+		public override int PacketId => 78;
 
 		public OneOf<Protocol.Types.CommandBlockUpdatePacketPayload.EntityCommandTarget, Protocol.Types.CommandBlockUpdatePacketPayload.BlockCommandData> Target { get; set; }
 		public string Command { get; set; }
@@ -28,8 +28,9 @@ namespace Protocol.Packets
 		public int TickDelay { get; set; }
 		public bool ExecuteOnFirstTick { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			var _TargetDisc = VarInt.ReadUInt32(reader); 
 			switch (_TargetDisc)
 			{
@@ -59,8 +60,9 @@ namespace Protocol.Packets
 			ExecuteOnFirstTick = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			switch (Target.Index)
 			{
 				case 0:

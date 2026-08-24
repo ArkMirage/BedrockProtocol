@@ -18,12 +18,13 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SyncWorldClocksPacket : IPacket
 	{
-		public int PacketId => 344;
+		public override int PacketId => 344;
 
 		public OneOf<Protocol.Types.SyncWorldClocksPacketPayload.SyncStateData, Protocol.Types.SyncWorldClocksPacketPayload.InitializeRegistryData, Protocol.Types.SyncWorldClocksPacketPayload.AddTimeMarkerData, Protocol.Types.SyncWorldClocksPacketPayload.RemoveTimeMarkerData> Data { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			var _DataDisc = VarInt.ReadUInt32(reader); 
 			switch (_DataDisc)
 			{
@@ -60,8 +61,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			switch (Data.Index)
 			{
 				case 0:

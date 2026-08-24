@@ -14,19 +14,21 @@ namespace Protocol.Packets
 {
 	public class ResourcePackChunkRequestPacket : IPacket
 	{
-		public int PacketId => 84;
+		public override int PacketId => 84;
 
 		public string ResourceName { get; set; }
 		public int Chunk { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ResourceName = reader.ReadLengthPrefixedString();
 			Chunk = reader.ReadInt32();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(ResourceName);
 			writer.WriteInt32(Chunk);
 		}

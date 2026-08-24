@@ -14,12 +14,13 @@ namespace Protocol.Packets
 {
 	public class ClientboundAttributeLayerSyncPacket : IPacket
 	{
-		public int PacketId => 345;
+		public override int PacketId => 345;
 
 		public OneOf<Protocol.Types.AttributeLayerSyncPacketData.UpdateAttributeLayersData, Protocol.Types.AttributeLayerSyncPacketData.UpdateAttributeLayerSettingsData, Protocol.Types.AttributeLayerSyncPacketData.UpdateEnvironmentAttributesData, Protocol.Types.AttributeLayerSyncPacketData.RemoveEnvironmentAttributesData> Data { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			var _DataDisc = VarInt.ReadUInt32(reader); 
 			switch (_DataDisc)
 			{
@@ -56,8 +57,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			switch (Data.Index)
 			{
 				case 0:

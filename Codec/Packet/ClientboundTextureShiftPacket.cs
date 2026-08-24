@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class ClientboundTextureShiftPacket : IPacket
 	{
-		public int PacketId => 336;
+		public override int PacketId => 336;
 
 		public Protocol.ClientboundTextureShiftPacketPayload.Action ActionID { get; set; }
 		public string CollectionName { get; set; }
@@ -25,8 +25,9 @@ namespace Protocol.Packets
 		public ulong TotalLengthInTicks { get; set; } 
 		public bool Enabled { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			ActionID = (Protocol.ClientboundTextureShiftPacketPayload.Action)reader.ReadByte();
 			CollectionName = reader.ReadLengthPrefixedString();
 			FromStep = reader.ReadLengthPrefixedString();
@@ -37,8 +38,9 @@ namespace Protocol.Packets
 			Enabled = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte((byte)ActionID);
 			writer.WriteLengthPrefixedString(CollectionName);
 			writer.WriteLengthPrefixedString(FromStep);

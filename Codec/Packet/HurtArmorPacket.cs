@@ -17,21 +17,23 @@ namespace Protocol.Packets
 	/// </summary>
 	public class HurtArmorPacket : IPacket
 	{
-		public int PacketId => 38;
+		public override int PacketId => 38;
 
 		public int Cause { get; set; } 
 		public int Damage { get; set; } 
 		public ulong ArmorSlots { get; set; } 
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Cause = VarInt.ReadInt32(reader); 
 			Damage = VarInt.ReadInt32(reader); 
 			ArmorSlots = VarInt.ReadUInt64(reader); 
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarInt32(Cause); 
 			writer.WriteVarInt32(Damage); 
 			writer.WriteVarUInt64(ArmorSlots); 

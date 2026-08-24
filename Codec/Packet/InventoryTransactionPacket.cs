@@ -14,14 +14,15 @@ namespace Protocol.Packets
 {
 	public class InventoryTransactionPacket : IPacket
 	{
-		public int PacketId => 30;
+		public override int PacketId => 30;
 
 		public Protocol.Types.TypedClientNetId_struct_ItemStackLegacyRequestIdTag_int32_t_0 LegacyRequestID { get; set; }
 		public Optional<List<Protocol.Types.LegacySetSlot>> LegacySetItemSlots { get; set; } = new Optional<List<Protocol.Types.LegacySetSlot>>();
 		public OneOf<Protocol.Types.NormalTransactionData, Protocol.Types.InventoryMismatchData, Protocol.Types.ItemUseInventoryTransaction, Protocol.Types.ItemUseOnActorInventoryTransaction, Protocol.Types.ItemReleaseInventoryTransaction> Transaction { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			LegacyRequestID = new Protocol.Types.TypedClientNetId_struct_ItemStackLegacyRequestIdTag_int32_t_0();
 			LegacyRequestID.Read(reader);
 			if (reader.ReadByte() != 0)
@@ -72,8 +73,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			LegacyRequestID.Write(writer);
 			if (LegacySetItemSlots != null && LegacySetItemSlots.HasValue)
 			{

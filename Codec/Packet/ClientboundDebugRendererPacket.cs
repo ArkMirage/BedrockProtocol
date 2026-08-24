@@ -14,13 +14,14 @@ namespace Protocol.Packets
 {
 	public class ClientboundDebugRendererPacket : IPacket
 	{
-		public int PacketId => 164;
+		public override int PacketId => 164;
 
 		public Protocol.ClientboundDebugRendererPacketPayload.PayloadType Type_ { get; set; }
 		public Optional<Protocol.Types.ClientboundDebugRendererPacketPayload.DebugMarkerData> DebugMarkerData { get; set; } = new Optional<Protocol.Types.ClientboundDebugRendererPacketPayload.DebugMarkerData>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			Type_ = EnumCodec.FromString<Protocol.ClientboundDebugRendererPacketPayload.PayloadType>(reader.ReadLengthPrefixedString());
 			if (reader.ReadByte() != 0)
 			{
@@ -30,8 +31,9 @@ namespace Protocol.Packets
 			}
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(EnumCodec.ToString(Type_));
 			if (DebugMarkerData != null && DebugMarkerData.HasValue)
 			{

@@ -17,18 +17,20 @@ namespace Protocol.Packets
 	/// </summary>
 	public class SyncActorPropertyPacket : IPacket
 	{
-		public int PacketId => 165;
+		public override int PacketId => 165;
 
 		public Protocol.Types.CompoundTag PropertyData { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PropertyData = new Protocol.Types.CompoundTag();
 			PropertyData.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			PropertyData.Write(writer);
 		}
 	}

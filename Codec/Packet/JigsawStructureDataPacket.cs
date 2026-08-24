@@ -17,18 +17,20 @@ namespace Protocol.Packets
 	/// </summary>
 	public class JigsawStructureDataPacket : IPacket
 	{
-		public int PacketId => 313;
+		public override int PacketId => 313;
 
 		public Protocol.Types.CompoundTag JigsawStructureDataTag { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			JigsawStructureDataTag = new Protocol.Types.CompoundTag();
 			JigsawStructureDataTag.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			JigsawStructureDataTag.Write(writer);
 		}
 	}

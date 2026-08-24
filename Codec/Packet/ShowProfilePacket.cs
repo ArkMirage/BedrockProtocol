@@ -17,17 +17,19 @@ namespace Protocol.Packets
 	/// </summary>
 	public class ShowProfilePacket : IPacket
 	{
-		public int PacketId => 104;
+		public override int PacketId => 104;
 
 		public string PlayerXUID { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			PlayerXUID = reader.ReadLengthPrefixedString();
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteLengthPrefixedString(PlayerXUID);
 		}
 	}

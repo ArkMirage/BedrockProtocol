@@ -14,17 +14,19 @@ namespace Protocol.Packets
 {
 	public class FeatureRegistryPacket : IPacket
 	{
-		public int PacketId => 191;
+		public override int PacketId => 191;
 
 		public List<Protocol.Types.FeatureRegistry.FeatureBinaryJsonFormat> FeaturesDataList { get; set; } = new List<Protocol.Types.FeatureRegistry.FeatureBinaryJsonFormat>();
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			FeaturesDataList = reader.ReadSlice(() => { var _Item = new Protocol.Types.FeatureRegistry.FeatureBinaryJsonFormat(); _Item.Read(reader); return _Item; });
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteSlice(FeaturesDataList, v => v.Write(writer));
 		}
 	}

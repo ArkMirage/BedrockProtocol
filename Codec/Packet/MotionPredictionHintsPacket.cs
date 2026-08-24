@@ -17,14 +17,15 @@ namespace Protocol.Packets
 	/// </summary>
 	public class MotionPredictionHintsPacket : IPacket
 	{
-		public int PacketId => 157;
+		public override int PacketId => 157;
 
 		public Protocol.Types.ActorRuntimeID MRuntimeId { get; set; }
 		public Protocol.Types.Vec3 MMotion { get; set; }
 		public bool MOnGround { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			MRuntimeId = new Protocol.Types.ActorRuntimeID();
 			MRuntimeId.Read(reader);
 			MMotion = new Protocol.Types.Vec3();
@@ -32,8 +33,9 @@ namespace Protocol.Packets
 			MOnGround = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			MRuntimeId.Write(writer);
 			MMotion.Write(writer);
 			writer.WriteByte(MOnGround ? (byte)1 : (byte)0);

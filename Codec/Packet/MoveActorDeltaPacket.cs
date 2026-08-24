@@ -17,18 +17,20 @@ namespace Protocol.Packets
 	/// </summary>
 	public class MoveActorDeltaPacket : IPacket
 	{
-		public int PacketId => 111;
+		public override int PacketId => 111;
 
 		public Protocol.Types.MoveActorDeltaData MoveData { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			MoveData = new Protocol.Types.MoveActorDeltaData();
 			MoveData.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			MoveData.Write(writer);
 		}
 	}

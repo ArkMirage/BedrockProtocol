@@ -14,7 +14,7 @@ namespace Protocol.Packets
 {
 	public class GraphicsOverrideParameterPacket : IPacket
 	{
-		public int PacketId => 331;
+		public override int PacketId => 331;
 
 		public Dictionary<float, Protocol.Types.Vec3> ParameterKeyframeValues { get; set; } = new Dictionary<float, Protocol.Types.Vec3>();
 		public Optional<float> FloatValue { get; set; } = new Optional<float>();
@@ -24,8 +24,9 @@ namespace Protocol.Packets
 		public Protocol.GraphicsOverrideParameterType IdentifierForParameter { get; set; }
 		public bool ResetParameter { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			var _ParameterKeyframeValuesCount = VarInt.ReadUInt32(reader); 
 			ParameterKeyframeValues.Clear();
 			for (int i = 0; i < _ParameterKeyframeValuesCount; i++)
@@ -54,8 +55,9 @@ namespace Protocol.Packets
 			ResetParameter = reader.ReadByte() != 0;
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteVarUInt32((uint)ParameterKeyframeValues.Count); 
 			foreach (var _ParameterKeyframeValuesPair in ParameterKeyframeValues)
 			{

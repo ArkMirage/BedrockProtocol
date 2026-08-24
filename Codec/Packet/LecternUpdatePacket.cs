@@ -17,22 +17,24 @@ namespace Protocol.Packets
 	/// </summary>
 	public class LecternUpdatePacket : IPacket
 	{
-		public int PacketId => 125;
+		public override int PacketId => 125;
 
 		public byte NewPageToShow { get; set; }
 		public byte TotalPages { get; set; }
 		public Protocol.Types.BlockPos PositionOfLecternToUpdate { get; set; }
 
-		public void Read(MemoryStreamReader reader)
+		public override void Read(MemoryStreamReader reader)
 		{
+			base.Read(reader);
 			NewPageToShow = (byte)reader.ReadByte();
 			TotalPages = (byte)reader.ReadByte();
 			PositionOfLecternToUpdate = new Protocol.Types.BlockPos();
 			PositionOfLecternToUpdate.Read(reader);
 		}
 
-		public void Write(MemoryStreamWriter writer)
+		public override void Write(MemoryStreamWriter writer)
 		{
+			base.Write(writer);
 			writer.WriteByte(NewPageToShow);
 			writer.WriteByte(TotalPages);
 			PositionOfLecternToUpdate.Write(writer);
