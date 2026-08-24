@@ -15,7 +15,8 @@ namespace Protocol.Packets
 			bytes = data;
 			using (var mem = new MemoryStreamReader(data))
 			{
-				VarInt.ReadInt32(mem);
+				// Packet id prefix is an UNSIGNED varint (not the zigzag "varint32" primitive).
+				VarInt.ReadUInt32(mem);
 				Read(mem);
 			}
 		}
@@ -27,7 +28,7 @@ namespace Protocol.Packets
 				using (var mem = new MemoryStream())
 				{
 					var writer = new MemoryStreamWriter(mem);
-					VarInt.WriteInt32(mem, PacketId);
+					VarInt.WriteUInt32(mem,(uint)PacketId);
 					Write(writer);
 					mem.Flush();
 					bytes = mem.ToArray();
