@@ -111,13 +111,14 @@ public static class VarInt
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void WriteInt32(Stream stream, int value)
 	{
-		WriteRawVarInt32(stream, (uint)value);
+		// Official "varint32": ZigZag-encoded signed integer (mojang bedrock-protocol-docs primitives).
+		WriteRawVarInt32(stream, EncodeZigZag32(value));
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int ReadInt32(Stream stream)
 	{
-		return (int)ReadRawVarInt32(stream, 5);
+		return DecodeZigZag32(ReadRawVarInt32(stream, 5));
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -148,13 +149,14 @@ public static class VarInt
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void WriteInt64(Stream stream, long value)
 	{
-		WriteRawVarInt64(stream, (ulong)value);
+		// Official "varint64": ZigZag-encoded signed integer.
+		WriteRawVarInt64(stream, EncodeZigZag64(value));
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static long ReadInt64(Stream stream)
 	{
-		return (long)ReadRawVarInt64(stream, 10);
+		return DecodeZigZag64(ReadRawVarInt64(stream, 10));
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
