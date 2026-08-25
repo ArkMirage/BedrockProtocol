@@ -6,6 +6,19 @@
     <Nullable>disable</Nullable>
     <RootNamespace>Protocol</RootNamespace>
     <AssemblyName>Protocol</AssemblyName>
+
+    <!-- NuGet package metadata (version is supplied by the release workflow) -->
+    <PackageId>ArkMirage.BedrockProtocol</PackageId>
+    <Authors>ArkMirage</Authors>
+    <Description>Minecraft Bedrock Edition protocol implementation for .NET, including packet definitions, codecs, and encoding utilities.</Description>
+    <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+    <PackageTags>minecraft;bedrock;protocol;networking;packets;nbt</PackageTags>
+    <RepositoryUrl>https://github.com/ArkMirage/BedrockProtocol.git</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
 </Project>
