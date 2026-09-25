@@ -6,6 +6,7 @@ namespace Protocol.SharedTypes.persona
 {
 	public enum PieceType
 	{
+		Unknown = 0,
 		Skeleton = 1,
 		Body = 2,
 		Skin = 3,

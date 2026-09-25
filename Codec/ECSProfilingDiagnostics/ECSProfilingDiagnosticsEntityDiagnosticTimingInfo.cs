@@ -18,8 +18,8 @@ namespace Protocol.Types.ECS.Profiling.Diagnostics
 		public string Entity { get; set; }
 		public ulong TimeInNS { get; set; }
 		public byte PercentOfTotal { get; set; }
-		public Vec3 Position { get; set; }
-		public string Dimension { get; set; }
+		public Optional<Vec3> Position { get; set; } = new Optional<Vec3>();
+		public Optional<string> Dimension { get; set; } = new Optional<string>();
 
 		public void Read(MemoryStreamReader reader)
 		{
@@ -27,9 +27,16 @@ namespace Protocol.Types.ECS.Profiling.Diagnostics
 			Entity = reader.ReadLengthPrefixedString();
 			TimeInNS = reader.ReadUInt64();
 			PercentOfTotal = (byte)reader.ReadByte();
-			Position = new Vec3();
-			Position.Read(reader);
-			Dimension = reader.ReadLengthPrefixedString();
+			if (reader.ReadByte() != 0)
+			{
+				var _PositionValue = new Vec3();
+				_PositionValue.Read(reader);
+				Position = new Optional<Vec3>(_PositionValue);
+			}
+			if (reader.ReadByte() != 0)
+			{
+				Dimension = new Optional<string>(reader.ReadLengthPrefixedString());
+			}
 		}
 
 		public void Write(MemoryStreamWriter writer)
@@ -38,8 +45,24 @@ namespace Protocol.Types.ECS.Profiling.Diagnostics
 			writer.WriteLengthPrefixedString(Entity);
 			writer.WriteUInt64(TimeInNS);
 			writer.WriteByte(PercentOfTotal);
-			Position.Write(writer);
-			writer.WriteLengthPrefixedString(Dimension);
+			if (Position != null && Position.HasValue)
+			{
+				writer.WriteByte(1);
+				Position.Value.Write(writer);
+			}
+			else
+			{
+				writer.WriteByte(0);
+			}
+			if (Dimension != null && Dimension.HasValue)
+			{
+				writer.WriteByte(1);
+				writer.WriteLengthPrefixedString(Dimension.Value);
+			}
+			else
+			{
+				writer.WriteByte(0);
+			}
 		}
 	}
 }

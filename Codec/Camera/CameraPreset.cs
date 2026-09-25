@@ -36,7 +36,7 @@ namespace Protocol.Types.SharedTypes.v1_21_90
 		public Optional<bool> PlayerEffects { get; set; } = new Optional<bool>();
 		public Optional<SharedTypes.v1_21_50.CameraAimAssistCommandPresetDefinition> AimAssist { get; set; } = new Optional<SharedTypes.v1_21_50.CameraAimAssistCommandPresetDefinition>();
 		public Optional<Protocol.ControlScheme.Scheme> ControlScheme { get; set; } = new Optional<Protocol.ControlScheme.Scheme>();
-		public Optional<bool> ApplyInheritedStartingRotation { get; set; } = new Optional<bool>();
+		public bool ApplyInheritedStartingRotation { get; set; }
 		public Optional<Vec2> StartingRotation { get; set; } = new Optional<Vec2>();
 
 		public void Read(MemoryStreamReader reader)
@@ -133,10 +133,7 @@ namespace Protocol.Types.SharedTypes.v1_21_90
 			{
 				ControlScheme = new Optional<Protocol.ControlScheme.Scheme>((Protocol.ControlScheme.Scheme)reader.ReadByte());
 			}
-			if (reader.ReadByte() != 0)
-			{
-				ApplyInheritedStartingRotation = new Optional<bool>(reader.ReadByte() != 0);
-			}
+			ApplyInheritedStartingRotation = reader.ReadByte() != 0;
 			if (reader.ReadByte() != 0)
 			{
 				var _StartingRotationValue = new Vec2();
@@ -329,15 +326,7 @@ namespace Protocol.Types.SharedTypes.v1_21_90
 			{
 				writer.WriteByte(0);
 			}
-			if (ApplyInheritedStartingRotation != null && ApplyInheritedStartingRotation.HasValue)
-			{
-				writer.WriteByte(1);
-				writer.WriteByte(ApplyInheritedStartingRotation.Value ? (byte)1 : (byte)0);
-			}
-			else
-			{
-				writer.WriteByte(0);
-			}
+			writer.WriteByte(ApplyInheritedStartingRotation ? (byte)1 : (byte)0);
 			if (StartingRotation != null && StartingRotation.HasValue)
 			{
 				writer.WriteByte(1);
