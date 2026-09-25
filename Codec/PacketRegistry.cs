@@ -238,6 +238,8 @@ namespace Protocol.Packets
 			{ 348, typeof(ClientboundUpdateSoundDataPacket) },
 			{ 349, typeof(SendPartyDestinationCookiePacket) },
 			{ 350, typeof(PartyDestinationCookieResponsePacket) },
+			{ 351, typeof(SetPlayerFurnaceOptionsPacket) },
+			{ 352, typeof(RecordStartedPacket) },
 		};
 
 		private static readonly Dictionary<Type, int> _packetIdsByType = new Dictionary<Type, int>();
@@ -535,6 +537,8 @@ namespace Protocol.Packets
 				348 => new ClientboundUpdateSoundDataPacket(),
 				349 => new SendPartyDestinationCookiePacket(),
 				350 => new PartyDestinationCookieResponsePacket(),
+				351 => new SetPlayerFurnaceOptionsPacket(),
+				352 => new RecordStartedPacket(),
 				_ => throw new KeyNotFoundException($"未注册的包 ID: {packetId}"),
 			};
 		}

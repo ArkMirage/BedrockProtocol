@@ -2,13 +2,12 @@
 //     由 Protocol.Gen 自动生成, 请勿手动修改
 // </auto-generated>
 
-namespace Protocol.persona
+namespace Protocol
 {
-	public enum AnimatedTextureType
+	public enum FurnaceLayout
 	{
 		None = 0,
-		Face = 1,
-		Body32x32 = 2,
-		Body128x128 = 3,
+		InventoryOnly = 1,
+		Default = 2,
 	}
 }

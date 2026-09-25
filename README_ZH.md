@@ -7,7 +7,7 @@
 
 纯 C# 实现的 Minecraft 基岩版（Bedrock Edition）网络协议库，面向 .NET 10。为协议中的每个数据包提供强类型、开箱即用的编解码器，可直接用于开发服务端、客户端、代理与工具，无需手写序列化代码。
 
-当前目标协议版本为 **2168**（见 `ProtocolVersion.VERSION`）。
+当前目标协议版本为 **2193**（见 `ProtocolVersion.VERSION`）。
 
 本库可与我们的纯 C# 版 RakNet 实现搭配使用，后者负责基岩协议底层的可靠 UDP 传输。
 

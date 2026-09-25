@@ -238,5 +238,7 @@ namespace Protocol
 		SyncWorldClocks = 344,
 		SendPartyDestinationCookie = 349,
 		PartyDestinationCookieResponse = 350,
+		SetPlayerFurnaceOptionsPacket = 351,
+		RecordStartedPacket = 352,
 	}
 }

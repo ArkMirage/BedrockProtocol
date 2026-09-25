@@ -7,7 +7,7 @@
 
 A pure C# implementation of the Minecraft Bedrock Edition network protocol, targeting .NET 10. It ships strongly-typed, ready-to-use codecs for every packet in the protocol — build servers, clients, proxies, and tools without hand-writing serialization code.
 
-Targets Bedrock protocol version **2168** (see `ProtocolVersion.VERSION`).
+Targets Bedrock protocol version **2193** (see `ProtocolVersion.VERSION`).
 
 Pairs naturally with our pure C# RakNet implementation, which handles the reliable UDP transport layer underneath the Bedrock protocol.
 
