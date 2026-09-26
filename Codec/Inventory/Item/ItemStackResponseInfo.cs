@@ -23,7 +23,6 @@ namespace Protocol.Types
 			Result = (Protocol.ItemStackNetResult)reader.ReadByte();
 			ClientRequestId = new TypedClientNetId_struct_ItemStackRequestIdTag_int32_t_0();
 			ClientRequestId.Read(reader);
-			reader.ReadByte(); // 常量标志位true
 			if (reader.ReadByte() != 0)
 			{
 				Containers = new Optional<List<ItemStackResponseContainerInfo>>(reader.ReadSlice(() => { var _Item = new ItemStackResponseContainerInfo(); _Item.Read(reader); return _Item; }));
@@ -34,7 +33,6 @@ namespace Protocol.Types
 		{
 			writer.WriteByte((byte)Result);
 			ClientRequestId.Write(writer);
-			writer.WriteByte(1); // 常量标志位
 			if (Containers != null && Containers.HasValue)
 			{
 				writer.WriteByte(1);

@@ -49,7 +49,6 @@ namespace Protocol.Packets
 			MoveVector = new Protocol.Types.Vec2();
 			MoveVector.Read(reader);
 			PlayerHeadRotation = reader.ReadSingle();
-			reader.ReadByte(); // 常量标志位true
 			InputData = reader.ReadSlice(() => (Protocol.PlayerAuthInputPacketPayload.InputData)VarInt.ReadInt32(reader));
 			InputMode = (Protocol.InputMode)VarInt.ReadUInt32(reader); 
 			PlayMode = (Protocol.ClientPlayMode)VarInt.ReadUInt32(reader); 
@@ -60,33 +59,28 @@ namespace Protocol.Packets
 			ClientTick.Read(reader);
 			PosDelta = new Protocol.Types.Vec3();
 			PosDelta.Read(reader);
-			reader.ReadByte(); // 常量标志位true
 			if (reader.ReadByte() != 0)
 			{
 				var _ItemUseTransactionValue = new Protocol.Types.PackedItemUseLegacyInventoryTransaction();
 				_ItemUseTransactionValue.Read(reader);
 				ItemUseTransaction = new Optional<Protocol.Types.PackedItemUseLegacyInventoryTransaction>(_ItemUseTransactionValue);
 			}
-			reader.ReadByte(); // 常量标志位true
 			if (reader.ReadByte() != 0)
 			{
 				var _ItemStackRequestValue = new Protocol.Types.ItemStackRequestCereal.RequestData();
 				_ItemStackRequestValue.Read(reader);
 				ItemStackRequest = new Optional<Protocol.Types.ItemStackRequestCereal.RequestData>(_ItemStackRequestValue);
 			}
-			reader.ReadByte(); // 常量标志位true
 			if (reader.ReadByte() != 0)
 			{
 				PlayerBlockActions = new Optional<List<Protocol.Types.PlayerBlockActionData>>(reader.ReadSlice(() => { var _Item = new Protocol.Types.PlayerBlockActionData(); _Item.Read(reader); return _Item; }));
 			}
-			reader.ReadByte(); // 常量标志位true
 			if (reader.ReadByte() != 0)
 			{
 				var _VehicleRotationValue = new Protocol.Types.Vec2();
 				_VehicleRotationValue.Read(reader);
 				VehicleRotation = new Optional<Protocol.Types.Vec2>(_VehicleRotationValue);
 			}
-			reader.ReadByte(); // 常量标志位true
 			if (reader.ReadByte() != 0)
 			{
 				var _ClientPredictedVehicleValue = new Protocol.Types.ActorUniqueID();
@@ -108,7 +102,6 @@ namespace Protocol.Packets
 			Position.Write(writer);
 			MoveVector.Write(writer);
 			writer.WriteSingle(PlayerHeadRotation);
-			writer.WriteByte(1); // 常量标志位
 			writer.WriteSlice(InputData, v => writer.WriteVarInt32((int)v));
 			writer.WriteVarUInt32((uint)InputMode); 
 			writer.WriteVarUInt32((uint)PlayMode); 
@@ -116,7 +109,6 @@ namespace Protocol.Packets
 			InteractRotation.Write(writer);
 			ClientTick.Write(writer);
 			PosDelta.Write(writer);
-			writer.WriteByte(1); // 常量标志位
 			if (ItemUseTransaction != null && ItemUseTransaction.HasValue)
 			{
 				writer.WriteByte(1);
@@ -126,7 +118,6 @@ namespace Protocol.Packets
 			{
 				writer.WriteByte(0);
 			}
-			writer.WriteByte(1); // 常量标志位
 			if (ItemStackRequest != null && ItemStackRequest.HasValue)
 			{
 				writer.WriteByte(1);
@@ -136,7 +127,6 @@ namespace Protocol.Packets
 			{
 				writer.WriteByte(0);
 			}
-			writer.WriteByte(1); // 常量标志位
 			if (PlayerBlockActions != null && PlayerBlockActions.HasValue)
 			{
 				writer.WriteByte(1);
@@ -146,7 +136,6 @@ namespace Protocol.Packets
 			{
 				writer.WriteByte(0);
 			}
-			writer.WriteByte(1); // 常量标志位
 			if (VehicleRotation != null && VehicleRotation.HasValue)
 			{
 				writer.WriteByte(1);
@@ -156,7 +145,6 @@ namespace Protocol.Packets
 			{
 				writer.WriteByte(0);
 			}
-			writer.WriteByte(1); // 常量标志位
 			if (ClientPredictedVehicle != null && ClientPredictedVehicle.HasValue)
 			{
 				writer.WriteByte(1);

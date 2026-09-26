@@ -21,12 +21,10 @@ namespace Protocol.Types
 		public void Read(MemoryStreamReader reader)
 		{
 			SourceType = (Protocol.InventorySourceType)VarInt.ReadUInt32(reader); 
-			reader.ReadByte(); // 常量标志位true
 			if (reader.ReadByte() != 0)
 			{
 				ContainerID = new Optional<sbyte>((sbyte)reader.ReadByte());
 			}
-			reader.ReadByte(); // 常量标志位true
 			if (reader.ReadByte() != 0)
 			{
 				BitFlags = new Optional<Protocol.InventorySource.InventorySourceFlags>((Protocol.InventorySource.InventorySourceFlags)VarInt.ReadUInt32(reader)); 
@@ -36,7 +34,6 @@ namespace Protocol.Types
 		public void Write(MemoryStreamWriter writer)
 		{
 			writer.WriteVarUInt32((uint)SourceType); 
-			writer.WriteByte(1); // 常量标志位
 			if (ContainerID != null && ContainerID.HasValue)
 			{
 				writer.WriteByte(1);
@@ -46,7 +43,6 @@ namespace Protocol.Types
 			{
 				writer.WriteByte(0);
 			}
-			writer.WriteByte(1); // 常量标志位
 			if (BitFlags != null && BitFlags.HasValue)
 			{
 				writer.WriteByte(1);

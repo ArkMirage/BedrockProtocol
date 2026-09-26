@@ -26,7 +26,6 @@ namespace Protocol.Types
 			RequestedSlot = (byte)reader.ReadByte();
 			Slot = (byte)reader.ReadByte();
 			Amount = (byte)reader.ReadByte();
-			reader.ReadByte(); // 常量标志位true
 			if (reader.ReadByte() != 0)
 			{
 				var _ItemStackNetIdValue = new TypedServerNetId_struct_ItemStackNetIdTag_int32_t_0();
@@ -43,7 +42,6 @@ namespace Protocol.Types
 			writer.WriteByte(RequestedSlot);
 			writer.WriteByte(Slot);
 			writer.WriteByte(Amount);
-			writer.WriteByte(1); // 常量标志位
 			if (ItemStackNetId != null && ItemStackNetId.HasValue)
 			{
 				writer.WriteByte(1);

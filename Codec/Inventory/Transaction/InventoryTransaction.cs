@@ -18,13 +18,11 @@ namespace Protocol.Types
 
 		public void Read(MemoryStreamReader reader)
 		{
-			reader.ReadByte(); // 常量标志位true
 			Actions = reader.ReadSlice(() => { var _Item = new InventoryAction(); _Item.Read(reader); return _Item; });
 		}
 
 		public void Write(MemoryStreamWriter writer)
 		{
-			writer.WriteByte(1); // 常量标志位
 			writer.WriteSlice(Actions, v => v.Write(writer));
 		}
 	}

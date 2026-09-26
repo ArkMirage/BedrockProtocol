@@ -26,7 +26,6 @@ namespace Protocol.Types
 			{
 				LegacySetItemSlots = new Optional<List<LegacySetSlot>>(reader.ReadSlice(() => { var _Item = new LegacySetSlot(); _Item.Read(reader); return _Item; }));
 			}
-			reader.ReadByte(); // 常量标志位true
 			ItemUseTransaction = new ItemUseInventoryTransaction();
 			ItemUseTransaction.Read(reader);
 		}
@@ -43,7 +42,6 @@ namespace Protocol.Types
 			{
 				writer.WriteByte(0);
 			}
-			writer.WriteByte(1); // 常量标志位
 			ItemUseTransaction.Write(writer);
 		}
 	}

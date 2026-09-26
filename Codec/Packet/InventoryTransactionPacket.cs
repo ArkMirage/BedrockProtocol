@@ -29,7 +29,6 @@ namespace Protocol.Packets
 			{
 				LegacySetItemSlots = new Optional<List<Protocol.Types.LegacySetSlot>>(reader.ReadSlice(() => { var _Item = new Protocol.Types.LegacySetSlot(); _Item.Read(reader); return _Item; }));
 			}
-			reader.ReadByte(); // 常量标志位true
 			var _TransactionDisc = VarInt.ReadUInt32(reader); 
 			switch (_TransactionDisc)
 			{
@@ -86,7 +85,6 @@ namespace Protocol.Packets
 			{
 				writer.WriteByte(0);
 			}
-			writer.WriteByte(1); // 常量标志位
 			switch (Transaction.Index)
 			{
 				case 0:
