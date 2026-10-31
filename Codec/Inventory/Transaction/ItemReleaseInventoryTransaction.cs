@@ -19,6 +19,7 @@ namespace Protocol.Types
 		public int Slot { get; set; } 
 		public NetworkItemStackDescriptor.NetworkItemStackDescriptor Item { get; set; }
 		public Vec3 FromPosition { get; set; }
+		public Protocol.HandSlot Hand { get; set; }
 
 		public void Read(MemoryStreamReader reader)
 		{
@@ -30,6 +31,7 @@ namespace Protocol.Types
 			Item.Read(reader);
 			FromPosition = new Vec3();
 			FromPosition.Read(reader);
+			Hand = (Protocol.HandSlot)reader.ReadByte();
 		}
 
 		public void Write(MemoryStreamWriter writer)
@@ -39,6 +41,7 @@ namespace Protocol.Types
 			writer.WriteVarInt32(Slot); 
 			Item.Write(writer);
 			FromPosition.Write(writer);
+			writer.WriteByte((byte)Hand);
 		}
 	}
 }

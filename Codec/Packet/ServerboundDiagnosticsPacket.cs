@@ -263,6 +263,7 @@ namespace Protocol.Memory
 		GamefaceScript = 108,
 		/// <summary>Gameface_Layout</summary>
 		GamefaceLayout = 109,
+		Executable = 110,
 	}
 }
 

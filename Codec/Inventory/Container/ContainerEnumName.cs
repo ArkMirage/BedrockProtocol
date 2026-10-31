@@ -73,5 +73,9 @@ namespace Protocol
 		SmithingTableTemplateContainer = 61,
 		CrafterLevelEntityContainer = 62,
 		DynamicContainer = 63,
+		ReservedContainerA = 67,
+		ReservedContainerB = 68,
+		ReservedContainerC = 69,
+		ReservedContainerD = 70,
 	}
 }

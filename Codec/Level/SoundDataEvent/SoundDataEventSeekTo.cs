@@ -14,15 +14,18 @@ namespace Protocol.Types.SoundDataEvent
 {
 	public class SeekTo
 	{
+		public Protocol.SoundDataEventType Type { get; set; }
 		public float Seconds { get; set; }
 
 		public void Read(MemoryStreamReader reader)
 		{
+			Type = (Protocol.SoundDataEventType)reader.ReadByte();
 			Seconds = reader.ReadSingle();
 		}
 
 		public void Write(MemoryStreamWriter writer)
 		{
+			writer.WriteByte((byte)Type);
 			writer.WriteSingle(Seconds);
 		}
 	}

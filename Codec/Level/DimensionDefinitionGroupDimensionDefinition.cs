@@ -20,6 +20,8 @@ namespace Protocol.Types.DimensionDefinitionGroup
 		public DimensionType DimensionType { get; set; }
 		public mce.UUID PackId { get; set; }
 		public string DefaultBiome { get; set; }
+		public int CloudHeight { get; set; }
+		public bool RenderClouds { get; set; }
 
 		public void Read(MemoryStreamReader reader)
 		{
@@ -31,6 +33,8 @@ namespace Protocol.Types.DimensionDefinitionGroup
 			PackId = new mce.UUID();
 			PackId.Read(reader);
 			DefaultBiome = reader.ReadLengthPrefixedString();
+			CloudHeight = VarInt.ReadInt32(reader);
+			RenderClouds = reader.ReadByte() != 0;
 		}
 
 		public void Write(MemoryStreamWriter writer)
@@ -41,6 +45,8 @@ namespace Protocol.Types.DimensionDefinitionGroup
 			DimensionType.Write(writer);
 			PackId.Write(writer);
 			writer.WriteLengthPrefixedString(DefaultBiome);
+			writer.WriteVarInt32(CloudHeight);
+			writer.WriteByte(RenderClouds ? (byte)1 : (byte)0);
 		}
 	}
 }

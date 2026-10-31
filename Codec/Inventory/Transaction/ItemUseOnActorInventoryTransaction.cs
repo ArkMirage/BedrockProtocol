@@ -18,6 +18,7 @@ namespace Protocol.Types
 		public ActorRuntimeID RuntimeId { get; set; }
 		public Protocol.ItemUseOnActorInventoryTransaction.ActionType ActionType { get; set; } 
 		public int Slot { get; set; } 
+		public Protocol.HandSlot Hand { get; set; }
 		public NetworkItemStackDescriptor.NetworkItemStackDescriptor Item { get; set; }
 		public Vec3 FromPosition { get; set; }
 		public Vec3 HitPosition { get; set; }
@@ -30,6 +31,7 @@ namespace Protocol.Types
 			RuntimeId.Read(reader);
 			ActionType = (Protocol.ItemUseOnActorInventoryTransaction.ActionType)VarInt.ReadInt32(reader); 
 			Slot = VarInt.ReadInt32(reader); 
+			Hand = (Protocol.HandSlot)reader.ReadByte();
 			Item = new NetworkItemStackDescriptor.NetworkItemStackDescriptor();
 			Item.Read(reader);
 			FromPosition = new Vec3();
@@ -44,6 +46,7 @@ namespace Protocol.Types
 			RuntimeId.Write(writer);
 			writer.WriteVarInt32((int)ActionType); 
 			writer.WriteVarInt32(Slot); 
+			writer.WriteByte((byte)Hand);
 			Item.Write(writer);
 			FromPosition.Write(writer);
 			HitPosition.Write(writer);

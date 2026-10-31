@@ -14,12 +14,16 @@ namespace Protocol.Types.SoundDataEvent
 {
 	public class Stop
 	{
+		public Protocol.SoundDataEventType Type { get; set; }
+
 		public void Read(MemoryStreamReader reader)
 		{
+			Type = (Protocol.SoundDataEventType)reader.ReadByte();
 		}
 
 		public void Write(MemoryStreamWriter writer)
 		{
+			writer.WriteByte((byte)Type);
 		}
 	}
 }

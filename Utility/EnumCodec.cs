@@ -19,6 +19,11 @@ namespace Protocol
 					{ "Owner", 4 },
 					{ "Internal", 5 },
 				} },
+			{ typeof(AudioContentPlaybackType), new Dictionary<string, int>
+				{
+					{ "Music", 0 },
+					{ "Sound", 1 },
+				} },
 			{ typeof(EasingType), new Dictionary<string, int>
 				{
 					{ "linear", 0 },
@@ -160,6 +165,8 @@ namespace Protocol
 					{ "Capes", 25 },
 					{ "ClassicSkin", 26 },
 					{ "Emote", 27 },
+					{ "CoCo", 28 },
+					{ "Unsupported", 29 },
 				} },
 			{ typeof(TrustedSkinFlag), new Dictionary<string, int>
 				{
@@ -179,6 +186,11 @@ namespace Protocol
 					{ 3, "Host" },
 					{ 4, "Owner" },
 					{ 5, "Internal" },
+				} },
+			{ typeof(AudioContentPlaybackType), new Dictionary<int, string>
+				{
+					{ 0, "Music" },
+					{ 1, "Sound" },
 				} },
 			{ typeof(EasingType), new Dictionary<int, string>
 				{
@@ -321,6 +333,8 @@ namespace Protocol
 					{ 25, "Capes" },
 					{ 26, "ClassicSkin" },
 					{ 27, "Emote" },
+					{ 28, "CoCo" },
+					{ 29, "Unsupported" },
 				} },
 			{ typeof(TrustedSkinFlag), new Dictionary<int, string>
 				{

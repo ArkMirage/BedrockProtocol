@@ -1144,7 +1144,9 @@ namespace Protocol.SharedTypes.Legacy
 		Dismount = 612,
 		/// <summary>straw_bed.break_leave</summary>
 		StrawBedBreakLeave = 613,
+		/// <summary>ice_ball.break</summary>
+		IceBallBreak = 614,
 		/// <summary>undefined</summary>
-		Undefined = 614,
+		Undefined = 615,
 	}
 }

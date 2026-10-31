@@ -240,6 +240,14 @@ namespace Protocol.Packets
 			{ 350, typeof(PartyDestinationCookieResponsePacket) },
 			{ 351, typeof(SetPlayerFurnaceOptionsPacket) },
 			{ 352, typeof(RecordStartedPacket) },
+			{ 353, typeof(ClientboundMatchmakingStatePacket) },
+			{ 354, typeof(ServerboundStonecutterSetRecipePacket) },
+			{ 355, typeof(ClientboundStonecutterSetRecipePacket) },
+			{ 356, typeof(ServerboundMatchmakingCancelPacket) },
+			{ 357, typeof(SetPassengerOfBlockPacket) },
+			{ 358, typeof(ServerboundCursorItemDragPacket) },
+			{ 359, typeof(ClientboundPlayAudioContentPacket) },
+			{ 360, typeof(ServerboundRegisterAudioContentPacket) },
 		};
 
 		private static readonly Dictionary<Type, int> _packetIdsByType = new Dictionary<Type, int>();
@@ -539,6 +547,14 @@ namespace Protocol.Packets
 				350 => new PartyDestinationCookieResponsePacket(),
 				351 => new SetPlayerFurnaceOptionsPacket(),
 				352 => new RecordStartedPacket(),
+				353 => new ClientboundMatchmakingStatePacket(),
+				354 => new ServerboundStonecutterSetRecipePacket(),
+				355 => new ClientboundStonecutterSetRecipePacket(),
+				356 => new ServerboundMatchmakingCancelPacket(),
+				357 => new SetPassengerOfBlockPacket(),
+				358 => new ServerboundCursorItemDragPacket(),
+				359 => new ClientboundPlayAudioContentPacket(),
+				360 => new ServerboundRegisterAudioContentPacket(),
 				_ => throw new KeyNotFoundException($"未注册的包 ID: {packetId}"),
 			};
 		}

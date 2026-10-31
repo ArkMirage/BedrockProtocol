@@ -6,6 +6,6 @@ namespace Protocol
 {
 	public static class ProtocolVersion
 	{
-		public const long VERSION = 2193;
+		public const long VERSION = 2225;
 	}
 }

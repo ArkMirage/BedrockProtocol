@@ -14,17 +14,20 @@ namespace Protocol.Types.SoundDataEvent
 {
 	public class Fade
 	{
+		public Protocol.SoundDataEventType Type { get; set; }
 		public float Duration { get; set; }
 		public float TargetVolume { get; set; }
 
 		public void Read(MemoryStreamReader reader)
 		{
+			Type = (Protocol.SoundDataEventType)reader.ReadByte();
 			Duration = reader.ReadSingle();
 			TargetVolume = reader.ReadSingle();
 		}
 
 		public void Write(MemoryStreamWriter writer)
 		{
+			writer.WriteByte((byte)Type);
 			writer.WriteSingle(Duration);
 			writer.WriteSingle(TargetVolume);
 		}

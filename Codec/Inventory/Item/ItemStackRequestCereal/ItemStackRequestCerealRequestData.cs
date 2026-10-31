@@ -15,7 +15,7 @@ namespace Protocol.Types.ItemStackRequestCereal
 	public class RequestData
 	{
 		public TypedClientNetId_struct_ItemStackRequestIdTag_int32_t_0 ClientRequestId { get; set; }
-		public List<OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>> Actions { get; set; } = new List<OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>>();
+		public List<OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>> Actions { get; set; } = new List<OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>>();
 		public List<string> StringsToFilter { get; set; } = new List<string>();
 		public Protocol.TextProcessingEventOrigin StringsToFilterOrigin { get; set; }
 
@@ -27,7 +27,7 @@ namespace Protocol.Types.ItemStackRequestCereal
 			Actions.Clear();
 			for (int i = 0; i < _ActionsCount; i++)
 			{
-				OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData> _ActionsItem = default;
+				OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData> _ActionsItem = default;
 				var _ActionsDisc = VarInt.ReadUInt32(reader); 
 				switch (_ActionsDisc)
 				{
@@ -35,126 +35,133 @@ namespace Protocol.Types.ItemStackRequestCereal
 					{
 					var _ActionsCase0 = new TakeActionData();
 					_ActionsCase0.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT0(_ActionsCase0);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT0(_ActionsCase0);
 					break;
 					}
 					case 1:
 					{
 					var _ActionsCase1 = new PlaceActionData();
 					_ActionsCase1.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT1(_ActionsCase1);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT1(_ActionsCase1);
 					break;
 					}
 					case 2:
 					{
 					var _ActionsCase2 = new SwapActionData();
 					_ActionsCase2.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT2(_ActionsCase2);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT2(_ActionsCase2);
 					break;
 					}
 					case 3:
 					{
 					var _ActionsCase3 = new DropActionData();
 					_ActionsCase3.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT3(_ActionsCase3);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT3(_ActionsCase3);
 					break;
 					}
 					case 4:
 					{
 					var _ActionsCase4 = new DestroyActionData();
 					_ActionsCase4.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT4(_ActionsCase4);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT4(_ActionsCase4);
 					break;
 					}
 					case 5:
 					{
 					var _ActionsCase5 = new ConsumeActionData();
 					_ActionsCase5.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT5(_ActionsCase5);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT5(_ActionsCase5);
 					break;
 					}
 					case 6:
 					{
 					var _ActionsCase6 = new CreateActionData();
 					_ActionsCase6.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT6(_ActionsCase6);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT6(_ActionsCase6);
 					break;
 					}
 					case 7:
 					{
 					var _ActionsCase7 = new LabTableCombineActionData();
 					_ActionsCase7.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT7(_ActionsCase7);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT7(_ActionsCase7);
 					break;
 					}
 					case 8:
 					{
 					var _ActionsCase8 = new BeaconPaymentActionData();
 					_ActionsCase8.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT8(_ActionsCase8);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT8(_ActionsCase8);
 					break;
 					}
 					case 9:
 					{
 					var _ActionsCase9 = new MineBlockActionData();
 					_ActionsCase9.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT9(_ActionsCase9);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT9(_ActionsCase9);
 					break;
 					}
 					case 10:
 					{
 					var _ActionsCase10 = new CraftRecipeActionData();
 					_ActionsCase10.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT10(_ActionsCase10);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT10(_ActionsCase10);
 					break;
 					}
 					case 11:
 					{
 					var _ActionsCase11 = new CraftRecipeAutoActionData();
 					_ActionsCase11.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT11(_ActionsCase11);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT11(_ActionsCase11);
 					break;
 					}
 					case 12:
 					{
 					var _ActionsCase12 = new CraftCreativeActionData();
 					_ActionsCase12.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT12(_ActionsCase12);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT12(_ActionsCase12);
 					break;
 					}
 					case 13:
 					{
 					var _ActionsCase13 = new CraftRecipeOptionalActionData();
 					_ActionsCase13.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT13(_ActionsCase13);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT13(_ActionsCase13);
 					break;
 					}
 					case 14:
 					{
 					var _ActionsCase14 = new CraftRepairAndDisenchantActionData();
 					_ActionsCase14.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT14(_ActionsCase14);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT14(_ActionsCase14);
 					break;
 					}
 					case 15:
 					{
 					var _ActionsCase15 = new CraftLoomActionData();
 					_ActionsCase15.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT15(_ActionsCase15);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT15(_ActionsCase15);
 					break;
 					}
 					case 16:
 					{
-					var _ActionsCase16 = new CraftNonImplementedActionData();
+					var _ActionsCase16 = new CraftDiscPressActionData();
 					_ActionsCase16.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT16(_ActionsCase16);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT16(_ActionsCase16);
 					break;
 					}
 					case 17:
 					{
-					var _ActionsCase17 = new CraftResultsActionData();
+					var _ActionsCase17 = new CraftNonImplementedActionData();
 					_ActionsCase17.Read(reader);
-					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT17(_ActionsCase17);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT17(_ActionsCase17);
+					break;
+					}
+					case 18:
+					{
+					var _ActionsCase18 = new CraftResultsActionData();
+					_ActionsCase18.Read(reader);
+					_ActionsItem = OneOf<TakeActionData, PlaceActionData, SwapActionData, DropActionData, DestroyActionData, ConsumeActionData, CreateActionData, LabTableCombineActionData, BeaconPaymentActionData, MineBlockActionData, CraftRecipeActionData, CraftRecipeAutoActionData, CraftCreativeActionData, CraftRecipeOptionalActionData, CraftRepairAndDisenchantActionData, CraftLoomActionData, CraftDiscPressActionData, CraftNonImplementedActionData, CraftResultsActionData>.FromT18(_ActionsCase18);
 					break;
 					}
 					default:
@@ -263,6 +270,11 @@ namespace Protocol.Types.ItemStackRequestCereal
 					case 17:
 					{
 					_ActionsItem.AsT17.Write(writer);
+					break;
+					}
+					case 18:
+					{
+					_ActionsItem.AsT18.Write(writer);
 					break;
 					}
 					default:

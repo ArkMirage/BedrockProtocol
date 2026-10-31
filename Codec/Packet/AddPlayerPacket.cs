@@ -33,6 +33,7 @@ namespace Protocol.Packets
 		public Protocol.Types.PropertySyncData SynchedProperties { get; set; }
 		public Protocol.Types.SerializedAbilitiesData AbilitiesData { get; set; }
 		public List<Protocol.Types.ActorLink> ActorLinks { get; set; } = new List<Protocol.Types.ActorLink>();
+		public Optional<Protocol.Types.PassengerOfBlockArguments> PassengerBlockData { get; set; } = new Optional<Protocol.Types.PassengerOfBlockArguments>();
 		public string DeviceId { get; set; }
 		public Protocol.BuildPlatform BuildPlatform { get; set; }
 
@@ -62,6 +63,12 @@ namespace Protocol.Packets
 			AbilitiesData = new Protocol.Types.SerializedAbilitiesData();
 			AbilitiesData.Read(reader);
 			ActorLinks = reader.ReadSlice(() => { var _Item = new Protocol.Types.ActorLink(); _Item.Read(reader); return _Item; });
+			if (reader.ReadByte() != 0)
+			{
+				var _PassengerBlockDataValue = new Protocol.Types.PassengerOfBlockArguments();
+				_PassengerBlockDataValue.Read(reader);
+				PassengerBlockData = new Optional<Protocol.Types.PassengerOfBlockArguments>(_PassengerBlockDataValue);
+			}
 			DeviceId = reader.ReadLengthPrefixedString();
 			BuildPlatform = (Protocol.BuildPlatform)reader.ReadInt32();
 		}
@@ -83,6 +90,15 @@ namespace Protocol.Packets
 			SynchedProperties.Write(writer);
 			AbilitiesData.Write(writer);
 			writer.WriteSlice(ActorLinks, v => v.Write(writer));
+			if (PassengerBlockData != null && PassengerBlockData.HasValue)
+			{
+				writer.WriteByte(1);
+				PassengerBlockData.Value.Write(writer);
+			}
+			else
+			{
+				writer.WriteByte(0);
+			}
 			writer.WriteLengthPrefixedString(DeviceId);
 			writer.WriteInt32((int)BuildPlatform);
 		}

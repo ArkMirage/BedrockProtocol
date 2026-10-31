@@ -24,7 +24,8 @@ namespace Protocol
 		CraftRecipeOptional = 15,
 		CraftRepairAndDisenchant = 16,
 		CraftLoom = 17,
-		CraftNonImplemented = 18,
-		CraftResults = 19,
+		CraftReservedAction = 18,
+		CraftNonImplemented = 19,
+		CraftResults = 20,
 	}
 }

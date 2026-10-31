@@ -53,7 +53,7 @@ namespace Protocol
 		LocateStructureOutput = 42,
 		PostBlockFlattening = 43,
 		TestForBlockCommandDoesNotIgnoreBlockState = 44,
-		Count = 53,
-		Latest = 52,
+		Count = 56,
+		Latest = 55,
 	}
 }

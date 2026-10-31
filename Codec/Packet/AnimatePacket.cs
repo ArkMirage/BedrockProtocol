@@ -23,6 +23,7 @@ namespace Protocol.Packets
 		public Protocol.Types.ActorRuntimeID TargetActorRuntimeID { get; set; }
 		public float Data { get; set; }
 		public Optional<Protocol.ActorSwingSource> SwingSource { get; set; } = new Optional<Protocol.ActorSwingSource>();
+		public Protocol.HandSlot Hand { get; set; }
 
 		public override void Read(MemoryStreamReader reader)
 		{
@@ -35,6 +36,7 @@ namespace Protocol.Packets
 			{
 				SwingSource = new Optional<Protocol.ActorSwingSource>(EnumCodec.FromString<Protocol.ActorSwingSource>(reader.ReadLengthPrefixedString()));
 			}
+			Hand = (Protocol.HandSlot)reader.ReadByte();
 		}
 
 		public override void Write(MemoryStreamWriter writer)
@@ -52,6 +54,7 @@ namespace Protocol.Packets
 			{
 				writer.WriteByte(0);
 			}
+			writer.WriteByte((byte)Hand);
 		}
 	}
 }

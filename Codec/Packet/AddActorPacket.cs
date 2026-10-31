@@ -31,6 +31,7 @@ namespace Protocol.Packets
 		public Protocol.Types.SynchedActorData.CopyableDataList ActorData { get; set; }
 		public Protocol.Types.PropertySyncData SynchedProperties { get; set; }
 		public List<Protocol.Types.ActorLink> ActorLinks { get; set; } = new List<Protocol.Types.ActorLink>();
+		public Optional<Protocol.Types.PassengerOfBlockArguments> PassengerBlockData { get; set; } = new Optional<Protocol.Types.PassengerOfBlockArguments>();
 
 		public override void Read(MemoryStreamReader reader)
 		{
@@ -54,6 +55,12 @@ namespace Protocol.Packets
 			SynchedProperties = new Protocol.Types.PropertySyncData();
 			SynchedProperties.Read(reader);
 			ActorLinks = reader.ReadSlice(() => { var _Item = new Protocol.Types.ActorLink(); _Item.Read(reader); return _Item; });
+			if (reader.ReadByte() != 0)
+			{
+				var _PassengerBlockDataValue = new Protocol.Types.PassengerOfBlockArguments();
+				_PassengerBlockDataValue.Read(reader);
+				PassengerBlockData = new Optional<Protocol.Types.PassengerOfBlockArguments>(_PassengerBlockDataValue);
+			}
 		}
 
 		public override void Write(MemoryStreamWriter writer)
@@ -71,6 +78,15 @@ namespace Protocol.Packets
 			ActorData.Write(writer);
 			SynchedProperties.Write(writer);
 			writer.WriteSlice(ActorLinks, v => v.Write(writer));
+			if (PassengerBlockData != null && PassengerBlockData.HasValue)
+			{
+				writer.WriteByte(1);
+				PassengerBlockData.Value.Write(writer);
+			}
+			else
+			{
+				writer.WriteByte(0);
+			}
 		}
 	}
 }

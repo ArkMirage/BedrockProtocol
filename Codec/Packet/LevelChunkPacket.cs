@@ -26,6 +26,7 @@ namespace Protocol.Packets
 		public bool CacheEnabled { get; set; }
 		public List<Protocol.Types.LevelChunkPacketPayload.SubChunkMetadata> CacheMetadata { get; set; } = new List<Protocol.Types.LevelChunkPacketPayload.SubChunkMetadata>();
 		public byte[] SerializedChunkData { get; set; }
+		public bool IsClientBiomeUpdate { get; set; }
 
 		public override void Read(MemoryStreamReader reader)
 		{
@@ -42,6 +43,7 @@ namespace Protocol.Packets
 			CacheEnabled = reader.ReadByte() != 0;
 			CacheMetadata = reader.ReadSlice(() => { var _Item = new Protocol.Types.LevelChunkPacketPayload.SubChunkMetadata(); _Item.Read(reader); return _Item; });
 			SerializedChunkData = reader.ReadLengthPrefixedBytes().ToArray();
+			IsClientBiomeUpdate = reader.ReadByte() != 0;
 		}
 
 		public override void Write(MemoryStreamWriter writer)
@@ -62,6 +64,7 @@ namespace Protocol.Packets
 			writer.WriteByte(CacheEnabled ? (byte)1 : (byte)0);
 			writer.WriteSlice(CacheMetadata, v => v.Write(writer));
 			writer.WriteLengthPrefixedBytes(SerializedChunkData);
+			writer.WriteByte(IsClientBiomeUpdate ? (byte)1 : (byte)0);
 		}
 	}
 }

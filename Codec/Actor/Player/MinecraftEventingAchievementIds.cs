@@ -88,5 +88,6 @@ namespace Protocol.MinecraftEventing
 		MonsterHunter = 124,
 		Diamonds = 125,
 		PlethoraOfCats = 126,
+		WhatGoesAroundComesAround = 127,
 	}
 }

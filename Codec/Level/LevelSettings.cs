@@ -25,6 +25,7 @@ namespace Protocol.Types
 		public Protocol.Editor.WorldType EditorWorldType { get; set; } 
 		public bool IsCreatedInEditor { get; set; }
 		public bool IsExportedFromEditor { get; set; }
+		public Protocol.Editor.EditorLevelMigrationVersion EditorLevelMigrationVersion { get; set; }
 		public int DayCycleStopTime { get; set; } 
 		public Protocol.EducationEditionOffer EducationEditionOffer { get; set; } 
 		public bool EducationFeaturesEnabled { get; set; }
@@ -80,6 +81,7 @@ namespace Protocol.Types
 			EditorWorldType = (Protocol.Editor.WorldType)VarInt.ReadInt32(reader); 
 			IsCreatedInEditor = reader.ReadByte() != 0;
 			IsExportedFromEditor = reader.ReadByte() != 0;
+			EditorLevelMigrationVersion = (Protocol.Editor.EditorLevelMigrationVersion)reader.ReadByte();
 			DayCycleStopTime = VarInt.ReadInt32(reader); 
 			EducationEditionOffer = (Protocol.EducationEditionOffer)VarInt.ReadUInt32(reader); 
 			EducationFeaturesEnabled = reader.ReadByte() != 0;
@@ -140,6 +142,7 @@ namespace Protocol.Types
 			writer.WriteVarInt32((int)EditorWorldType); 
 			writer.WriteByte(IsCreatedInEditor ? (byte)1 : (byte)0);
 			writer.WriteByte(IsExportedFromEditor ? (byte)1 : (byte)0);
+			writer.WriteByte((byte)EditorLevelMigrationVersion);
 			writer.WriteVarInt32(DayCycleStopTime); 
 			writer.WriteVarUInt32((uint)EducationEditionOffer); 
 			writer.WriteByte(EducationFeaturesEnabled ? (byte)1 : (byte)0);

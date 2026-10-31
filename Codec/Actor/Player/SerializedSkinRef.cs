@@ -15,7 +15,6 @@ namespace Protocol.Types
 	public class SerializedSkinRef
 	{
 		public string ID { get; set; }
-		public string PlayFabID { get; set; }
 		public string ResourcePatch { get; set; }
 		public SkinImage ImageData { get; set; }
 		public List<AnimatedImageData> AnimatedImageData { get; set; } = new List<AnimatedImageData>();
@@ -40,7 +39,6 @@ namespace Protocol.Types
 		public void Read(MemoryStreamReader reader)
 		{
 			ID = reader.ReadLengthPrefixedString();
-			PlayFabID = reader.ReadLengthPrefixedString();
 			ResourcePatch = reader.ReadLengthPrefixedString();
 			ImageData = new SkinImage();
 			ImageData.Read(reader);
@@ -77,7 +75,6 @@ namespace Protocol.Types
 		public void Write(MemoryStreamWriter writer)
 		{
 			writer.WriteLengthPrefixedString(ID);
-			writer.WriteLengthPrefixedString(PlayFabID);
 			writer.WriteLengthPrefixedString(ResourcePatch);
 			ImageData.Write(writer);
 			writer.WriteSlice(AnimatedImageData, v => v.Write(writer));

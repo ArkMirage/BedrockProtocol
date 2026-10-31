@@ -14,15 +14,18 @@ namespace Protocol.Types.SoundDataEvent
 {
 	public class SetVolume
 	{
+		public Protocol.SoundDataEventType Type { get; set; }
 		public float Volume { get; set; }
 
 		public void Read(MemoryStreamReader reader)
 		{
+			Type = (Protocol.SoundDataEventType)reader.ReadByte();
 			Volume = reader.ReadSingle();
 		}
 
 		public void Write(MemoryStreamWriter writer)
 		{
+			writer.WriteByte((byte)Type);
 			writer.WriteSingle(Volume);
 		}
 	}

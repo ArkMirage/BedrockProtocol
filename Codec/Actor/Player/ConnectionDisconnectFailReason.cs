@@ -160,5 +160,6 @@ namespace Protocol.Connection
 		EditorNotAllowed = 147,
 		MissingStructureData = 148,
 		UnsupportedTransport = 149,
+		SubClientLoginNotBound = 150,
 	}
 }

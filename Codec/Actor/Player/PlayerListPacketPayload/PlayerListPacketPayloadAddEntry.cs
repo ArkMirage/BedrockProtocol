@@ -19,6 +19,7 @@ namespace Protocol.Types.PlayerListPacketPayload
 		public ActorUniqueID ActorUniqueID { get; set; }
 		public string PlayerName { get; set; }
 		public string XBLXUID { get; set; }
+		public string PlayFabID { get; set; }
 		public string PlatformOnlineID { get; set; }
 		public Protocol.BuildPlatform BuildPlatform { get; set; }
 		public SerializedSkinRef SerializedSkin { get; set; }
@@ -36,6 +37,7 @@ namespace Protocol.Types.PlayerListPacketPayload
 			ActorUniqueID.Read(reader);
 			PlayerName = reader.ReadLengthPrefixedString();
 			XBLXUID = reader.ReadLengthPrefixedString();
+			PlayFabID = reader.ReadLengthPrefixedString();
 			PlatformOnlineID = reader.ReadLengthPrefixedString();
 			BuildPlatform = (Protocol.BuildPlatform)reader.ReadInt32();
 			SerializedSkin = new SerializedSkinRef();
@@ -54,6 +56,7 @@ namespace Protocol.Types.PlayerListPacketPayload
 			ActorUniqueID.Write(writer);
 			writer.WriteLengthPrefixedString(PlayerName);
 			writer.WriteLengthPrefixedString(XBLXUID);
+			writer.WriteLengthPrefixedString(PlayFabID);
 			writer.WriteLengthPrefixedString(PlatformOnlineID);
 			writer.WriteInt32((int)BuildPlatform);
 			SerializedSkin.Write(writer);

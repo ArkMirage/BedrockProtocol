@@ -59,5 +59,7 @@ namespace Protocol.SharedTypes.Legacy
 		/// <summary>DECORATED_POT</summary>
 		DECORATEDPOT = 35,
 		CRAFTER = 36,
+		/// <summary>RESERVED_CONTAINER_TYPE</summary>
+		RESERVEDCONTAINERTYPE = 38,
 	}
 }
